@@ -15,6 +15,13 @@
 		C52EC03C241735A500908012 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C52EC03A241735A500908012 /* LaunchScreen.storyboard */; };
 		C52EC047241735A500908012 /* KalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52EC046241735A500908012 /* KalendarTests.swift */; };
 		C52EC052241735A500908012 /* KalendarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52EC051241735A500908012 /* KalendarUITests.swift */; };
+		C53DA8D32419F96A0089CE2B /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53DA8D22419F96A0089CE2B /* Artist.swift */; };
+		C53DA8D62419FE7C0089CE2B /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53DA8D52419FE7C0089CE2B /* Company.swift */; };
+		C53DA8D82419FEBB0089CE2B /* SocialLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53DA8D72419FEBB0089CE2B /* SocialLinks.swift */; };
+		C53DA8DA2419FF000089CE2B /* ArtistImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53DA8D92419FF000089CE2B /* ArtistImages.swift */; };
+		C53DA8DC2419FFF80089CE2B /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53DA8DB2419FFF80089CE2B /* Group.swift */; };
+		C53DA8DF241A01FB0089CE2B /* Soloist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53DA8DE241A01FB0089CE2B /* Soloist.swift */; };
+		C53DA8E1241A027A0089CE2B /* ArtistDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53DA8E0241A027A0089CE2B /* ArtistDetails.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +56,14 @@
 		C52EC04D241735A500908012 /* KalendarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KalendarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C52EC051241735A500908012 /* KalendarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KalendarUITests.swift; sourceTree = "<group>"; };
 		C52EC053241735A500908012 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C53DA8D02419F8DB0089CE2B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C53DA8D22419F96A0089CE2B /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
+		C53DA8D52419FE7C0089CE2B /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
+		C53DA8D72419FEBB0089CE2B /* SocialLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLinks.swift; sourceTree = "<group>"; };
+		C53DA8D92419FF000089CE2B /* ArtistImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistImages.swift; sourceTree = "<group>"; };
+		C53DA8DB2419FFF80089CE2B /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		C53DA8DE241A01FB0089CE2B /* Soloist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Soloist.swift; sourceTree = "<group>"; };
+		C53DA8E0241A027A0089CE2B /* ArtistDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistDetails.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +94,7 @@
 		C52EC0232417359F00908012 = {
 			isa = PBXGroup;
 			children = (
+				C53DA8D02419F8DB0089CE2B /* README.md */,
 				C52EC02E2417359F00908012 /* Kalendar */,
 				C52EC045241735A500908012 /* KalendarTests */,
 				C52EC050241735A500908012 /* KalendarUITests */,
@@ -99,6 +115,8 @@
 		C52EC02E2417359F00908012 /* Kalendar */ = {
 			isa = PBXGroup;
 			children = (
+				C53DA8DD241A01E40089CE2B /* Artist */,
+				C53DA8D12419F9550089CE2B /* Models */,
 				C52EC02F2417359F00908012 /* AppDelegate.swift */,
 				C52EC0312417359F00908012 /* SceneDelegate.swift */,
 				C52EC0332417359F00908012 /* ContentView.swift */,
@@ -134,6 +152,27 @@
 				C52EC053241735A500908012 /* Info.plist */,
 			);
 			path = KalendarUITests;
+			sourceTree = "<group>";
+		};
+		C53DA8D12419F9550089CE2B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C53DA8D22419F96A0089CE2B /* Artist.swift */,
+				C53DA8D52419FE7C0089CE2B /* Company.swift */,
+				C53DA8D72419FEBB0089CE2B /* SocialLinks.swift */,
+				C53DA8D92419FF000089CE2B /* ArtistImages.swift */,
+				C53DA8DB2419FFF80089CE2B /* Group.swift */,
+				C53DA8DE241A01FB0089CE2B /* Soloist.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C53DA8DD241A01E40089CE2B /* Artist */ = {
+			isa = PBXGroup;
+			children = (
+				C53DA8E0241A027A0089CE2B /* ArtistDetails.swift */,
+			);
+			path = Artist;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,9 +306,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C53DA8D82419FEBB0089CE2B /* SocialLinks.swift in Sources */,
 				C52EC0302417359F00908012 /* AppDelegate.swift in Sources */,
 				C52EC0322417359F00908012 /* SceneDelegate.swift in Sources */,
+				C53DA8DF241A01FB0089CE2B /* Soloist.swift in Sources */,
+				C53DA8DC2419FFF80089CE2B /* Group.swift in Sources */,
+				C53DA8D32419F96A0089CE2B /* Artist.swift in Sources */,
+				C53DA8D62419FE7C0089CE2B /* Company.swift in Sources */,
+				C53DA8DA2419FF000089CE2B /* ArtistImages.swift in Sources */,
 				C52EC0342417359F00908012 /* ContentView.swift in Sources */,
+				C53DA8E1241A027A0089CE2B /* ArtistDetails.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
