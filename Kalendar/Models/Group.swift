@@ -19,10 +19,12 @@ import Foundation
 class Group: Artist, ArtistProtocol {
     var englishName: String
     var foreignName: String
+    var members: [Soloist]
     
-    init(id: Int, startDate: Date, endDate: Date?, company: Company, socialLinks: SocialLinks, images: ArtistImages, description: String, englishName: String, foreignName: String) {
+    init(id: Int, startDate: Date, endDate: Date?, company: Company, socialLinks: SocialLinks, images: ArtistImages, description: String, englishName: String, foreignName: String, members: [Soloist]) {
         self.englishName = englishName
         self.foreignName = foreignName
+        self.members = members
         
         super.init()
         self.id = id
@@ -32,6 +34,16 @@ class Group: Artist, ArtistProtocol {
         self.socialLinks = socialLinks
         self.images = images
         self.description = description
+    }
+    
+    func addNewMember(startDate: Date, endDate: Date?, socialLinks: SocialLinks, images: ArtistImages, description: String, stageName: String, fullName: String, isDebuted: Bool) {
+        self.members.append(
+            Soloist(id: Int.random(in: 1...1000000), startDate: startDate, endDate: endDate, company: self.company, socialLinks: socialLinks, images: images, description: description, stageName: stageName, fullName: fullName, isDebuted: isDebuted)
+        )
+    }
+    
+    func addMember(member: Soloist) {
+        self.members.append(member)
     }
     
     var displayName: String {
@@ -44,6 +56,10 @@ class Group: Artist, ArtistProtocol {
     
     var isGroup: Bool {
         return true
+    }
+    
+    var getMemberNum: Int {
+        return self.members.count
     }
 }
 

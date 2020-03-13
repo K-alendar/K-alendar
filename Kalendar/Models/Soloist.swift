@@ -9,8 +9,24 @@
 import Foundation
 
 class Soloist: Artist, ArtistProtocol {
-    var stageName: String = ""
-    var fullName: String = ""
+    var stageName: String
+    var fullName: String
+    var isDebuted: Bool
+    
+    init(id: Int, startDate: Date, endDate: Date?, company: Company, socialLinks: SocialLinks, images: ArtistImages, description: String, stageName: String, fullName: String, isDebuted: Bool) {
+        self.fullName = fullName
+        self.stageName = stageName
+        self.isDebuted = isDebuted
+        
+        super.init()
+        self.id = id
+        self.startDate = startDate
+        self.endDate = endDate
+        self.company = company
+        self.socialLinks = socialLinks
+        self.images = images
+        self.description = description
+    }
     
     var displayName: String {
         return self.stageName
@@ -23,6 +39,8 @@ class Soloist: Artist, ArtistProtocol {
     var isGroup: Bool {
         return false
     }
+    
+    var getMemberNum: Int {
+        return -1
+    }
 }
-
-

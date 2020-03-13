@@ -7,5 +7,16 @@
 //
 
 import Foundation
+import SwiftUI
 
-class SocialLinks {}
+class SocialLinks {
+    var twitterLink: String?
+    var spotifyLink: String?
+    var youtubeLink: String?
+    
+    init(twitterLink:String?, spotifyLink: String?, youtubeLink: String?) {
+        self.twitterLink = twitterLink
+        self.spotifyLink = spotifyLink
+        self.youtubeLink = youtubeLink
+    }
+}
