@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C5044595241D7B8A009DFA11 /* ArtistCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5044594241D7B8A009DFA11 /* ArtistCard.swift */; };
 		C52EC0302417359F00908012 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52EC02F2417359F00908012 /* AppDelegate.swift */; };
 		C52EC0322417359F00908012 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52EC0312417359F00908012 /* SceneDelegate.swift */; };
 		C52EC0342417359F00908012 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52EC0332417359F00908012 /* ContentView.swift */; };
@@ -24,6 +25,7 @@
 		C53DA8E1241A027A0089CE2B /* ArtistDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53DA8E0241A027A0089CE2B /* ArtistDetails.swift */; };
 		C5409FEF241CC1EC007BE636 /* SocialLinksDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5409FEE241CC1EC007BE636 /* SocialLinksDisplay.swift */; };
 		C545FE4D241D6B3A00356EB3 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C545FE4C241D6B3A00356EB3 /* extensions.swift */; };
+		C545FE50241D6EEC00356EB3 /* sampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C545FE4F241D6EEC00356EB3 /* sampleData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C5044594241D7B8A009DFA11 /* ArtistCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ArtistCard.swift; path = /Users/johnivison/personal/Kalendar/Kalendar/Artist/ArtistCard.swift; sourceTree = "<absolute>"; };
 		C52EC02C2417359F00908012 /* Kalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C52EC02F2417359F00908012 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C52EC0312417359F00908012 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +71,7 @@
 		C53DA8E0241A027A0089CE2B /* ArtistDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistDetails.swift; sourceTree = "<group>"; };
 		C5409FEE241CC1EC007BE636 /* SocialLinksDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLinksDisplay.swift; sourceTree = "<group>"; };
 		C545FE4C241D6B3A00356EB3 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
+		C545FE4F241D6EEC00356EB3 /* sampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sampleData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +123,7 @@
 		C52EC02E2417359F00908012 /* Kalendar */ = {
 			isa = PBXGroup;
 			children = (
+				C545FE4E241D6EDE00356EB3 /* Data */,
 				C53DA8DD241A01E40089CE2B /* Artist */,
 				C53DA8D12419F9550089CE2B /* Models */,
 				C52EC02F2417359F00908012 /* AppDelegate.swift */,
@@ -175,10 +180,19 @@
 		C53DA8DD241A01E40089CE2B /* Artist */ = {
 			isa = PBXGroup;
 			children = (
+				C5044594241D7B8A009DFA11 /* ArtistCard.swift */,
 				C53DA8E0241A027A0089CE2B /* ArtistDetails.swift */,
 				C5409FEE241CC1EC007BE636 /* SocialLinksDisplay.swift */,
 			);
 			path = Artist;
+			sourceTree = "<group>";
+		};
+		C545FE4E241D6EDE00356EB3 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				C545FE4F241D6EEC00356EB3 /* sampleData.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,8 +335,10 @@
 				C53DA8D62419FE7C0089CE2B /* Company.swift in Sources */,
 				C53DA8DA2419FF000089CE2B /* ArtistImages.swift in Sources */,
 				C5409FEF241CC1EC007BE636 /* SocialLinksDisplay.swift in Sources */,
+				C545FE50241D6EEC00356EB3 /* sampleData.swift in Sources */,
 				C52EC0342417359F00908012 /* ContentView.swift in Sources */,
 				C53DA8E1241A027A0089CE2B /* ArtistDetails.swift in Sources */,
+				C5044595241D7B8A009DFA11 /* ArtistCard.swift in Sources */,
 				C545FE4D241D6B3A00356EB3 /* extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-protocol ArtistProtocol {
+protocol Artist {
     var startDate: Date { get }
     var endDate: Date? { get set }
     var company: Company { get set }
@@ -24,8 +24,8 @@ protocol ArtistProtocol {
     var getMembers: [Soloist] { get }
 }
 
-class Artist: Hashable {
-    static func == (lhs: Artist, rhs: Artist) -> Bool {
+class BaseArtist: Hashable {
+    static func == (lhs: BaseArtist, rhs: BaseArtist) -> Bool {
         lhs.id == rhs.id
     }
     
@@ -38,9 +38,6 @@ class Artist: Hashable {
     var endDate: Date? = nil
     var company: Company = Company(name: "")
     var socialLinks: SocialLinks = SocialLinks(twitter: nil, spotify: nil, youtube: nil)
-    var images: ArtistImages = ArtistImages(
-        logo: Image("defaultLogo"),
-        large: Image("defaultLarge")
-    )
+    var images: ArtistImages = ArtistImages()
     var description: String = ""
 }
