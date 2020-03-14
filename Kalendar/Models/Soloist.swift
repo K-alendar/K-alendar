@@ -43,4 +43,8 @@ class Soloist: Artist, ArtistProtocol {
     var getMemberNum: Int {
         return -1
     }
+    
+    var getMembers: [Soloist] {
+        return []
+    }
 }

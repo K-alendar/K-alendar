@@ -22,6 +22,7 @@
 		C53DA8DC2419FFF80089CE2B /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53DA8DB2419FFF80089CE2B /* Group.swift */; };
 		C53DA8DF241A01FB0089CE2B /* Soloist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53DA8DE241A01FB0089CE2B /* Soloist.swift */; };
 		C53DA8E1241A027A0089CE2B /* ArtistDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53DA8E0241A027A0089CE2B /* ArtistDetails.swift */; };
+		C5409FEF241CC1EC007BE636 /* SocialLinksDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5409FEE241CC1EC007BE636 /* SocialLinksDisplay.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		C53DA8DB2419FFF80089CE2B /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		C53DA8DE241A01FB0089CE2B /* Soloist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Soloist.swift; sourceTree = "<group>"; };
 		C53DA8E0241A027A0089CE2B /* ArtistDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistDetails.swift; sourceTree = "<group>"; };
+		C5409FEE241CC1EC007BE636 /* SocialLinksDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLinksDisplay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				C53DA8E0241A027A0089CE2B /* ArtistDetails.swift */,
+				C5409FEE241CC1EC007BE636 /* SocialLinksDisplay.swift */,
 			);
 			path = Artist;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				C53DA8D32419F96A0089CE2B /* Artist.swift in Sources */,
 				C53DA8D62419FE7C0089CE2B /* Company.swift in Sources */,
 				C53DA8DA2419FF000089CE2B /* ArtistImages.swift in Sources */,
+				C5409FEF241CC1EC007BE636 /* SocialLinksDisplay.swift in Sources */,
 				C52EC0342417359F00908012 /* ContentView.swift in Sources */,
 				C53DA8E1241A027A0089CE2B /* ArtistDetails.swift in Sources */,
 			);

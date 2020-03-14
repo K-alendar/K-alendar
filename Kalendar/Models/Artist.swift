@@ -21,6 +21,7 @@ protocol ArtistProtocol {
     var secondaryDisplayName: String { get }
     var isGroup: Bool { get }
     var getMemberNum: Int { get }
+    var getMembers: [Soloist] { get }
 }
 
 class Artist: Hashable {
@@ -36,7 +37,7 @@ class Artist: Hashable {
     var startDate: Date = Date()
     var endDate: Date? = nil
     var company: Company = Company(name: "")
-    var socialLinks: SocialLinks = SocialLinks(twitterLink: nil, spotifyLink: nil, youtubeLink: nil)
+    var socialLinks: SocialLinks = SocialLinks(twitter: nil, spotify: nil, youtube: nil)
     var images: ArtistImages = ArtistImages(
         logo: Image("defaultLogo"),
         large: Image("defaultLarge")

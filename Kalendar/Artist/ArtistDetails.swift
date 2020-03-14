@@ -10,7 +10,8 @@ import SwiftUI
 
 struct ArtistDetails: View {
     var artist: ArtistProtocol
-
+    let yearDateFormatter: DateFormatter
+    
     var body: some View {
         VStack(alignment: .leading) {
             VStack {
@@ -48,22 +49,69 @@ struct ArtistDetails: View {
             
             
             VStack(alignment: .leading) {
-                HStack {
-                    HStack {
-                        Image("members")
-                        artist.isGroup ? Text("\(artist.getMemberNum) members")
-                            .font(.subheadline)
-                            .fontWeight(.light)
-                            .foregroundColor(Color.gray) : Text("")
-                    }
+                HStack() {
+                    Image("members")
+                    artist.isGroup ? Text("\(artist.getMemberNum) members")
+                        .font(.subheadline)
+                        .fontWeight(.light)
+                        .foregroundColor(Color.gray) : Text("")
+                    
+                    Image("debut")
+                    Text(yearDateFormatter.string(from: artist.startDate))
+                    .font(.subheadline)
+                    .fontWeight(.light)
+                        .foregroundColor(Color.gray)
+                        .lineLimit(2)
+                    
+                    Spacer()
+                    
+                    SocialLinksDisplay(socialLinks: artist.socialLinks)
+
                 }
                 
                 Text("About")
                     .font(.title)
-                    .padding(.bottom, 8.0)
-                        
-                Text(artist.description)
                 
+                GeometryReader { geometry in
+                    ScrollView(showsIndicators: true) {
+                        Text(self.artist.description)
+                            .font(.body)
+                            .multilineTextAlignment(.leading)
+                            .padding(.trailing, 15.0)
+                            
+                    }
+                }
+                
+                if artist.isGroup {
+                    ScrollView (.horizontal, showsIndicators: false) {
+                    HStack {
+                        ForEach(artist.getMembers, id: \.id) { member in
+                            VStack {
+                                ZStack {
+                                    GeometryReader { proxy in
+                                        member.images.logo
+                                        .resizable()
+                                        .scaledToFill()
+                                            .frame(width: proxy.size.width, height: proxy.size.height)
+                                            .cornerRadius(50)
+                                        VStack {
+                                            Spacer()
+
+                                        }
+                                    }
+                                }.frame(width:150.0)
+                                .clipped()
+                                .aspectRatio(1, contentMode: .fit)
+                                
+                               Text(member.displayName)
+                                    .fontWeight(.medium)
+                                    .background(Color(red: 1.0, green: 1.0, blue: 1.0, opacity: 0.6))
+                            }
+                            
+                        }
+                    }
+                    }
+                }
             }
             .padding(.horizontal, 25.0)
             .offset(y: -94)
@@ -77,10 +125,14 @@ struct ArtistDetails_Previews: PreviewProvider {
     static var previews: some View {
         let displayGroup = Group(
                     id: 1,
-                    startDate: Date(timeIntervalSinceNow: 20000),
+                    startDate: Date(timeIntervalSinceNow: -249000000),
                     endDate: nil,
                     company: Company(name: "SM Entertainment"),
-                    socialLinks: SocialLinks(twitterLink: nil, spotifyLink: nil, youtubeLink: nil),
+                    socialLinks: SocialLinks(
+                        twitter: "https://twitter.com/RVsmtown",
+                        spotify: "https://open.spotify.com/artist/1z4g3DjTBBZKhvAroFlhOM",
+                        youtube: "https://www.youtube.com/user/SMTOWN"
+                    ),
                     images: ArtistImages(
                         logo: Image("redVelvet"),
                         large: Image("redVelvetLarge")
@@ -97,18 +149,22 @@ struct ArtistDetails_Previews: PreviewProvider {
                     members: []
                     )
         
-        displayGroup.addNewMember(startDate: Date(), endDate: nil, socialLinks: SocialLinks(twitterLink: nil, spotifyLink: nil, youtubeLink: nil), images: ArtistImages(logo: Image(""), large: Image("")), description: "Yeri", stageName: "Yeri", fullName: "김예림", isDebuted: true)
+        displayGroup.addNewMember(startDate: Date(), endDate: nil, socialLinks: SocialLinks(), images: ArtistImages(logo: Image("yeri"), large: Image("")), description: "Yeri", stageName: "Yeri", fullName: "김예림", isDebuted: true)
         
-        displayGroup.addNewMember(startDate: Date(), endDate: nil, socialLinks: SocialLinks(twitterLink: nil, spotifyLink: nil, youtubeLink: nil), images: ArtistImages(logo: Image(""), large: Image("")), description: "It's Seulgi", stageName: "Seulgi", fullName: "강슬기", isDebuted: false)
+        displayGroup.addNewMember(startDate: Date(), endDate: nil, socialLinks: SocialLinks(), images: ArtistImages(logo: Image("seulgi"), large: Image("")), description: "It's Seulgi", stageName: "Seulgi", fullName: "강슬기", isDebuted: false)
         
-        displayGroup.addNewMember(startDate: Date(), endDate: nil, socialLinks: SocialLinks(twitterLink: nil, spotifyLink: nil, youtubeLink: nil), images: ArtistImages(logo: Image(""), large: Image("")), description: "It's Irene", stageName: "Irene", fullName: "배주현", isDebuted: false)
+        displayGroup.addNewMember(startDate: Date(), endDate: nil, socialLinks: SocialLinks(), images: ArtistImages(logo: Image("irene"), large: Image("")), description: "It's Irene", stageName: "Irene", fullName: "배주현", isDebuted: false)
         
-        displayGroup.addNewMember(startDate: Date(), endDate: nil, socialLinks: SocialLinks(twitterLink: nil, spotifyLink: nil, youtubeLink: nil), images: ArtistImages(logo: Image(""), large: Image("")), description: "It's Joy", stageName: "Joy", fullName: "박수영", isDebuted: false)
+        displayGroup.addNewMember(startDate: Date(), endDate: nil, socialLinks: SocialLinks(), images: ArtistImages(logo: Image("joy"), large: Image("")), description: "It's Joy", stageName: "Joy", fullName: "박수영", isDebuted: false)
         
-        displayGroup.addNewMember(startDate: Date(), endDate: nil, socialLinks: SocialLinks(twitterLink: nil, spotifyLink: nil, youtubeLink: nil), images: ArtistImages(logo: Image(""), large: Image("")), description: "It's Wendy", stageName: "Wendy", fullName: "손승완", isDebuted: false)
+        displayGroup.addNewMember(startDate: Date(), endDate: nil, socialLinks: SocialLinks(), images: ArtistImages(logo: Image("wendy"), large: Image("")), description: "It's Wendy", stageName: "Wendy", fullName: "손승완", isDebuted: false)
+        
+        let yearDateFormatter = DateFormatter()
+        yearDateFormatter.dateFormat = "yyyy"
         
         return ArtistDetails(artist:
-            displayGroup
+            displayGroup,
+            yearDateFormatter: yearDateFormatter
         )
     }
 }

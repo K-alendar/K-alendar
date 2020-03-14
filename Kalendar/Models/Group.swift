@@ -61,6 +61,10 @@ class Group: Artist, ArtistProtocol {
     var getMemberNum: Int {
         return self.members.count
     }
+    
+    var getMembers: [Soloist] {
+        return self.members
+    }
 }
 
 
