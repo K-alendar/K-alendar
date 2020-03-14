@@ -44,6 +44,13 @@ class SocialLinks {
         return ""
     }
     
+    func checkIsValid(with link: Links) -> Bool {
+        if let _ = URL(string: self.returnString(of: link)) {
+            return true
+        }
+        return false
+    }
+    
     func open(_ link: Links) -> Void {
         if let url = URL(string: self.returnString(of: link)) {
             UIApplication.shared.open(url)

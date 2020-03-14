@@ -18,8 +18,8 @@ struct ArtistDetails: View {
                 artist.images.large
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .cornerRadius(15)
-            }.edgesIgnoringSafeArea(.top)
+                    .cornerRadius(15, corners: [.bottomLeft, .bottomRight])
+            }
                 
             HStack(alignment: .bottom) {
                 artist.images.logo
@@ -34,7 +34,7 @@ struct ArtistDetails: View {
                 VStack(alignment: .leading) {
                     HStack {
                         Text(artist.displayName)
-                            .font(.title)
+                            .font(.system(size: 30))
                             .bold()
                         Text(artist.secondaryDisplayName)
                             .font(.headline)
@@ -45,7 +45,7 @@ struct ArtistDetails: View {
                         .padding(.bottom, 3.0)
                 }
                 
-            }.padding(.leading).offset(y: -94)
+            }.padding(.leading).offset(y: -50).padding(.bottom, -50)
             
             
             VStack(alignment: .leading) {
@@ -114,10 +114,10 @@ struct ArtistDetails: View {
                 }
             }
             .padding(.horizontal, 25.0)
-            .offset(y: -94)
             
             Spacer()
         }
+                    .edgesIgnoringSafeArea(.top)
     }
 }
 
