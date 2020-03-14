@@ -20,8 +20,10 @@ protocol Artist {
     var displayName: String { get }
     var secondaryDisplayName: String { get }
     var isGroup: Bool { get }
-    var getMemberNum: Int { get }
-    var getMembers: [Soloist] { get }
+    var memberCount: Int { get }
+    var members: [Soloist] { get }
+    
+    var releases: [Release] { get set }
 }
 
 class BaseArtist: Hashable {
@@ -40,4 +42,10 @@ class BaseArtist: Hashable {
     var socialLinks: SocialLinks = SocialLinks(twitter: nil, spotify: nil, youtube: nil)
     var images: ArtistImages = ArtistImages()
     var description: String = ""
+    var releases: [Release] = []
+    
+    func addRelease(_ release: Release) -> Void {
+        self.releases.append(release)
+    }
+    
 }
