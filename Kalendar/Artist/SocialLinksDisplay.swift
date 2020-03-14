@@ -13,22 +13,30 @@ struct SocialLinksDisplay: View {
     
     var body: some View {
         HStack {
-            Button(action: {
-                self.socialLinks.open(.Twitter)
-            }) {
-                Image("twitter")
+            
+            if self.socialLinks.checkIsValid(with: .Twitter) {
+                Button(action: {
+                    self.socialLinks.open(.Twitter)
+                }) {
+                    Image("twitter")
+                }
             }
             
-            Button(action: {
-                self.socialLinks.open(.Youtube)
-            }) {
-                Image("youtube")
+            
+            if self.socialLinks.checkIsValid(with: .Spotify) {
+                Button(action: {
+                    self.socialLinks.open(.Spotify)
+                }) {
+                    Image("spotify")
+                }
             }
             
-            Button(action: {
-                self.socialLinks.open(.Spotify)
-            }) {
-                Image("spotify")
+            if self.socialLinks.checkIsValid(with: .Youtube) {
+                Button(action: {
+                    self.socialLinks.open(.Youtube)
+                }) {
+                    Image("youtube")
+                }
             }
         }
 
