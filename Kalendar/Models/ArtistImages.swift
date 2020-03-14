@@ -10,15 +10,20 @@ import Foundation
 import SwiftUI
 
 class ArtistImages {
-    var logo: Image
-    var large: Image
+    var icon: Image
+    var banner: Image
+    var cardTall: Image
+    var cardFlat: Image
     
-    init(logo: Image, large: Image) {
-        self.logo = logo
-        self.large = large
-    }
-    
-    var logoAsCircle: some View {
-        return self.logo.resizable().clipShape(Circle())
+    init(
+        icon: Image = Image("default-logo"),
+        banner: Image = Image("default-banner"),
+        cardTall: Image = Image("default-cardTall"),
+        cardFlat: Image = Image("default-cardFlat")
+    ) {
+        self.icon = icon
+        self.banner = banner
+        self.cardTall = cardTall
+        self.cardFlat = cardFlat
     }
 }

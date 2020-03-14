@@ -16,7 +16,7 @@ import Foundation
 //var images: ArtistImages = ArtistImages()
 //var description: String = ""
 
-class Group: Artist, ArtistProtocol {
+class Group: BaseArtist, Artist {
     var englishName: String
     var foreignName: String
     var members: [Soloist]

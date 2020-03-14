@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Soloist: Artist, ArtistProtocol {
+class Soloist: BaseArtist, Artist {
     var stageName: String
     var fullName: String
     var isDebuted: Bool

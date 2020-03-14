@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Kalendar.xcodeproj">
+      location = "group:/Users/johnivison/personal/Kalendar/Kalendar/Artist/ArtistCardFlat.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/johnivison/personal/Kalendar/Kalendar/Artist/anbsjfa.swift">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>
