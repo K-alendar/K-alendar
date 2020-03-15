@@ -51,7 +51,7 @@ struct ArtistDetails: View {
             VStack(alignment: .leading) {
                 HStack() {
                     Image("members")
-                    artist.isGroup ? Text("\(artist.getMemberNum) members")
+                    artist.isGroup ? Text("\(artist.memberCount) members")
                         .font(.subheadline)
                         .fontWeight(.light)
                         .foregroundColor(Color.gray) : Text("")
@@ -85,7 +85,7 @@ struct ArtistDetails: View {
                 if artist.isGroup {
                     ScrollView (.horizontal, showsIndicators: false) {
                     HStack {
-                        ForEach(artist.getMembers, id: \.id) { member in
+                        ForEach(artist.members, id: \.id) { member in
                             VStack {
                                 ZStack {
                                     GeometryReader { proxy in
