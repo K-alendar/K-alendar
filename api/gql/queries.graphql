@@ -1,4 +1,20 @@
 type Query {
-    artists: [Artist],
-    companies: [Company],
+  artists: [Artist]
+  companies: [Company]
+}
+
+type Mutation {
+  createCompany(name: String!): Company
+  createArtist(
+    startDate: Date!
+    endDate: Date
+    company_id: Int!
+    socialLinks_id: Int!
+    description: String!
+    displayName: String!
+    secondaryDisplayName: String!
+    isGroup: Boolean!
+    memberCount: Int!
+  ): Artist
+  addMemberToGroup(member_id: Int!, group_id: Int!): GroupMember
 }

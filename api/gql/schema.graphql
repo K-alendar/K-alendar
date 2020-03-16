@@ -1,10 +1,10 @@
 scalar Date
 
-type Artist {
+interface IArtist {
   id: ID!
   startDate: Date!
   endDate: Date
-  company: Company
+  company: Company!
   socialLinks: SocialLinks
   # images: ArtistImages
   description: String!
@@ -14,10 +14,41 @@ type Artist {
   secondaryDisplayName: String!
   isGroup: Boolean!
   memberCount: Int!
-  
-  members: [Artist]
-  groups: [Artist]
 }
+
+type Soloist implements IArtist {
+  id: ID!
+  startDate: Date!
+  endDate: Date
+  company: Company!
+  socialLinks: SocialLinks
+  description: String!
+  releases: [Release]!
+  displayName: String!
+  secondaryDisplayName: String!
+  isGroup: Boolean!
+  memberCount: Int!
+
+  groups: [Group]
+}
+
+type Group implements IArtist {
+  id: ID!
+  startDate: Date!
+  endDate: Date
+  company: Company!
+  socialLinks: SocialLinks
+  description: String!
+  releases: [Release]!
+  displayName: String!
+  secondaryDisplayName: String!
+  isGroup: Boolean!
+  memberCount: Int!
+
+  members: [Soloist]
+}
+
+union Artist = Group | Soloist
 
 enum ReleaseStatus {
   Delayed
@@ -64,4 +95,9 @@ type ArtistImages {
   banner: Image
   cardTall: Image
   cardFlat: Image
+}
+
+type GroupMember {
+  member: Soloist
+  group: Group
 }
