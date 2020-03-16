@@ -1,0 +1,4 @@
+type Query {
+    artists: [Artist],
+    companies: [Company],
+}

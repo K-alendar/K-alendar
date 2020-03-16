@@ -37,8 +37,10 @@ class SampleData {
                 englishName: "Red Velvet",
                 foreignName: "레드 벨벳",
                 members: []
-                )
-
+    )
+    var displayRelease: Release
+    var displayRelease1: Release
+    var displayRelease2: Release
     
     init() {
         displayGroup.addNewMember(startDate: Date(), endDate: nil, socialLinks: SocialLinks(), images: ArtistImages(icon: Image("yeri"), banner: Image("")), description: "Yeri", stageName: "Yeri", fullName: "김예림", isDebuted: true)
@@ -52,6 +54,12 @@ class SampleData {
         displayGroup.addNewMember(startDate: Date(), endDate: nil, socialLinks: SocialLinks(), images: ArtistImages(icon: Image("wendy"), banner: Image("")), description: "It's Wendy", stageName: "Wendy", fullName: "손승완", isDebuted: false)
 
         yearDateFormatter.dateFormat = "yyyy"
+        
+        self.displayRelease = Release(artist: self.displayGroup, title: "'ReVe Festival' Finale", subtitle: "1st Compilation Album", date: Date(timeIntervalSinceNow: 1000), type: .Debut, status: .Normal)
+        
+        self.displayRelease1 = Release(artist: self.displayGroup, title: "Future Project", subtitle: "3rd Full Album", date: Date(timeIntervalSinceNow: -12720087), type: .Comeback, status: .Normal)
+        
+        self.displayRelease2 = Release(artist: self.displayGroup, title: "Cancelled Project", subtitle: "EP", date: Date(timeIntervalSinceNow: -1000000), type: .Comeback, status: .Canceled)
     }
 }
 

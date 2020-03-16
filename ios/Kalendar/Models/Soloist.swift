@@ -40,11 +40,11 @@ class Soloist: BaseArtist, Artist {
         return false
     }
     
-    var getMemberNum: Int {
+    var memberCount: Int {
         return -1
     }
     
-    var getMembers: [Soloist] {
+    var members: [Soloist] {
         return []
     }
 }

@@ -63,9 +63,15 @@ struct ArtistCard: View {
 struct ArtistCard_Previews: PreviewProvider {
     static var previews: some View {
         let sampleData = SampleData()
-        return ArtistCard(
-            artist: sampleData.displayGroup,
-            isFlat: true
-        )
+        return List {
+            ArtistCard(
+                artist: sampleData.displayGroup,
+                isFlat: true
+            )
+            ArtistCard(
+                artist: sampleData.displayGroup,
+                isFlat: false
+            )
+        }
     }
 }

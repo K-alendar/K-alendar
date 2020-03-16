@@ -58,13 +58,10 @@ class Group: BaseArtist, Artist {
         return true
     }
     
-    var getMemberNum: Int {
+    var memberCount: Int {
         return self.members.count
     }
     
-    var getMembers: [Soloist] {
-        return self.members
-    }
 }
 
 
