@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C5044595241D7B8A009DFA11 /* ArtistCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5044594241D7B8A009DFA11 /* ArtistCard.swift */; };
 		C52EC0302417359F00908012 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52EC02F2417359F00908012 /* AppDelegate.swift */; };
 		C52EC0322417359F00908012 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52EC0312417359F00908012 /* SceneDelegate.swift */; };
 		C52EC0342417359F00908012 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52EC0332417359F00908012 /* ContentView.swift */; };
@@ -26,6 +25,7 @@
 		C5409FEF241CC1EC007BE636 /* SocialLinksDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5409FEE241CC1EC007BE636 /* SocialLinksDisplay.swift */; };
 		C545FE4D241D6B3A00356EB3 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C545FE4C241D6B3A00356EB3 /* extensions.swift */; };
 		C545FE50241D6EEC00356EB3 /* sampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C545FE4F241D6EEC00356EB3 /* sampleData.swift */; };
+		C5BD08D5241ED73B0035D8FF /* ArtistCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BD08D4241ED73B0035D8FF /* ArtistCard.swift */; };
 		C5E71D82241D8144002C221A /* Release.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E71D81241D8144002C221A /* Release.swift */; };
 		C5E71D85241D83F7002C221A /* ReleaseCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E71D84241D83F7002C221A /* ReleaseCard.swift */; };
 /* End PBXBuildFile section */
@@ -48,7 +48,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C5044594241D7B8A009DFA11 /* ArtistCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ArtistCard.swift; path = /Users/johnivison/personal/Kalendar/Kalendar/Artist/ArtistCard.swift; sourceTree = "<absolute>"; };
 		C52EC02C2417359F00908012 /* Kalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C52EC02F2417359F00908012 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C52EC0312417359F00908012 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +73,7 @@
 		C5409FEE241CC1EC007BE636 /* SocialLinksDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLinksDisplay.swift; sourceTree = "<group>"; };
 		C545FE4C241D6B3A00356EB3 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		C545FE4F241D6EEC00356EB3 /* sampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sampleData.swift; sourceTree = "<group>"; };
+		C5BD08D4241ED73B0035D8FF /* ArtistCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ArtistCard.swift; path = /Users/johnivison/personal/Kalendar/ios/Kalendar/Artist/ArtistCard.swift; sourceTree = "<absolute>"; };
 		C5E71D81241D8144002C221A /* Release.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Release.swift; sourceTree = "<group>"; };
 		C5E71D84241D83F7002C221A /* ReleaseCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -186,7 +186,7 @@
 		C53DA8DD241A01E40089CE2B /* Artist */ = {
 			isa = PBXGroup;
 			children = (
-				C5044594241D7B8A009DFA11 /* ArtistCard.swift */,
+				C5BD08D4241ED73B0035D8FF /* ArtistCard.swift */,
 				C53DA8E0241A027A0089CE2B /* ArtistDetails.swift */,
 				C5409FEE241CC1EC007BE636 /* SocialLinksDisplay.swift */,
 			);
@@ -352,9 +352,9 @@
 				C53DA8DA2419FF000089CE2B /* ArtistImages.swift in Sources */,
 				C5409FEF241CC1EC007BE636 /* SocialLinksDisplay.swift in Sources */,
 				C545FE50241D6EEC00356EB3 /* sampleData.swift in Sources */,
+				C5BD08D5241ED73B0035D8FF /* ArtistCard.swift in Sources */,
 				C52EC0342417359F00908012 /* ContentView.swift in Sources */,
 				C53DA8E1241A027A0089CE2B /* ArtistDetails.swift in Sources */,
-				C5044595241D7B8A009DFA11 /* ArtistCard.swift in Sources */,
 				C545FE4D241D6B3A00356EB3 /* extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

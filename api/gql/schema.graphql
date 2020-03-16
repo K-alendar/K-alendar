@@ -1,0 +1,65 @@
+scalar Date
+
+type Artist {
+  id: ID!
+  startDate: Date!
+  endDate: Date
+  company: Company
+  socialLinks: SocialLinks
+  # images: ArtistImages
+  description: String!
+  releases: [Release]!
+
+  displayName: String!
+  secondaryDisplayName: String!
+  isGroup: Boolean!
+  memberCount: Int!
+  members: [Artist]
+}
+
+enum ReleaseStatus {
+  Delayed
+  Canceled
+  Postponed
+  Normal
+  Released
+}
+
+enum ReleaseType {
+  Comeback
+  Repackage
+  Single
+  Debut
+}
+
+type Release {
+  artist: Artist!
+  title: String!
+  subtitle: String
+  date: Date
+  status: ReleaseStatus
+  type: ReleaseType
+}
+
+type Company {
+  id: ID!
+  name: String!
+  artists: [Artist]
+}
+
+type SocialLinks {
+  twitter: String
+  youtube: String
+  spotify: String
+}
+
+type Image {
+  name: String
+}
+
+type ArtistImages {
+  icon: Image
+  banner: Image
+  cardTall: Image
+  cardFlat: Image
+}
