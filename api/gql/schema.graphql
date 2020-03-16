@@ -14,7 +14,9 @@ type Artist {
   secondaryDisplayName: String!
   isGroup: Boolean!
   memberCount: Int!
+  
   members: [Artist]
+  groups: [Artist]
 }
 
 enum ReleaseStatus {
