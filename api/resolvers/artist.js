@@ -3,6 +3,8 @@ const { Artist, Company, GroupMember } = require("../database/models");
 module.exports = {
   types: {
     Artist: {
+      // GraphQL needs to know exactly what type something is,
+      // So this returns the type of the Artist Union as a string
       __resolveType(obj, context, info) {
         if (obj.isGroup) {
           return "Group";
@@ -13,6 +15,8 @@ module.exports = {
     },
 
     IArtist: {
+      // GraphQL needs to know exactly what type something is,
+      // So this returns the type of the Artist Interface as a string
       __resolveType(obj, context, info) {
         if (obj.isGroup) {
           return "Group";
@@ -25,6 +29,7 @@ module.exports = {
 
   queries: {
     artists: () =>
+      // See findAll -> include for what include means
       Artist.findAll({
         include: [
           { model: Company, as: "company" },
