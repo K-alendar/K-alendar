@@ -98,6 +98,9 @@ type ArtistImages {
 }
 
 type GroupMember {
+  id: ID!
   member: Soloist
   group: Group
+  group_id: ID!
+  member_id: ID!
 }

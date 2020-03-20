@@ -1,6 +1,7 @@
 type Query {
   artists: [Artist]
   companies: [Company]
+  groupMembers: [GroupMember]
 }
 
 type Mutation {
@@ -16,5 +17,5 @@ type Mutation {
     isGroup: Boolean!
     memberCount: Int!
   ): Artist
-  addMemberToGroup(member_id: Int!, group_id: Int!): GroupMember
+  addMemberToGroup(memberID: Int!, groupID: Int!): GroupMember
 }
