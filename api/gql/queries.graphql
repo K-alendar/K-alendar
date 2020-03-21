@@ -1,4 +1,51 @@
 type Query {
-    artists: [Artist],
-    companies: [Company],
+  # Artist
+  artists: [Artist]
+  artist(id: ID!): Artist
+
+  # Company
+  companies: [Company]
+  company: Company
+
+  # GroupMember
+  groupMembers: [GroupMember]
+  groupMember: GroupMember
+}
+
+type Mutation {
+  # Company
+  createCompany(name: String!): Company
+  deleteCompany(id: ID!): Company
+  updateCompany(id: ID!, name: String): Company
+
+  # Artist
+  createArtist(
+    startDate: Date!
+    endDate: Date
+    company_id: Int!
+    socialLinks_id: Int!
+    description: String!
+    displayName: String!
+    secondaryDisplayName: String!
+    isGroup: Boolean!
+    memberCount: Int!
+  ): Artist
+  updateArtist(
+    id: ID!
+    startDate: Date
+    endDate: Date
+    company_id: Int
+    socialLinks_id: Int
+    description: String
+    displayName: String
+    secondaryDisplayName: String
+    isGroup: Boolean
+    memberCount: Int
+  ): Artist
+  deleteArtist(id: ID!): Artist
+
+  # GroupMember
+  addMemberToGroup(member_id: ID!, group_id: ID!): GroupMember
+  updateMemberInGroup(id: ID!, member_id: ID, group_id: ID): GroupMember
+  removeMemberFromGroup(id: ID!): GroupMember
 }

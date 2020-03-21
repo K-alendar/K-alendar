@@ -5,7 +5,15 @@ module.exports = (sequelize, DataTypes) => {
     member_id: DataTypes.INTEGER
   }, {});
   GroupMember.associate = function(models) {
-    // associations can be defined here
+    GroupMember.belongsTo(models.Artist, {
+      foreignKey: "group_id",
+      as: "group"
+    });
+
+    GroupMember.belongsTo(models.Artist, {
+      foreignKey: "member_id",
+      as: "member"
+    });
   };
   return GroupMember;
 };
