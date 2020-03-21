@@ -61,17 +61,8 @@ module.exports = {
 
   update: (Model, include = []) => {
     return async (_, { id, ...values }) => {
-      let model = await findOne(Model, id, include);
-
-      console.log(values)
-
-      for (let key of Object.keys(values)) {
-        model[key] = values[key];
-        console.log(key, model[key])
-      }
-
-      await model.save();
-      return model;
+      await Model.update(values, { where: { id: id } });
+      return await findOne(Model, id, include);
     };
   }
 };
