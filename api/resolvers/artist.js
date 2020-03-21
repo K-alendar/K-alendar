@@ -1,10 +1,11 @@
-const {
-  Artist,
-  Company,
-  GroupMember,
-  NewModel
-} = require("../database/models");
-const { createAndReturn } = require("./utils");
+const { Artist, Company, GroupMember } = require("../database/models");
+const { create, all, destroy, update, one } = require("./utils");
+
+const artistIncludes = [
+  { model: Company, as: "company" },
+  { model: Artist, as: "members", through: "GroupMembers" },
+  { model: Artist, as: "groups", through: "GroupMembers" }
+];
 
 module.exports = {
   types: {
@@ -34,23 +35,13 @@ module.exports = {
   },
 
   queries: {
-    artists: () =>
-      // See findAll -> include for what include means in the sequelize docs
-      Artist.findAll({
-        include: [
-          { model: Company, as: "company" },
-          { model: Artist, as: "members", through: "GroupMembers" },
-          { model: Artist, as: "groups", through: "GroupMembers" }
-        ]
-      }),
-    groupMembers: () => GroupMember.findAll()
+    artists: all(Artist, artistIncludes),
+    artist: one(Artist, artistIncludes)
   },
 
   mutations: {
-    createArtist: createAndReturn(Artist, [{ model: Company, as: "company" }]),
-    addMemberToGroup: createAndReturn(GroupMember, [
-      { model: Artist, as: "member" },
-      { model: Artist, as: "group" }
-    ])
+    createArtist: create(Artist, artistIncludes),
+    updateArtist: update(Artist, artistIncludes),
+    deleteArtist: destroy(Artist)
   }
 };

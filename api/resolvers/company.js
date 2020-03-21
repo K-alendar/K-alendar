@@ -1,14 +1,19 @@
 const { Company, Artist } = require("../database/models");
+const { create, all, destroy, update, one } = require("./utils");
+
+const companyIncludes = [{ model: Artist, as: "artists" }];
 
 module.exports = {
   types: {},
 
   queries: {
-    companies: () =>
-      Company.findAll({ include: { model: Artist, as: "artists" } })
+    companies: all(Company, companyIncludes),
+    company: one(Company, companyIncludes)
   },
 
   mutations: {
-    createCompany: async (_, values) => await Company.create(values)
+    createCompany: create(Company, companyIncludes),
+    updateCompany: update(Company, companyIncludes),
+    deleteCompany: destroy(Company),
   }
 };

@@ -2,7 +2,7 @@
 
 ## How to run
 
-Install nodemon and run `nodemon` in the project directory. Nodemon enables hot reloading and recompiles whenever you make a change. It watches certain file extensions. If you want to add an extension, check `nodemonConfig` in package.json.
+Install nodemon (`npm install nodemon -g`) and run `yarn start` in the project directory. Nodemon enables hot reloading and recompiles whenever you make a change. It watches certain file extensions. If you want to add an extension, check `nodemonConfig` in package.json.
 
 ## Database and ORM
 

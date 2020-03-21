@@ -11,14 +11,14 @@ module.exports = {
       groupName: {
         type: Sequelize.STRING
       },
-      groupID: {
+      group_id: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Artists',
           key: 'id'
         }
       },
-      memberID: {
+      member_id: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Artists',

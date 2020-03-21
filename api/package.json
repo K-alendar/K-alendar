@@ -10,5 +10,8 @@
   },
   "nodemonConfig": {
     "ext": "js,json,graphql"
-  } 
+  },
+  "scripts": {
+    "start": "nodemon"
+  }
 }
