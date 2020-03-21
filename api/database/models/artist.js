@@ -16,7 +16,13 @@ module.exports = (sequelize, DataTypes) => {
   );
   Artist.associate = function(models) {
     Artist.hasOne(models.SocialLinks, {
-      foreignKey: "artist_id"
+      foreignKey: "artist_id",
+      as: "socialLinks"
+    });
+
+    Artist.hasOne(models.ArtistImages, {
+      foreignKey: "artist_id",
+      as: "images"
     });
 
     Artist.belongsTo(models.Company, {
@@ -37,6 +43,23 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: "id",
       as: "members"
     });
+
+    // Hooks
+    Artist.addHook(
+      "afterCreate",
+      "createArtistImages",
+      async (artist, options) => {
+        await models.ArtistImages.create({ artist_id: artist.id });
+      }
+    );
+
+    Artist.addHook(
+      "afterCreate",
+      "createSocialLinks",
+      async (artist, options) => {
+        await models.SocialLinks.create({ artist_id: artist.id });
+      }
+    );
   };
   return Artist;
 };

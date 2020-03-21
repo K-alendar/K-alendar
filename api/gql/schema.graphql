@@ -6,7 +6,7 @@ interface IArtist {
   endDate: Date
   company: Company!
   socialLinks: SocialLinks
-  # images: ArtistImages
+  images: ArtistImages
   description: String!
   releases: [Release]!
 
@@ -22,6 +22,7 @@ type Soloist implements IArtist {
   endDate: Date
   company: Company!
   socialLinks: SocialLinks
+  images: ArtistImages
   description: String!
   releases: [Release]!
   displayName: String!
@@ -38,6 +39,7 @@ type Group implements IArtist {
   endDate: Date
   company: Company!
   socialLinks: SocialLinks
+  images: ArtistImages
   description: String!
   releases: [Release]!
   displayName: String!
@@ -81,16 +83,16 @@ type Company {
 }
 
 type SocialLinks {
+  id: ID!
   twitter: String
   youtube: String
   spotify: String
 }
 
-type Image {
-  name: String
-}
+scalar Image
 
 type ArtistImages {
+  id: ID!
   icon: Image
   banner: Image
   cardTall: Image

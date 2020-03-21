@@ -1,3 +1,8 @@
+# Query Template:
+# # Model
+# models: [Model]
+# model: Model
+
 type Query {
   # Artist
   artists: [Artist]
@@ -10,7 +15,17 @@ type Query {
   # GroupMember
   groupMembers: [GroupMember]
   groupMember: GroupMember
+
+  # Model
+  artistImagesMultiple: [ArtistImages]
+  artistImages: ArtistImages
 }
+
+# Mutation Template:
+# # Model
+# createModel(): Model
+# updateModel(): Model
+# deleteModel(): Model
 
 type Mutation {
   # Company
@@ -43,6 +58,28 @@ type Mutation {
     memberCount: Int
   ): Artist
   deleteArtist(id: ID!): Artist
+
+  # ArtistImages
+  createArtistImages(
+    logo: Image
+    banner: Image
+    cardTall: Image
+    cardFlat: Image
+  ): ArtistImages
+  updateArtistImages(
+    id: ID!
+    logo: Image
+    banner: Image
+    cardTall: Image
+    cardFlat: Image
+  ): ArtistImages
+  deleteArtistImages(
+    id: ID!
+    logo: Image
+    banner: Image
+    cardTall: Image
+    cardFlat: Image
+  ): ArtistImages
 
   # GroupMember
   addMemberToGroup(member_id: ID!, group_id: ID!): GroupMember
