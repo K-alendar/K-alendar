@@ -7,7 +7,10 @@ module.exports = (sequelize, DataTypes) => {
     artist_id: DataTypes.INTEGER
   }, {});
   SocialLinks.associate = function(models) {
-    // associations can be defined here
+    SocialLinks.belongsTo(models.Artist, {
+      foreignKey: "artist_id",
+      as: "artist"
+    });
   };
   return SocialLinks;
 };
