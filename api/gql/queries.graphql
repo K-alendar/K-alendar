@@ -73,13 +73,7 @@ type Mutation {
     cardTall: Image
     cardFlat: Image
   ): ArtistImages
-  deleteArtistImages(
-    id: ID!
-    logo: Image
-    banner: Image
-    cardTall: Image
-    cardFlat: Image
-  ): ArtistImages
+  deleteArtistImages(id: ID!): ArtistImages
 
   # GroupMember
   addMemberToGroup(member_id: ID!, group_id: ID!): GroupMember
