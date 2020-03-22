@@ -25,7 +25,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Create the SwiftUI view that provides the window contents.
         let sampleData = SampleData()
         
-        let contentView = ContentView(artist: sampleData.displayGroup, yearDateFormatter: sampleData.yearDateFormatter)
+        let artist = artistDetails(id: 1) ?? sampleData.displayGroup
+        
+        let contentView = ContentView(artist: artist, yearDateFormatter: sampleData.yearDateFormatter)
         
 
         // Use a UIHostingController as window root view controller.

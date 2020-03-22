@@ -1,6 +1,83 @@
 mutation CreateCompany($name: String!) {
-    createCompany(name: $name) {
-        id
+  createCompany(name: $name) {
+    id
+    name
+  }
+}
+
+fragment SoloistDetails on Soloist {
+    id
+    startDate
+    endDate
+    description
+
+    displayName
+    secondaryDisplayName
+
+    company {
         name
     }
+    images {
+        banner
+        icon
+    }
+    socialLinks {
+        twitter
+        youtube
+        spotify
+        id
+    }
 }
+
+fragment GroupDetails on Group {
+    id
+    startDate
+    endDate
+    description
+
+    displayName
+    secondaryDisplayName
+
+    memberCount
+
+    company {
+        name
+    }
+    images {
+        banner
+        icon
+    }
+    socialLinks {
+        twitter
+        youtube
+        spotify
+        id
+    }
+}
+
+query ArtistDetails($id: ID!) {
+  artist(id: $id) {
+    __typename
+    ... on Soloist {
+        ...SoloistDetails
+        groups {
+            displayName
+            secondaryDisplayName
+            images {
+                cardFlat
+            }
+        }
+    }
+
+    ... on Group {
+        ...GroupDetails
+        members {
+            displayName
+            images {
+                icon
+            }
+        }
+    }
+  }
+}
+
