@@ -1,0 +1,6 @@
+{
+  "e36d7a93f0292b1752e8c7458eb76f84ec1dd87560bc65176a40f0696d8b8202": {
+    "name": "CreateCompany",
+    "source": "mutation CreateCompany($name: String!) {\n  createCompany(name: $name) {\n    __typename\n    id\n    name\n  }\n}"
+  }
+}

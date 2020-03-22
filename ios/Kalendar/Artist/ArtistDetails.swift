@@ -7,9 +7,11 @@
 //
 
 import SwiftUI
+import Apollo
 
 struct ArtistDetails: View {
     var artist: Artist
+//    var artist: ArtistDetailsQuery.Data.Artist
     let yearDateFormatter: DateFormatter
     
     var body: some View {

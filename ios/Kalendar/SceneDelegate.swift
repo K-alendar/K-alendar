@@ -8,6 +8,9 @@
 
 import UIKit
 import SwiftUI
+import Apollo
+
+let apollo = ApolloClient(url: URL(string: "http://localhost:4000/graphql")!)
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
