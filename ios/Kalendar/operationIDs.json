@@ -3,8 +3,8 @@
     "name": "CreateCompany",
     "source": "mutation CreateCompany($name: String!) {\n  createCompany(name: $name) {\n    __typename\n    id\n    name\n  }\n}"
   },
-  "dd83b02133c9e308f07b25b35fb25413a78b49d1bf884fa89161c52dba0c71c5": {
+  "df2b23180ee5074ab30ede33cca188e281e54295b8d02ac9b58715788cd57185": {
     "name": "ArtistDetails",
-    "source": "query ArtistDetails($id: ID!) {\n  artist(id: $id) {\n    __typename\n    ... on Soloist {\n      ...SoloistDetails\n      groups {\n        __typename\n        displayName\n        secondaryDisplayName\n        images {\n          __typename\n          cardFlat\n        }\n      }\n    }\n    ... on Group {\n      ...GroupDetails\n      members {\n        __typename\n        displayName\n        images {\n          __typename\n          icon\n        }\n      }\n    }\n  }\n}"
+    "source": "query ArtistDetails($id: ID!) {\n  artist(id: $id) {\n    __typename\n    ...ArtistInfo\n    groups {\n      __typename\n      displayName\n      secondaryDisplayName\n      images {\n        __typename\n        cardFlat\n      }\n    }\n    members {\n      __typename\n      displayName\n      images {\n        __typename\n        icon\n      }\n    }\n  }\n}"
   }
 }

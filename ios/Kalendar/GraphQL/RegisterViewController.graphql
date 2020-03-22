@@ -5,79 +5,47 @@ mutation CreateCompany($name: String!) {
   }
 }
 
-fragment SoloistDetails on Soloist {
+fragment ArtistInfo on Artist {
+  id
+  startDate
+  endDate
+  description
+  isGroup
+
+  displayName
+  secondaryDisplayName
+
+  company {
+    name
+  }
+  images {
+    banner
+    icon
+  }
+  socialLinks {
+    twitter
+    youtube
+    spotify
     id
-    startDate
-    endDate
-    description
-
-    displayName
-    secondaryDisplayName
-
-    company {
-        name
-    }
-    images {
-        banner
-        icon
-    }
-    socialLinks {
-        twitter
-        youtube
-        spotify
-        id
-    }
-}
-
-fragment GroupDetails on Group {
-    id
-    startDate
-    endDate
-    description
-
-    displayName
-    secondaryDisplayName
-
-    memberCount
-
-    company {
-        name
-    }
-    images {
-        banner
-        icon
-    }
-    socialLinks {
-        twitter
-        youtube
-        spotify
-        id
-    }
+  }
 }
 
 query ArtistDetails($id: ID!) {
   artist(id: $id) {
-    __typename
-    ... on Soloist {
-        ...SoloistDetails
-        groups {
-            displayName
-            secondaryDisplayName
-            images {
-                cardFlat
-            }
-        }
+    ...ArtistInfo
+    groups {
+      displayName
+      secondaryDisplayName
+      images {
+        cardFlat
+      }
     }
 
-    ... on Group {
-        ...GroupDetails
-        members {
-            displayName
-            images {
-                icon
-            }
-        }
+    members {
+      displayName
+      images {
+        icon
+      }
     }
   }
 }
-

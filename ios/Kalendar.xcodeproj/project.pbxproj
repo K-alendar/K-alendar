@@ -26,9 +26,9 @@
 		C53E532524270E1500B6954E /* RegisterViewController.graphql in Resources */ = {isa = PBXBuildFile; fileRef = C53E532424270E1500B6954E /* RegisterViewController.graphql */; };
 		C5409FEF241CC1EC007BE636 /* SocialLinksDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5409FEE241CC1EC007BE636 /* SocialLinksDisplay.swift */; };
 		C541BF7924280BD100C2D3A5 /* ArtistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C541BF7824280BD100C2D3A5 /* ArtistController.swift */; };
+		C541BF7B242827C100C2D3A5 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = C541BF7A242827C100C2D3A5 /* API.swift */; };
 		C545FE4D241D6B3A00356EB3 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C545FE4C241D6B3A00356EB3 /* extensions.swift */; };
 		C545FE50241D6EEC00356EB3 /* sampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C545FE4F241D6EEC00356EB3 /* sampleData.swift */; };
-		C56856AA24273F2500129C18 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56856A924273F2500129C18 /* API.swift */; };
 		C56856AC24273F8F00129C18 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56856AB24273F8F00129C18 /* RegisterViewController.swift */; };
 		C5BD08D5241ED73B0035D8FF /* ArtistCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BD08D4241ED73B0035D8FF /* ArtistCard.swift */; };
 		C5C38E522425FD3C00DBB3BF /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = C5C38E512425FD3C00DBB3BF /* Podfile */; };
@@ -82,9 +82,9 @@
 		C53E532424270E1500B6954E /* RegisterViewController.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = RegisterViewController.graphql; sourceTree = "<group>"; };
 		C5409FEE241CC1EC007BE636 /* SocialLinksDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLinksDisplay.swift; sourceTree = "<group>"; };
 		C541BF7824280BD100C2D3A5 /* ArtistController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistController.swift; sourceTree = "<group>"; };
+		C541BF7A242827C100C2D3A5 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		C545FE4C241D6B3A00356EB3 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		C545FE4F241D6EEC00356EB3 /* sampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sampleData.swift; sourceTree = "<group>"; };
-		C56856A924273F2500129C18 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		C56856AB24273F8F00129C18 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		C5BD08D4241ED73B0035D8FF /* ArtistCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ArtistCard.swift; path = /Users/johnivison/personal/Kalendar/ios/Kalendar/Artist/ArtistCard.swift; sourceTree = "<absolute>"; };
 		C5C38E512425FD3C00DBB3BF /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -162,13 +162,13 @@
 		C52EC02E2417359F00908012 /* Kalendar */ = {
 			isa = PBXGroup;
 			children = (
+				C541BF7A242827C100C2D3A5 /* API.swift */,
 				C5C38E502425FCAD00DBB3BF /* GraphQL */,
 				C5E71D83241D836F002C221A /* Release */,
 				C545FE4E241D6EDE00356EB3 /* Data */,
 				C53DA8DD241A01E40089CE2B /* Artist */,
 				C53DA8D12419F9550089CE2B /* Models */,
 				C52EC02F2417359F00908012 /* AppDelegate.swift */,
-				C56856A924273F2500129C18 /* API.swift */,
 				C52EC0312417359F00908012 /* SceneDelegate.swift */,
 				C52EC0332417359F00908012 /* ContentView.swift */,
 				C52EC035241735A500908012 /* Assets.xcassets */,
@@ -461,6 +461,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C53DA8D82419FEBB0089CE2B /* SocialLinks.swift in Sources */,
+				C541BF7B242827C100C2D3A5 /* API.swift in Sources */,
 				C5E71D82241D8144002C221A /* Release.swift in Sources */,
 				C52EC0302417359F00908012 /* AppDelegate.swift in Sources */,
 				C52EC0322417359F00908012 /* SceneDelegate.swift in Sources */,
@@ -477,7 +478,6 @@
 				C5BD08D5241ED73B0035D8FF /* ArtistCard.swift in Sources */,
 				C52EC0342417359F00908012 /* ContentView.swift in Sources */,
 				C53DA8E1241A027A0089CE2B /* ArtistDetails.swift in Sources */,
-				C56856AA24273F2500129C18 /* API.swift in Sources */,
 				C545FE4D241D6B3A00356EB3 /* extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
