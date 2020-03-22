@@ -1,0 +1,51 @@
+mutation CreateCompany($name: String!) {
+  createCompany(name: $name) {
+    id
+    name
+  }
+}
+
+fragment ArtistInfo on Artist {
+  id
+  startDate
+  endDate
+  description
+  isGroup
+
+  displayName
+  secondaryDisplayName
+
+  company {
+    name
+  }
+  images {
+    banner
+    icon
+  }
+  socialLinks {
+    twitter
+    youtube
+    spotify
+    id
+  }
+}
+
+query ArtistDetails($id: ID!) {
+  artist(id: $id) {
+    ...ArtistInfo
+    groups {
+      displayName
+      secondaryDisplayName
+      images {
+        cardFlat
+      }
+    }
+
+    members {
+      displayName
+      images {
+        icon
+      }
+    }
+  }
+}

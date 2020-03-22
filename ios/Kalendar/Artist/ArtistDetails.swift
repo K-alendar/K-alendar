@@ -7,11 +7,12 @@
 //
 
 import SwiftUI
+import Apollo
 
 struct ArtistDetails: View {
     var artist: Artist
     let yearDateFormatter: DateFormatter
-    
+
     var body: some View {
         VStack(alignment: .leading) {
             VStack {
@@ -124,9 +125,8 @@ struct ArtistDetails: View {
 struct ArtistDetails_Previews: PreviewProvider {
     static var previews: some View {
         let sampleData = SampleData()
-        
-        return ArtistDetails(artist:
-            sampleData.displayGroup,
+        print("testing testing")
+        return ArtistDetails(artist: sampleData.displayGroup,
              yearDateFormatter: sampleData.yearDateFormatter
         )
     }

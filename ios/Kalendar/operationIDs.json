@@ -1,0 +1,10 @@
+{
+  "e36d7a93f0292b1752e8c7458eb76f84ec1dd87560bc65176a40f0696d8b8202": {
+    "name": "CreateCompany",
+    "source": "mutation CreateCompany($name: String!) {\n  createCompany(name: $name) {\n    __typename\n    id\n    name\n  }\n}"
+  },
+  "df2b23180ee5074ab30ede33cca188e281e54295b8d02ac9b58715788cd57185": {
+    "name": "ArtistDetails",
+    "source": "query ArtistDetails($id: ID!) {\n  artist(id: $id) {\n    __typename\n    ...ArtistInfo\n    groups {\n      __typename\n      displayName\n      secondaryDisplayName\n      images {\n        __typename\n        cardFlat\n      }\n    }\n    members {\n      __typename\n      displayName\n      images {\n        __typename\n        icon\n      }\n    }\n  }\n}"
+  }
+}
