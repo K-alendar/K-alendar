@@ -10,31 +10,7 @@ const artistIncludes = [
 ];
 
 module.exports = {
-  types: {
-    Artist: {
-      // GraphQL needs to know exactly what type something is,
-      // So this returns the type of the Artist Union as a string
-      __resolveType(obj, context, info) {
-        if (obj.isGroup) {
-          return "Group";
-        } else {
-          return "Soloist";
-        }
-      }
-    },
-
-    IArtist: {
-      // GraphQL needs to know exactly what type something is,
-      // So this returns the type of the Artist Interface as a string
-      __resolveType(obj, context, info) {
-        if (obj.isGroup) {
-          return "Group";
-        } else {
-          return "Soloist";
-        }
-      }
-    }
-  },
+  types: {},
 
   queries: {
     artists: all(Artist, artistIncludes),
