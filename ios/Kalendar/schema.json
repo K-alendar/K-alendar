@@ -1242,7 +1242,7 @@
             "description": null,
             "args": [
               {
-                "name": "logo",
+                "name": "icon",
                 "description": null,
                 "type": {
                   "kind": "SCALAR",
@@ -1309,7 +1309,7 @@
                 "defaultValue": null
               },
               {
-                "name": "logo",
+                "name": "icon",
                 "description": null,
                 "type": {
                   "kind": "SCALAR",

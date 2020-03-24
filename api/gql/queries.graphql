@@ -61,14 +61,14 @@ type Mutation {
 
   # ArtistImages
   createArtistImages(
-    logo: Image
+    icon: Image
     banner: Image
     cardTall: Image
     cardFlat: Image
   ): ArtistImages
   updateArtistImages(
     id: ID!
-    logo: Image
+    icon: Image
     banner: Image
     cardTall: Image
     cardFlat: Image

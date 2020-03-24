@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -30,6 +30,8 @@
 		C545FE4D241D6B3A00356EB3 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C545FE4C241D6B3A00356EB3 /* extensions.swift */; };
 		C545FE50241D6EEC00356EB3 /* sampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C545FE4F241D6EEC00356EB3 /* sampleData.swift */; };
 		C56856AC24273F8F00129C18 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56856AB24273F8F00129C18 /* RegisterViewController.swift */; };
+		C57D69D02429E8E1003BBCA1 /* KingfisherSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = C57D69CF2429E8E1003BBCA1 /* KingfisherSwiftUI */; };
+		C57D69D22429E8E1003BBCA1 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C57D69D12429E8E1003BBCA1 /* Kingfisher */; };
 		C5BD08D5241ED73B0035D8FF /* ArtistCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BD08D4241ED73B0035D8FF /* ArtistCard.swift */; };
 		C5C38E522425FD3C00DBB3BF /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = C5C38E512425FD3C00DBB3BF /* Podfile */; };
 		C5E71D82241D8144002C221A /* Release.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E71D81241D8144002C221A /* Release.swift */; };
@@ -97,6 +99,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C57D69D22429E8E1003BBCA1 /* Kingfisher in Frameworks */,
+				C57D69D02429E8E1003BBCA1 /* KingfisherSwiftUI in Frameworks */,
 				8E49187ED12B7BE4267C141C /* Pods_Kalendar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,6 +287,10 @@
 			dependencies = (
 			);
 			name = Kalendar;
+			packageProductDependencies = (
+				C57D69CF2429E8E1003BBCA1 /* KingfisherSwiftUI */,
+				C57D69D12429E8E1003BBCA1 /* Kingfisher */,
+			);
 			productName = Kalendar;
 			productReference = C52EC02C2417359F00908012 /* Kalendar.app */;
 			productType = "com.apple.product-type.application";
@@ -355,6 +363,9 @@
 				Base,
 			);
 			mainGroup = C52EC0232417359F00908012;
+			packageReferences = (
+				C57D69CE2429E8E1003BBCA1 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = C52EC02D2417359F00908012 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -799,6 +810,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C57D69CE2429E8E1003BBCA1 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.13.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C57D69CF2429E8E1003BBCA1 /* KingfisherSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C57D69CE2429E8E1003BBCA1 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = KingfisherSwiftUI;
+		};
+		C57D69D12429E8E1003BBCA1 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C57D69CE2429E8E1003BBCA1 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C52EC0242417359F00908012 /* Project object */;
 }

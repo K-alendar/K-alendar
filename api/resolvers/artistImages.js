@@ -1,7 +1,7 @@
 const { ArtistImages, Artist } = require("../database/models");
 const { create, all, destroy, update, one } = require("./utils");
 
-const artistImagesIncludes = [{ model: Artist, as: "artist" }];
+const artistImagesIncludes = [ { model: Artist, as: "artist" }];
 
 module.exports = {
   types: {},

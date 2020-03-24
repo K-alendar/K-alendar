@@ -23,15 +23,16 @@ class ArtistController {
             if let artist = artistDetails {
                 let company = Company(name: artist.company.name)
                 let socialLinks = SocialLinks(twitter: artist.socialLinks?.twitter, spotify: artist.socialLinks?.spotify, youtube: artist.socialLinks?.youtube)
+                let artistImages = ArtistImages(icon: artist.images?.icon ?? "", banner: artist.images?.banner ?? "")
                 
                 if artist.isGroup {
                     print("Returning Group...")
-                    let group = Group(id: Int(artist.id) ?? -1, startDate: Date(), endDate: Date(), company: company, socialLinks: socialLinks, images: ArtistImages(), description: artist.description, englishName: artist.displayName, foreignName: artist.secondaryDisplayName, members: [Soloist]())
+                    let group = Group(id: Int(artist.id) ?? -1, startDate: Date(), endDate: Date(), company: company, socialLinks: socialLinks, images: artistImages, description: artist.description, englishName: artist.displayName, foreignName: artist.secondaryDisplayName, members: [Soloist]())
                     print(group)
                     completion(.success(group))
                 } else {
                     print("Returning Group...")
-                    let soloist = Soloist(id: Int(artist.id) ?? -1, startDate: Date(), endDate: Date(), company: company, socialLinks: socialLinks, images: ArtistImages(), description: artist.description, stageName: artist.displayName, fullName: artist.secondaryDisplayName, isDebuted: false)
+                    let soloist = Soloist(id: Int(artist.id) ?? -1, startDate: Date(), endDate: Date(), company: company, socialLinks: socialLinks, images: artistImages, description: artist.description, stageName: artist.displayName, fullName: artist.secondaryDisplayName, isDebuted: false)
                     completion(.success(soloist))
                 }
             }

@@ -6,6 +6,7 @@
 //  Copyright © 2020 John Ivison. All rights reserved.
 //
 
+import KingfisherSwiftUI
 import SwiftUI
 import Apollo
 
@@ -16,14 +17,14 @@ struct ArtistDetails: View {
     var body: some View {
         VStack(alignment: .leading) {
             VStack {
-                artist.images.banner
+                KFImage(URL(string: artist.images.banner)!)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .cornerRadius(15, corners: [.bottomLeft, .bottomRight])
             }
                 
             HStack(alignment: .bottom) {
-                artist.images.icon
+                KFImage(URL(string: artist.images.icon)!)
                     .resizable()
                     .frame(width: 100, height: 100)
                     .clipShape(Circle())
@@ -45,7 +46,7 @@ struct ArtistDetails: View {
                         .foregroundColor(Color.gray)
                         .padding(.bottom, 3.0)
                 }
-                
+
             }.padding(.leading).offset(y: -50).padding(.bottom, -50)
             
             
@@ -90,7 +91,7 @@ struct ArtistDetails: View {
                             VStack {
                                 ZStack {
                                     GeometryReader { proxy in
-                                        member.images.icon
+                                        KFImage(URL(string: member.images.icon)!)
                                         .resizable()
                                         .scaledToFill()
                                             .frame(width: proxy.size.width, height: proxy.size.height)
