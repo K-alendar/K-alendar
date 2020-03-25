@@ -32,9 +32,9 @@ module.exports = {
     };
   },
 
-  create: (Model, include = [], pk = "id") => {
+  create: (Model, include = [], transformer = v => v) => {
     return async (_, values) => {
-      let model = await Model.create(values);
+      let model = await Model.create(transformer(values));
       return await findOne(Model, model.id, include);
     };
   },
@@ -59,10 +59,35 @@ module.exports = {
     };
   },
 
-  update: (Model, include = []) => {
+  update: (Model, include = [], transformer = v => v) => {
     return async (_, { id, ...values }) => {
-      await Model.update(values, { where: { id: id } });
+      await Model.update(transformer(values), { where: { id: id } });
       return await findOne(Model, id, include);
     };
+  },
+
+  _transformers: {
+    parseDate: key => {
+      return values => {
+        let convertedDate = {};
+        convertedDate[key] = values[key];
+        if (convertedDate[key] && convertedDate[key].class === String) {
+          convertedDate[key] = moment(
+            convertedDate[key],
+            "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+          ).unix();
+        }
+        return { ...values, convertedDate };
+      };
+    },
+    multi: (...transformers) => {
+      return values => {
+        let persistentValues = values;
+        for (let transformer of transformers) {
+          persistentValues = transformer(persistentValues);
+        }
+        return values;
+      };
+    }
   }
 };

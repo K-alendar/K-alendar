@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Create the SwiftUI view that provides the window contents.
         let sampleData = SampleData()
         
-        ArtistController.fetchArtistDetails(id: 2) { [self] (result) in
+        ArtistController.fetchArtistDetails(id: 14) { [self] (result) in
             switch(result) {
             case .success(let artist):
                 let contentView = ContentView(artist: artist, yearDateFormatter: sampleData.yearDateFormatter)

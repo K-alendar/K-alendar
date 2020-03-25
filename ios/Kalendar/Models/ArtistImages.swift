@@ -10,16 +10,16 @@ import Foundation
 import SwiftUI
 
 class ArtistImages {
-    var icon: Image
-    var banner: Image
-    var cardTall: Image
-    var cardFlat: Image
+    var icon: String
+    var banner: String
+    var cardTall: String
+    var cardFlat: String
     
     init(
-        icon: Image = Image("default-logo"),
-        banner: Image = Image("default-banner"),
-        cardTall: Image = Image("default-cardTall"),
-        cardFlat: Image = Image("default-cardFlat")
+        icon: String = "",
+        banner: String = "",
+        cardTall: String = "",
+        cardFlat: String = ""
     ) {
         self.icon = icon
         self.banner = banner

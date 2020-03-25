@@ -22,10 +22,10 @@ class SampleData {
                     youtube: "https://www.youtube.com/user/SMTOWN"
                 ),
                 images: ArtistImages(
-                    icon: Image("redVelvet"),
-                    banner: Image("redVelvetLarge"),
-                    cardTall: Image("redVelvetCardTall"),
-                    cardFlat: Image("redVelvetCardFlat")
+//                    icon: Image("redVelvet"),
+//                    banner: Image("redVelvetLarge"),
+//                    cardTall: Image("redVelvetCardTall"),
+//                    cardFlat: Image("redVelvetCardFlat")
                 ),
                 description: """
     Red Velvet (Hangul: 레드벨벳) is a South Korean girl group formed by SM Entertainment. The group debuted on August 1, 2014, with the digital single "Happiness" and four group members: Irene, Seulgi, Wendy, and Joy. In March 2015, Yeri was added into the group.
@@ -43,15 +43,15 @@ class SampleData {
     var displayRelease2: Release
     
     init() {
-        displayGroup.addNewMember(startDate: Date(), endDate: nil, socialLinks: SocialLinks(), images: ArtistImages(icon: Image("yeri"), banner: Image("")), description: "Yeri", stageName: "Yeri", fullName: "김예림", isDebuted: true)
-
-        displayGroup.addNewMember(startDate: Date(), endDate: nil, socialLinks: SocialLinks(), images: ArtistImages(icon: Image("seulgi"), banner: Image("")), description: "It's Seulgi", stageName: "Seulgi", fullName: "강슬기", isDebuted: false)
-
-        displayGroup.addNewMember(startDate: Date(), endDate: nil, socialLinks: SocialLinks(), images: ArtistImages(icon: Image("irene"), banner: Image("")), description: "It's Irene", stageName: "Irene", fullName: "배주현", isDebuted: false)
-
-        displayGroup.addNewMember(startDate: Date(), endDate: nil, socialLinks: SocialLinks(), images: ArtistImages(icon: Image("joy"), banner: Image("")), description: "It's Joy", stageName: "Joy", fullName: "박수영", isDebuted: false)
-
-        displayGroup.addNewMember(startDate: Date(), endDate: nil, socialLinks: SocialLinks(), images: ArtistImages(icon: Image("wendy"), banner: Image("")), description: "It's Wendy", stageName: "Wendy", fullName: "손승완", isDebuted: false)
+//        displayGroup.addNewMember(startDate: Date(), endDate: nil, socialLinks: SocialLinks(), images: ArtistImages(icon: Image("yeri"), banner: Image("")), description: "Yeri", stageName: "Yeri", fullName: "김예림", isDebuted: true)
+//
+//        displayGroup.addNewMember(startDate: Date(), endDate: nil, socialLinks: SocialLinks(), images: ArtistImages(icon: Image("seulgi"), banner: Image("")), description: "It's Seulgi", stageName: "Seulgi", fullName: "강슬기", isDebuted: false)
+//
+//        displayGroup.addNewMember(startDate: Date(), endDate: nil, socialLinks: SocialLinks(), images: ArtistImages(icon: Image("irene"), banner: Image("")), description: "It's Irene", stageName: "Irene", fullName: "배주현", isDebuted: false)
+//
+//        displayGroup.addNewMember(startDate: Date(), endDate: nil, socialLinks: SocialLinks(), images: ArtistImages(icon: Image("joy"), banner: Image("")), description: "It's Joy", stageName: "Joy", fullName: "박수영", isDebuted: false)
+//
+//        displayGroup.addNewMember(startDate: Date(), endDate: nil, socialLinks: SocialLinks(), images: ArtistImages(icon: Image("wendy"), banner: Image("")), description: "It's Wendy", stageName: "Wendy", fullName: "손승완", isDebuted: false)
 
         yearDateFormatter.dateFormat = "yyyy"
         

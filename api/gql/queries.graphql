@@ -45,6 +45,21 @@ type Mutation {
     isGroup: Boolean!
     memberCount: Int!
   ): Artist
+  createArtistWithImages(
+    startDate: Date!
+    endDate: Date
+    company_id: Int!
+    socialLinks_id: Int!
+    description: String!
+    displayName: String!
+    secondaryDisplayName: String!
+    isGroup: Boolean!
+    memberCount: Int!
+    icon: Image
+    banner: Image
+    cardTall: Image
+    cardFlat: Image
+  ): Artist
   updateArtist(
     id: ID!
     startDate: Date
@@ -61,14 +76,14 @@ type Mutation {
 
   # ArtistImages
   createArtistImages(
-    logo: Image
+    icon: Image
     banner: Image
     cardTall: Image
     cardFlat: Image
   ): ArtistImages
   updateArtistImages(
     id: ID!
-    logo: Image
+    icon: Image
     banner: Image
     cardTall: Image
     cardFlat: Image

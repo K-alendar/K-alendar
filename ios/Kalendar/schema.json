@@ -1094,6 +1094,181 @@
             "deprecationReason": null
           },
           {
+            "name": "createArtistWithImages",
+            "description": null,
+            "args": [
+              {
+                "name": "startDate",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "Date",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "endDate",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Date",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "company_id",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "socialLinks_id",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "description",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "displayName",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "secondaryDisplayName",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "isGroup",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "memberCount",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "icon",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Image",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "banner",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Image",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "cardTall",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Image",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "cardFlat",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Image",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Artist",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "updateArtist",
             "description": null,
             "args": [
@@ -1242,7 +1417,7 @@
             "description": null,
             "args": [
               {
-                "name": "logo",
+                "name": "icon",
                 "description": null,
                 "type": {
                   "kind": "SCALAR",
@@ -1309,7 +1484,7 @@
                 "defaultValue": null
               },
               {
-                "name": "logo",
+                "name": "icon",
                 "description": null,
                 "type": {
                   "kind": "SCALAR",
