@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8E49187ED12B7BE4267C141C /* Pods_Kalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AC970D9B81B32394FEC1F2 /* Pods_Kalendar.framework */; };
+		C5010479242B295900164195 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5010478242B295900164195 /* Utils.swift */; };
 		C52EC0302417359F00908012 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52EC02F2417359F00908012 /* AppDelegate.swift */; };
 		C52EC0322417359F00908012 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52EC0312417359F00908012 /* SceneDelegate.swift */; };
 		C52EC0342417359F00908012 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52EC0332417359F00908012 /* ContentView.swift */; };
@@ -59,6 +60,7 @@
 		49AC970D9B81B32394FEC1F2 /* Pods_Kalendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kalendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AA123028919F071FDAECA96 /* Pods-Kalendar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kalendar.release.xcconfig"; path = "Target Support Files/Pods-Kalendar/Pods-Kalendar.release.xcconfig"; sourceTree = "<group>"; };
 		6D482823A72CB21ECDAFF9FC /* Pods-Kalendar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kalendar.debug.xcconfig"; path = "Target Support Files/Pods-Kalendar/Pods-Kalendar.debug.xcconfig"; sourceTree = "<group>"; };
+		C5010478242B295900164195 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		C52EC02C2417359F00908012 /* Kalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C52EC02F2417359F00908012 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C52EC0312417359F00908012 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 		C5C38E502425FCAD00DBB3BF /* GraphQL */ = {
 			isa = PBXGroup;
 			children = (
+				C5010478242B295900164195 /* Utils.swift */,
 				C541BF7724280BC200C2D3A5 /* Artist */,
 				C53E532424270E1500B6954E /* RegisterViewController.graphql */,
 				C56856AB24273F8F00129C18 /* RegisterViewController.swift */,
@@ -486,6 +489,7 @@
 				C53DA8DA2419FF000089CE2B /* ArtistImages.swift in Sources */,
 				C5409FEF241CC1EC007BE636 /* SocialLinksDisplay.swift in Sources */,
 				C545FE50241D6EEC00356EB3 /* sampleData.swift in Sources */,
+				C5010479242B295900164195 /* Utils.swift in Sources */,
 				C5BD08D5241ED73B0035D8FF /* ArtistCard.swift in Sources */,
 				C52EC0342417359F00908012 /* ContentView.swift in Sources */,
 				C53DA8E1241A027A0089CE2B /* ArtistDetails.swift in Sources */,
