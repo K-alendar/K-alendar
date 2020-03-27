@@ -38,7 +38,7 @@ class Group: BaseArtist, Artist {
     
     func addNewMember(startDate: Date, endDate: Date?, socialLinks: SocialLinks, images: ArtistImages, description: String, stageName: String, fullName: String, isDebuted: Bool) {
         self.members.append(
-            Soloist(id: Int.random(in: 1...1000000), startDate: startDate, endDate: endDate, company: self.company, socialLinks: socialLinks, images: images, description: description, stageName: stageName, fullName: fullName, isDebuted: isDebuted)
+            Soloist(id: Int.random(in: 1...1000000), startDate: startDate, endDate: endDate, company: self.company, socialLinks: socialLinks, images: images, description: description, stageName: stageName, fullName: fullName, isDebuted: isDebuted, groups: [])
         )
     }
     

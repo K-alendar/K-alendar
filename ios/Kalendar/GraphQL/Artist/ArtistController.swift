@@ -27,11 +27,17 @@ class ArtistController {
                 let startDate = Utils.parseGQLDate(from: artist.startDate, inTimezone: "KST")
                 let endDate = Utils.parseGQLDate(from: artist.endDate ?? "", inTimezone: "KST")
                 
+                let members = (artist.members ?? []).map { member in
+                    return Soloist(id: Int(member!.id) ?? -1, startDate: Date(), endDate: nil, company: Company(name: ""), socialLinks: SocialLinks(), images: ArtistImages(icon: member?.images?.icon ?? ""), description: "", stageName: member?.displayName ?? "", fullName: "", isDebuted: false, groups: [Group]())
+                }
+                
+                print(artist.members)
+                
                 if artist.isGroup {
-                    let group = Group(id: Int(artist.id) ?? -1, startDate: startDate ?? Date(), endDate: endDate, company: company, socialLinks: socialLinks, images: artistImages, description: artist.description, englishName: artist.displayName, foreignName: artist.secondaryDisplayName, members: [Soloist]())
+                    let group = Group(id: Int(artist.id) ?? -1, startDate: startDate ?? Date(), endDate: endDate, company: company, socialLinks: socialLinks, images: artistImages, description: artist.description, englishName: artist.displayName, foreignName: artist.secondaryDisplayName, members: members)
                     completion(.success(group))
                 } else {
-                    let soloist = Soloist(id: Int(artist.id) ?? -1, startDate: startDate ?? Date(), endDate: endDate, company: company, socialLinks: socialLinks, images: artistImages, description: artist.description, stageName: artist.displayName, fullName: artist.secondaryDisplayName, isDebuted: false)
+                    let soloist = Soloist(id: Int(artist.id) ?? -1, startDate: startDate ?? Date(), endDate: endDate, company: company, socialLinks: socialLinks, images: artistImages, description: artist.description, stageName: artist.displayName, fullName: artist.secondaryDisplayName, isDebuted: false, groups: [])
                     completion(.success(soloist))
                 }
             }

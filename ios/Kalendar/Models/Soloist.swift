@@ -12,8 +12,9 @@ class Soloist: BaseArtist, Artist {
     var stageName: String
     var fullName: String
     var isDebuted: Bool
+    var groups = [Group]()
     
-    init(id: Int, startDate: Date, endDate: Date?, company: Company, socialLinks: SocialLinks, images: ArtistImages, description: String, stageName: String, fullName: String, isDebuted: Bool) {
+    init(id: Int, startDate: Date, endDate: Date?, company: Company, socialLinks: SocialLinks, images: ArtistImages, description: String, stageName: String, fullName: String, isDebuted: Bool, groups: [Group]) {
         self.fullName = fullName
         self.stageName = stageName
         self.isDebuted = isDebuted
@@ -26,6 +27,7 @@ class Soloist: BaseArtist, Artist {
         self.socialLinks = socialLinks
         self.images = images
         self.description = description
+        self.groups = groups
     }
     
     var displayName: String {

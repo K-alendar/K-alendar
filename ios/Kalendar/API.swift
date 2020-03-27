@@ -116,6 +116,7 @@ public final class ArtistDetailsQuery: GraphQLQuery {
         ...ArtistInfo
         groups {
           __typename
+          id
           displayName
           secondaryDisplayName
           images {
@@ -125,6 +126,7 @@ public final class ArtistDetailsQuery: GraphQLQuery {
         }
         members {
           __typename
+          id
           displayName
           images {
             __typename
@@ -137,7 +139,7 @@ public final class ArtistDetailsQuery: GraphQLQuery {
 
   public let operationName: String = "ArtistDetails"
 
-  public let operationIdentifier: String? = "df2b23180ee5074ab30ede33cca188e281e54295b8d02ac9b58715788cd57185"
+  public let operationIdentifier: String? = "da0090621f4a8f0762a525c684880660eac46d54341195b43e66b72a2ba0ba91"
 
   public var queryDocument: String { return operationDefinition.appending(ArtistInfo.fragmentDefinition) }
 
@@ -506,6 +508,7 @@ public final class ArtistDetailsQuery: GraphQLQuery {
 
         public static let selections: [GraphQLSelection] = [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
           GraphQLField("displayName", type: .nonNull(.scalar(String.self))),
           GraphQLField("secondaryDisplayName", type: .nonNull(.scalar(String.self))),
           GraphQLField("images", type: .object(Image.selections)),
@@ -517,8 +520,8 @@ public final class ArtistDetailsQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public init(displayName: String, secondaryDisplayName: String, images: Image? = nil) {
-          self.init(unsafeResultMap: ["__typename": "Artist", "displayName": displayName, "secondaryDisplayName": secondaryDisplayName, "images": images.flatMap { (value: Image) -> ResultMap in value.resultMap }])
+        public init(id: GraphQLID, displayName: String, secondaryDisplayName: String, images: Image? = nil) {
+          self.init(unsafeResultMap: ["__typename": "Artist", "id": id, "displayName": displayName, "secondaryDisplayName": secondaryDisplayName, "images": images.flatMap { (value: Image) -> ResultMap in value.resultMap }])
         }
 
         public var __typename: String {
@@ -527,6 +530,15 @@ public final class ArtistDetailsQuery: GraphQLQuery {
           }
           set {
             resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var id: GraphQLID {
+          get {
+            return resultMap["id"]! as! GraphQLID
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "id")
           }
         }
 
@@ -600,6 +612,7 @@ public final class ArtistDetailsQuery: GraphQLQuery {
 
         public static let selections: [GraphQLSelection] = [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
           GraphQLField("displayName", type: .nonNull(.scalar(String.self))),
           GraphQLField("images", type: .object(Image.selections)),
         ]
@@ -610,8 +623,8 @@ public final class ArtistDetailsQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public init(displayName: String, images: Image? = nil) {
-          self.init(unsafeResultMap: ["__typename": "Artist", "displayName": displayName, "images": images.flatMap { (value: Image) -> ResultMap in value.resultMap }])
+        public init(id: GraphQLID, displayName: String, images: Image? = nil) {
+          self.init(unsafeResultMap: ["__typename": "Artist", "id": id, "displayName": displayName, "images": images.flatMap { (value: Image) -> ResultMap in value.resultMap }])
         }
 
         public var __typename: String {
@@ -620,6 +633,15 @@ public final class ArtistDetailsQuery: GraphQLQuery {
           }
           set {
             resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var id: GraphQLID {
+          get {
+            return resultMap["id"]! as! GraphQLID
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "id")
           }
         }
 
