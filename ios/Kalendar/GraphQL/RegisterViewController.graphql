@@ -34,6 +34,7 @@ query ArtistDetails($id: ID!) {
   artist(id: $id) {
     ...ArtistInfo
     groups {
+      id
       displayName
       secondaryDisplayName
       images {
@@ -42,6 +43,7 @@ query ArtistDetails($id: ID!) {
     }
 
     members {
+      id
       displayName
       images {
         icon

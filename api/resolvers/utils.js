@@ -28,6 +28,7 @@ module.exports = {
   one: (Model, include = []) => {
     return async (_, { id }) => {
       let model = await findOne(Model, id, include);
+      // console.log(model)
       return model;
     };
   },
