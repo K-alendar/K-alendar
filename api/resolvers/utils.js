@@ -15,11 +15,9 @@ function buildOptions(include = [], attributes = []) {
     options.include = include;
   }
 
-  if (__forceSelectFields.length > 0) {
+  if (attributes.length > 0) {
     options.attributes = attributes;
   }
-
-  console.log(options)
 
   return options;
 }
@@ -38,18 +36,16 @@ async function findOne(Model, id, include, __forceSelectFields = []) {
 }
 
 module.exports = {
-  one: (Model, include = []) => {
+  one: (Model, { include = [], __forceSelectFields = [] }) => {
     return async (_, { id }) => {
-      let model = await findOne(Model, id, include);
+      let model = await findOne(Model, id, include, __forceSelectFields);
       return model;
     };
   },
 
   create: (
     Model,
-    include = [],
-    transformer = v => v,
-    __forceSelectFields = []
+    { include = [], transformer = v => v, __forceSelectFields = [] }
   ) => {
     return async (_, values) => {
       let model = await Model.create(transformer(values));
@@ -62,7 +58,7 @@ module.exports = {
     };
   },
 
-  all: (Model, include = [], __forceSelectFields = []) => {
+  all: (Model, { include = [], __forceSelectFields = [] }) => {
     return async () => {
       let options = buildOptions(
         (include = include),
@@ -80,10 +76,13 @@ module.exports = {
     };
   },
 
-  update: (Model, include = [], transformer = v => v) => {
+  update: (
+    Model,
+    { include = [], transformer = v => v, __forceSelectFields = [] }
+  ) => {
     return async (_, { id, ...values }) => {
       await Model.update(transformer(values), { where: { id: id } });
-      return await findOne(Model, id, include);
+      return await findOne(Model, id, include, __forceSelectFields);
     };
   },
 

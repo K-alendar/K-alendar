@@ -7,13 +7,13 @@ module.exports = {
   types: {},
 
   queries: {
-    models: all(Model, modelIncludes),
-    model: one(Model, modelIncludes)
+    models: all(Model, { include: modelIncludes }),
+    model: one(Model, { include: modelIncludes })
   },
 
   mutations: {
-    createModel: create(Model, modelIncludes),
-    updateModel: update(Model, modelIncludes),
-    deleteModel: destroy(Model),
+    createModel: create(Model, { include: modelIncludes }),
+    updateModel: update(Model, { include: modelIncludes }),
+    deleteModel: destroy(Model)
   }
 };

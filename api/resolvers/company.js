@@ -7,13 +7,13 @@ module.exports = {
   types: {},
 
   queries: {
-    companies: all(Company, companyIncludes),
-    company: one(Company, companyIncludes)
+    companies: all(Company, { include: companyIncludes }),
+    company: one(Company, { include: companyIncludes })
   },
 
   mutations: {
-    createCompany: create(Company, companyIncludes),
-    updateCompany: update(Company, companyIncludes),
-    deleteCompany: destroy(Company),
+    createCompany: create(Company, { include: companyIncludes }),
+    updateCompany: update(Company, { include: companyIncludes }),
+    deleteCompany: destroy(Company)
   }
 };
