@@ -14,7 +14,7 @@ module.exports = {
       endDate: {
         type: Sequelize.DATE
       },
-      company_id: {
+      companyId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Companies',

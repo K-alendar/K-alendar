@@ -8,11 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Company.associate = function(models) {
-    Company.hasMany(models.Artist, {
-      foreignKey: "company_id",
-      as: "artists",
-      onDelete: "NULLIFY"
-    });
+    Company.hasMany(models.Artist, { onDelete: "NULLIFY", as: "artists", foreignKey: "companyId" });
   };
   return Company;
 };

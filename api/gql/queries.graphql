@@ -37,8 +37,8 @@ type Mutation {
   createArtist(
     startDate: Date!
     endDate: Date
-    company_id: Int!
-    socialLinks_id: Int!
+    companyId: Int!
+    socialLinksId: Int!
     description: String!
     displayName: String!
     secondaryDisplayName: String!
@@ -48,8 +48,8 @@ type Mutation {
   createArtistWithImages(
     startDate: Date!
     endDate: Date
-    company_id: Int!
-    socialLinks_id: Int!
+    companyId: Int!
+    socialLinksId: Int!
     description: String!
     displayName: String!
     secondaryDisplayName: String!
@@ -64,8 +64,8 @@ type Mutation {
     id: ID!
     startDate: Date
     endDate: Date
-    company_id: Int
-    socialLinks_id: Int
+    companyId: Int
+    socialLinksId: Int
     description: String
     displayName: String
     secondaryDisplayName: String
@@ -91,7 +91,7 @@ type Mutation {
   deleteArtistImages(id: ID!): ArtistImages
 
   # GroupMember
-  addMemberToGroup(member_id: ID!, group_id: ID!): GroupMember
-  updateMemberInGroup(id: ID!, member_id: ID, group_id: ID): GroupMember
+  addMemberToGroup(memberId: ID!, groupId: ID!): GroupMember
+  updateMemberInGroup(id: ID!, memberId: ID, groupId: ID): GroupMember
   removeMemberFromGroup(id: ID!): GroupMember
 }
