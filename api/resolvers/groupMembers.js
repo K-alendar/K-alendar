@@ -2,8 +2,8 @@ const { GroupMember, Artist } = require("../database/models");
 const { create, all, destroy, update, one } = require("./utils");
 
 const groupMemberIncludes = [
-  { model: Artist, as: "member" },
-  { model: Artist, as: "group" }
+  // { model: Artist, as: "member" },
+  // { model: Artist, as: "group" }
 ] ;
 
 module.exports = {

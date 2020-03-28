@@ -6,14 +6,12 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   GroupMember.associate = function(models) {
     GroupMember.belongsTo(models.Artist, {
-      foreignKey: "group_id",
       as: "group"
-    });
+    })
 
     GroupMember.belongsTo(models.Artist, {
-      foreignKey: "member_id",
       as: "member"
-    });
+    })
   };
   return GroupMember;
 };

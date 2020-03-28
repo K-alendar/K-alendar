@@ -33,14 +33,12 @@ module.exports = (sequelize, DataTypes) => {
     Artist.belongsToMany(models.Artist, {
       through: models.GroupMember,
       foreignKey: "member_id",
-      otherKey: "group_id",
       as: "groups"
     });
 
     Artist.belongsToMany(models.Artist, {
       through: models.GroupMember,
       foreignKey: "group_id",
-      otherKey: "member_id",
       as: "members"
     });
 
