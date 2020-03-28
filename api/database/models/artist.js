@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       startDate: DataTypes.DATE,
       endDate: DataTypes.DATE,
-      company_id: DataTypes.INTEGER,
+      companyId: DataTypes.INTEGER,
       description: DataTypes.STRING,
       displayName: DataTypes.STRING,
       secondaryDisplayName: DataTypes.STRING,
@@ -16,30 +16,30 @@ module.exports = (sequelize, DataTypes) => {
   );
   Artist.associate = function(models) {
     Artist.hasOne(models.SocialLinks, {
-      foreignKey: "artist_id",
-      as: "socialLinks"
+      as: "socialLinks",
+      foreignKey: "artistId"
     });
 
     Artist.hasOne(models.ArtistImages, {
-      foreignKey: "artist_id",
-      as: "images"
+      as: "images",
+      foreignKey: "artistId"
     });
 
     Artist.belongsTo(models.Company, {
-      foreignKey: "company_id",
-      as: "company"
+      as: "company",
+      foreignKey: "companyId"
     });
 
     Artist.belongsToMany(models.Artist, {
       through: models.GroupMember,
-      foreignKey: "member_id",
-      as: "groups"
+      as: "groups",
+      foreignKey: "memberId"
     });
 
     Artist.belongsToMany(models.Artist, {
       through: models.GroupMember,
-      foreignKey: "group_id",
-      as: "members"
+      as: "members",
+      foreignKey: "groupId"
     });
 
     // Hooks
@@ -47,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
       "afterCreate",
       "createArtistImages",
       async (artist, options) => {
-        await models.ArtistImages.create({ artist_id: artist.id });
+        await models.ArtistImages.create({ artistId: artist.id });
       }
     );
 
@@ -55,7 +55,7 @@ module.exports = (sequelize, DataTypes) => {
       "afterCreate",
       "createSocialLinks",
       async (artist, options) => {
-        await models.SocialLinks.create({ artist_id: artist.id });
+        await models.SocialLinks.create({ artistId: artist.id });
       }
     );
   };

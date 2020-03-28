@@ -8,16 +8,29 @@ function checkIfFound(model, id) {
   }
 }
 
-async function findOne(Model, id, include) {
-  let model;
+function buildOptions(include = [], attributes = []) {
+  options = {};
 
   if (include.length > 0) {
-    model = await Model.findByPk(id, {
-      include: include
-    });
-  } else {
-    model = await Model.findByPk(id);
+    options.include = include;
   }
+
+  if (__forceSelectFields.length > 0) {
+    options.attributes = attributes;
+  }
+
+  console.log(options)
+
+  return options;
+}
+
+async function findOne(Model, id, include, __forceSelectFields = []) {
+  let options = buildOptions(
+    (include = include),
+    (attributes = __forceSelectFields)
+  );
+
+  let model = await Model.findByPk(id, options);
 
   checkIfFound(model, id);
 
@@ -32,22 +45,30 @@ module.exports = {
     };
   },
 
-  create: (Model, include = [], transformer = v => v) => {
+  create: (
+    Model,
+    include = [],
+    transformer = v => v,
+    __forceSelectFields = []
+  ) => {
     return async (_, values) => {
       let model = await Model.create(transformer(values));
-      return await findOne(Model, model.id, include);
+      return await findOne(
+        Model,
+        model.id,
+        include,
+        (fields = __forceSelectFields)
+      );
     };
   },
 
-  all: (Model, include = []) => {
+  all: (Model, include = [], __forceSelectFields = []) => {
     return async () => {
-      if (include.length > 0) {
-        return await Model.findAll({
-          include: include
-        });
-      } else {
-        return await Model.findAll();
-      }
+      let options = buildOptions(
+        (include = include),
+        (attributes = __forceSelectFields)
+      );
+      return await Model.findAll(options);
     };
   },
 

@@ -1,16 +1,16 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const GroupMember = sequelize.define('GroupMember', {
-    group_id: DataTypes.INTEGER,
-    member_id: DataTypes.INTEGER
+    groupId: DataTypes.INTEGER,
+    memberId: DataTypes.INTEGER
   }, {});
   GroupMember.associate = function(models) {
     GroupMember.belongsTo(models.Artist, {
-      as: "group"
+      as: "group", foreignKey: "groupId"
     })
 
     GroupMember.belongsTo(models.Artist, {
-      as: "member"
+      as: "member", foreignKey: "memberId"
     })
   };
   return GroupMember;

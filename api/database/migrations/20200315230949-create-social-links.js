@@ -17,7 +17,7 @@ module.exports = {
       spotify: {
         type: Sequelize.STRING
       },
-      artist_id: {
+      artistId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Artists',

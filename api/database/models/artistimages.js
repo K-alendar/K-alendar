@@ -7,15 +7,12 @@ module.exports = (sequelize, DataTypes) => {
       banner: DataTypes.STRING,
       cardTall: DataTypes.STRING,
       cardFlat: DataTypes.STRING,
-      artist_id: DataTypes.INTEGER
+      artistId: DataTypes.INTEGER
     },
     {}
   );
   ArtistImages.associate = function(models) {
-    ArtistImages.belongsTo(models.Artist, {
-      foreignKey: "artist_id",
-      as: "artist"
-    });
+    ArtistImages.belongsTo(models.Artist, { as: "artist", foreignKey: "artistId" });
   };
   return ArtistImages;
 };
