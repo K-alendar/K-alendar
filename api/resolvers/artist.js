@@ -33,13 +33,19 @@ module.exports = {
   types: {},
 
   queries: {
-    artists: all(Artist, artistIncludes),
-    artist: one(Artist, artistIncludes)
+    artists: all(Artist, { include: artistIncludes }),
+    artist: one(Artist, { include: artistIncludes })
   },
 
   mutations: {
-    createArtist: create(Artist, artistIncludes, artistTransformers),
-    updateArtist: update(Artist, artistIncludes, artistTransformers),
+    createArtist: create(Artist, {
+      include: artistIncludes,
+      transformer: artistTransformers
+    }),
+    updateArtist: update(Artist, {
+      include: artistIncludes,
+      transformer: artistTransformers
+    }),
     deleteArtist: destroy(Artist),
     createArtistWithImages: async (_, values) => {
       let newValues = Object.assign({}, values);
@@ -47,11 +53,10 @@ module.exports = {
       delete newValues.banner;
       delete newValues.cardTall;
       delete newValues.cardFlat;
-      let artist = await create(
-        Artist,
-        artistIncludes,
-        artistTransformers
-      )(_, values);
+      let artist = await create(Artist, {
+        include: artistIncludes,
+        transformer: artistTransformers
+      })(_, values);
       await update(ArtistImages)(_, {
         id: artist.images.id,
         icon: values.icon,
@@ -59,7 +64,9 @@ module.exports = {
         cardTall: values.cardTall,
         cardFlat: values.cardFlat
       });
-      return await one(Artist, artistIncludes)(_, { id: artist.id });
+      return await one(Artist, { include: artistIncludes })(_, {
+        id: artist.id
+      });
     }
   }
 };

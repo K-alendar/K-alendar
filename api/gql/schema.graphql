@@ -67,8 +67,8 @@ type ArtistImages {
 
 type GroupMember {
   id: ID!
-  member_id: ID!
-  group_id: ID!
+  memberId: ID!
+  groupId: ID!
   member: Artist!
   group: Artist!
 }
