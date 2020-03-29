@@ -1,19 +1,22 @@
 const { Company, Artist } = require("../database/models");
-const { create, all, destroy, update, one } = require("./utils");
-
-const companyIncludes = [{ model: Artist, as: "artists" }];
+const { create, all, destroy, update, one, associations } = require("./utils");
 
 module.exports = {
-  types: {},
+  types: {
+    Company: {
+      ...associations.has("artists"),
+  
+    }
+  },
 
   queries: {
-    companies: all(Company, { include: companyIncludes }),
-    company: one(Company, { include: companyIncludes })
+    companies: all(Company),
+    company: one(Company)
   },
 
   mutations: {
-    createCompany: create(Company, { include: companyIncludes }),
-    updateCompany: update(Company, { include: companyIncludes }),
+    createCompany: create(Company),
+    updateCompany: update(Company),
     deleteCompany: destroy(Company)
   }
 };

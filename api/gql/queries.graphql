@@ -10,15 +10,15 @@ type Query {
 
   # Company
   companies: [Company]
-  company: Company
+  company(id: ID!): Company
 
   # GroupMember
   groupMembers: [GroupMember]
-  groupMember: GroupMember
+  groupMember(id: ID!): GroupMember
 
   # Model
   artistImagesMultiple: [ArtistImages]
-  artistImages: ArtistImages
+  artistImages(id: ID!): ArtistImages
 }
 
 # Mutation Template:

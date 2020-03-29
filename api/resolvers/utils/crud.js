@@ -1,4 +1,4 @@
-const { RecordNotFoundError } = require("./errors");
+const { RecordNotFoundError } = require("../errors");
 
 function checkIfFound(model, id) {
   if (model === null) {
@@ -36,7 +36,7 @@ async function findOne(Model, id, include, __forceSelectFields = []) {
 }
 
 module.exports = {
-  one: (Model, { include = [], __forceSelectFields = [] }) => {
+  one: (Model, { include = [], __forceSelectFields = [] } = {}) => {
     return async (_, { id }) => {
       let model = await findOne(Model, id, include, __forceSelectFields);
       return model;
@@ -45,7 +45,7 @@ module.exports = {
 
   create: (
     Model,
-    { include = [], transformer = v => v, __forceSelectFields = [] }
+    { include = [], transformer = v => v, __forceSelectFields = [] } = {}
   ) => {
     return async (_, values) => {
       let model = await Model.create(transformer(values));
@@ -58,7 +58,7 @@ module.exports = {
     };
   },
 
-  all: (Model, { include = [], __forceSelectFields = [] }) => {
+  all: (Model, { include = [], __forceSelectFields = [] } = {}) => {
     return async () => {
       let options = buildOptions(
         (include = include),
@@ -78,36 +78,11 @@ module.exports = {
 
   update: (
     Model,
-    { include = [], transformer = v => v, __forceSelectFields = [] }
+    { include = [], transformer = v => v, __forceSelectFields = [] } = {}
   ) => {
     return async (_, { id, ...values }) => {
       await Model.update(transformer(values), { where: { id: id } });
       return await findOne(Model, id, include, __forceSelectFields);
     };
-  },
-
-  _transformers: {
-    parseDate: key => {
-      return values => {
-        let convertedDate = {};
-        convertedDate[key] = values[key];
-        if (convertedDate[key] && convertedDate[key].class === String) {
-          convertedDate[key] = moment(
-            convertedDate[key],
-            "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-          ).unix();
-        }
-        return { ...values, convertedDate };
-      };
-    },
-    multi: (...transformers) => {
-      return values => {
-        let persistentValues = values;
-        for (let transformer of transformers) {
-          persistentValues = transformer(persistentValues);
-        }
-        return values;
-      };
-    }
   }
 };

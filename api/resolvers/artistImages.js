@@ -1,19 +1,21 @@
 const { ArtistImages, Artist } = require("../database/models");
-const { create, all, destroy, update, one } = require("./utils");
-
-const artistImagesIncludes = [{ model: Artist, as: "artist" }];
+const { create, all, destroy, update, one, associations } = require("./utils");
 
 module.exports = {
-  types: {},
+  types: {
+    ArtistImages: {
+      ...associations.belongsToAn("artist")
+    }
+  },
 
   queries: {
-    artistImagesMultiple: all(ArtistImages, { include: artistImagesIncludes }),
-    artistImages: one(ArtistImages, { include: artistImagesIncludes })
+    artistImagesMultiple: all(ArtistImages),
+    artistImages: one(ArtistImages)
   },
 
   mutations: {
-    createArtistImages: create(ArtistImages, { include: artistImagesIncludes }),
-    updateArtistImages: update(ArtistImages, { include: artistImagesIncludes }),
+    createArtistImages: create(ArtistImages),
+    updateArtistImages: update(ArtistImages),
     deleteArtistImages: destroy(ArtistImages)
   }
 };
