@@ -1,7 +1,7 @@
 "use strict";
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("GroupMembers", {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.createTable("GroupMembers", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -14,15 +14,15 @@ module.exports = {
       groupId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Artists',
-          key: 'id'
+          model: "Artists",
+          key: "id"
         }
       },
       memberId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Artists',
-          key: 'id'
+          model: "Artists",
+          key: "id"
         }
       },
       createdAt: {
@@ -34,6 +34,14 @@ module.exports = {
         type: Sequelize.DATE
       }
     });
+    return await queryInterface.addConstraint(
+      "GroupMembers",
+      ["groupId", "memberId"],
+      {
+        type: "unique",
+        name: "groupMemberIndex"
+      }
+    );
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable("GroupMembers");
