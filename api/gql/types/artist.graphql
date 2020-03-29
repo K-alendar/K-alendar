@@ -1,5 +1,3 @@
-scalar Date
-
 type Artist {
   id: ID!
   startDate: Date!
@@ -15,36 +13,6 @@ type Artist {
 
   groups: [Artist]
   members: [Artist]
-}
-
-enum ReleaseStatus {
-  Delayed
-  Canceled
-  Postponed
-  Normal
-  Released
-}
-
-enum ReleaseType {
-  Comeback
-  Repackage
-  Single
-  Debut
-}
-
-type Release {
-  artist: Artist!
-  title: String!
-  subtitle: String
-  date: Date
-  status: ReleaseStatus
-  type: ReleaseType
-}
-
-type Company {
-  id: ID!
-  name: String!
-  artists: [Artist]
 }
 
 type SocialLinks {
