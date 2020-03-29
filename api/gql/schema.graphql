@@ -1,4 +1,4 @@
-scalar Date 
+scalar Date
 
 type Artist {
   id: ID!
@@ -16,7 +16,6 @@ type Artist {
   groups: [Artist]
   members: [Artist]
 }
-
 
 enum ReleaseStatus {
   Delayed
@@ -63,6 +62,7 @@ type ArtistImages {
   banner: Image
   cardTall: Image
   cardFlat: Image
+  artist: Artist
 }
 
 type GroupMember {

@@ -1,51 +1,38 @@
+const { Artist, ArtistImages } = require("../database/models");
 const {
-  Artist,
-  Company,
-  ArtistImages,
-  SocialLinks
-} = require("../database/models");
-const { create, all, destroy, update, one, _transformers } = require("./utils");
+  create,
+  all,
+  destroy,
+  update,
+  one,
+  transformers,
+  associations
+} = require("./utils");
 
-const artistIncludes = [
-  { model: Company, as: "company" },
-  { model: ArtistImages, as: "images" },
-  { model: SocialLinks, as: "socialLinks" },
-  {
-    model: Artist,
-    as: "groups",
-    through: "GroupMembers",
-    include: [{ model: ArtistImages, as: "images" }]
-  },
-  {
-    model: Artist,
-    as: "members",
-    through: "GroupMembers",
-    include: [{ model: ArtistImages, as: "images" }]
-  }
-];
-
-const artistTransformers = _transformers.multi(
-  _transformers.parseDate("startDate"),
-  _transformers.parseDate("endDate")
+const artistTransformers = transformers.multi(
+  transformers.parseDate("startDate"),
+  transformers.parseDate("endDate")
 );
 
 module.exports = {
-  types: {},
+  types: {
+    Artist: {
+      ...associations.belongsToA("company"),
+      ...associations.has("socialLinks"),
+      ...associations.has("images"),
+      ...associations.has("members"),
+      ...associations.has("groups")
+    }
+  },
 
   queries: {
-    artists: all(Artist, { include: artistIncludes }),
-    artist: one(Artist, { include: artistIncludes })
+    artists: all(Artist),
+    artist: one(Artist)
   },
 
   mutations: {
-    createArtist: create(Artist, {
-      include: artistIncludes,
-      transformer: artistTransformers
-    }),
-    updateArtist: update(Artist, {
-      include: artistIncludes,
-      transformer: artistTransformers
-    }),
+    createArtist: create(Artist, { transformer: artistTransformers }),
+    updateArtist: update(Artist, { transformer: artistTransformers }),
     deleteArtist: destroy(Artist),
     createArtistWithImages: async (_, values) => {
       let newValues = Object.assign({}, values);
@@ -54,8 +41,8 @@ module.exports = {
       delete newValues.cardTall;
       delete newValues.cardFlat;
       let artist = await create(Artist, {
-        include: artistIncludes,
-        transformer: artistTransformers
+        transformer: artistTransformers,
+        include: [{ model: ArtistImages, as: "images" }]
       })(_, values);
       await update(ArtistImages)(_, {
         id: artist.images.id,
@@ -64,7 +51,7 @@ module.exports = {
         cardTall: values.cardTall,
         cardFlat: values.cardFlat
       });
-      return await one(Artist, { include: artistIncludes })(_, {
+      return await one(Artist)(_, {
         id: artist.id
       });
     }
