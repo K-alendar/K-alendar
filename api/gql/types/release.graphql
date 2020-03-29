@@ -1,0 +1,23 @@
+enum ReleaseStatus {
+  Delayed
+  Canceled
+  Postponed
+  Normal
+  Released
+}
+
+enum ReleaseType {
+  Comeback
+  Repackage
+  Single
+  Debut
+}
+
+type Release {
+  artist: Artist!
+  title: String!
+  subtitle: String
+  date: Date
+  status: ReleaseStatus
+  type: ReleaseType
+}
