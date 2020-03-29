@@ -1,9 +1,9 @@
-const { RecordNotFoundError } = require("../errors");
+const { RecordNotFoundError, writeErrorHandler } = require("../errors");
 
-function checkIfFound(model, id) {
+function checkIfFound(model, id, Model) {
   if (model === null) {
     throw new RecordNotFoundError(
-      `A record wasn't found with the primary key '${id}'`
+      `A record wasn't found in '${Model.getTableName()}' table with the primary key '${id}'`
     );
   }
 }
@@ -30,7 +30,7 @@ async function findOne(Model, id, include, __forceSelectFields = []) {
 
   let model = await Model.findByPk(id, options);
 
-  checkIfFound(model, id);
+  checkIfFound(model, id, Model);
 
   return model;
 }
@@ -48,7 +48,10 @@ module.exports = {
     { include = [], transformer = v => v, __forceSelectFields = [] } = {}
   ) => {
     return async (_, values) => {
-      let model = await Model.create(transformer(values));
+      let model = await writeErrorHandler(
+        async () => await Model.create(transformer(values))
+      );
+
       return await findOne(
         Model,
         model.id,
@@ -81,7 +84,10 @@ module.exports = {
     { include = [], transformer = v => v, __forceSelectFields = [] } = {}
   ) => {
     return async (_, { id, ...values }) => {
-      await Model.update(transformer(values), { where: { id: id } });
+      await writeErrorHandler(
+        async () =>
+          await Model.update(transformer(values), { where: { id: id } })
+      );
       return await findOne(Model, id, include, __forceSelectFields);
     };
   }
