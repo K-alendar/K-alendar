@@ -18,7 +18,7 @@ module.exports = {
       for (let transformer of transformers) {
         persistentValues = transformer(persistentValues);
       }
-      return values;
+      return persistentValues;
     };
   }
 };

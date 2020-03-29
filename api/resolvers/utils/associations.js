@@ -7,7 +7,6 @@ const makeAssociation = (objectName, { as } = {}) => {
         .split("")
         .slice(1)
         .join("");
-    console.log(adjustedObjectName);
     return parent[`get${adjustedObjectName}`]();
   };
   return associationObj;
