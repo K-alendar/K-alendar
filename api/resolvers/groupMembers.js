@@ -1,35 +1,38 @@
-const { GroupMember, Artist } = require("../database/models");
-const { create, all, destroy, update, one, associations } = require("./utils");
+const { GroupMember } = require("../database/models");
+const {
+  ResolverFactory,
+  ChildAssociation
+} = require("./utils");
 
 // Something in the self-referencial many to many relationship breaks select queries
 // and doesn't return the primary key
 // this can be fixed by explicitly asking for it, hence the override
 const groupMemberForceFields = ["id", "groupId", "memberId"];
 
+const associations = [
+  new ChildAssociation("member"),
+  new ChildAssociation("group")
+];
+
+const generator = new ResolverFactory(GroupMember, {
+  fromObject: "groupMember",
+  associations: associations,
+  __forceSelectFields: groupMemberForceFields
+});
+
 module.exports = {
   types: {
-    GroupMember: {
-      ...associations.hasA("member"),
-      ...associations.hasA("group")
-    }
+    GroupMember: generator.associations()
   },
 
   queries: {
-    groupMembers: all(GroupMember, {
-      __forceSelectFields: groupMemberForceFields
-    }),
-    groupMember: one(GroupMember, {
-      __forceSelectFields: groupMemberForceFields
-    })
+    groupMembers: generator.all(),
+    groupMember: generator.one()
   },
 
   mutations: {
-    addMemberToGroup: create(GroupMember, {
-      __forceSelectFields: groupMemberForceFields
-    }),
-    updateMemberInGroup: update(GroupMember, {
-      __forceSelectFields: groupMemberForceFields
-    }),
-    removeMemberFromGroup: destroy(GroupMember)
+    addMemberToGroup: generator.create(),
+    updateMemberInGroup: generator.update(),
+    removeMemberFromGroup: generator.destroy()
   }
 };

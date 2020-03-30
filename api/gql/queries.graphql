@@ -27,71 +27,64 @@ type Query {
 # updateModel(): Model
 # deleteModel(): Model
 
+# Inputs
+input ArtistInput {
+  startDate: Date
+  endDate: Date
+  companyId: Int
+  socialLinksId: Int
+  description: String
+  displayName: String
+  secondaryDisplayName: String
+  isGroup: Boolean
+  memberCount: Int
+}
+
+input CompanyInput {
+  name: String
+}
+
+input ArtistImagesInput {
+  icon: Image
+  banner: Image
+  cardTall: Image
+  cardFlat: Image
+}
+
+input GroupMemberInput {
+  memberId: ID
+  groupId: ID
+}
+
+input SocialLinksInput {
+  twitter: String
+  youtube: String
+  spotify: String
+}
+
+# Mutations
 type Mutation {
   # Company
-  createCompany(name: String!): Company
+  createCompany(company: CompanyInput): Company
   deleteCompany(id: ID!): Company
-  updateCompany(id: ID!, name: String): Company
+  updateCompany(id: ID!, company: CompanyInput): Company
 
   # Artist
   createArtist(
-    startDate: Date!
-    endDate: Date
-    companyId: Int!
-    socialLinksId: Int!
-    description: String!
-    displayName: String!
-    secondaryDisplayName: String!
-    isGroup: Boolean!
-    memberCount: Int!
+    artist: ArtistInput
+    socialLinks: SocialLinksInput
+    images: ArtistImagesInput
   ): Artist
-  createArtistWithImages(
-    startDate: Date!
-    endDate: Date
-    companyId: Int!
-    socialLinksId: Int!
-    description: String!
-    displayName: String!
-    secondaryDisplayName: String!
-    isGroup: Boolean!
-    memberCount: Int!
-    icon: Image
-    banner: Image
-    cardTall: Image
-    cardFlat: Image
-  ): Artist
-  updateArtist(
-    id: ID!
-    startDate: Date
-    endDate: Date
-    companyId: Int
-    socialLinksId: Int
-    description: String
-    displayName: String
-    secondaryDisplayName: String
-    isGroup: Boolean
-    memberCount: Int
-  ): Artist
+  updateArtist(id: ID!, artist: ArtistInput): Artist
   deleteArtist(id: ID!): Artist
 
   # ArtistImages
-  createArtistImages(
-    icon: Image
-    banner: Image
-    cardTall: Image
-    cardFlat: Image
-  ): ArtistImages
-  updateArtistImages(
-    id: ID!
-    icon: Image
-    banner: Image
-    cardTall: Image
-    cardFlat: Image
-  ): ArtistImages
+  createArtistImages(artistImages: ArtistImagesInput): ArtistImages
+  updateArtistImages(id: ID!, artistImages: ArtistImagesInput): ArtistImages
   deleteArtistImages(id: ID!): ArtistImages
 
   # GroupMember
-  addMemberToGroup(memberId: ID!, groupId: ID!): GroupMember
-  updateMemberInGroup(id: ID!, memberId: ID, groupId: ID): GroupMember
+  addMemberToGroup(groupMember: GroupMemberInput): GroupMember
+  updateMemberInGroup(id: ID!, groupMember: GroupMemberInput): GroupMember
   removeMemberFromGroup(id: ID!): GroupMember
 }
