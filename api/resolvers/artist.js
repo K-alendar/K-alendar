@@ -1,59 +1,43 @@
-const { Artist, ArtistImages } = require("../database/models");
+const { Artist } = require("../database/models");
 const {
-  create,
-  all,
-  destroy,
-  update,
-  one,
   transformers,
-  associations
+  ResolverFactory,
+  ParentAssociation,
+  ChildAssociation
 } = require("./utils");
 
-const artistTransformers = transformers.multi(
+const artistTransformer = transformers.multi(
   transformers.parseDate("startDate"),
   transformers.parseDate("endDate")
 );
 
+const associations = [
+  new ParentAssociation("company"),
+  new ChildAssociation("members"),
+  new ChildAssociation("groups"),
+  new ChildAssociation("socialLinks", { autoCreate: true }),
+  new ChildAssociation("images", { autoCreate: true })
+];
+
+const generator = new ResolverFactory(Artist, {
+  transformer: artistTransformer,
+  fromObject: "artist",
+  associations: associations
+});
+
 module.exports = {
   types: {
-    Artist: {
-      ...associations.belongsToA("company"),
-      ...associations.has("socialLinks"),
-      ...associations.has("images"),
-      ...associations.has("members"),
-      ...associations.has("groups")
-    }
+    Artist: generator.associations()
   },
 
   queries: {
-    artists: all(Artist),
-    artist: one(Artist)
+    artists: generator.all(),
+    artist: generator.one()
   },
 
   mutations: {
-    createArtist: create(Artist, { transformer: artistTransformers }),
-    updateArtist: update(Artist, { transformer: artistTransformers }),
-    deleteArtist: destroy(Artist),
-    createArtistWithImages: async (_, values) => {
-      let newValues = Object.assign({}, values);
-      delete newValues.icon;
-      delete newValues.banner;
-      delete newValues.cardTall;
-      delete newValues.cardFlat;
-      let artist = await create(Artist, {
-        transformer: artistTransformers,
-        include: [{ model: ArtistImages, as: "images" }]
-      })(_, values);
-      await update(ArtistImages)(_, {
-        id: artist.images.id,
-        icon: values.icon,
-        banner: values.banner,
-        cardTall: values.cardTall,
-        cardFlat: values.cardFlat
-      });
-      return await one(Artist)(_, {
-        id: artist.id
-      });
-    }
+    createArtist: generator.create(),
+    updateArtist: generator.update(),
+    deleteArtist: generator.destroy()
   }
 };

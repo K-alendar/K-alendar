@@ -1,22 +1,39 @@
 const { Model } = require("../database/models");
-const { create, all, destroy, update, one, associations } = require("./utils");
+const {
+  transformers,
+  ResolverFactory,
+  ParentAssociation,
+  ChildAssociation
+} = require("./utils");
+
+const modelTransformer = transformers.multi(
+  transformers.parseDate("modelDate")
+);
+
+const associations = [
+  new ParentAssociation("parentModel"),
+  new ChildAssociation("childModel", { autoCreate: true })
+];
+
+const generator = new ResolverFactory(Model, {
+  transformer: modelTransformer,
+  fromObject: "model",
+  associations: associations
+});
 
 module.exports = {
   types: {
-    Model: {
-      ...associations.has("someModels"),
-      ...associations.belongsToAn("otherModel")
-    }
+    Model: generator.associations()
   },
 
   queries: {
-    models: all(Model),
-    model: one(Model)
+    models: generator.all(),
+    model: generator.one()
   },
 
   mutations: {
-    createModel: create(Model),
-    updateModel: update(Model),
-    deleteModel: destroy(Model)
+    createModel: generator.create(),
+    updateModel: generator.update(),
+    deleteModel: generator.destroy()
   }
 };

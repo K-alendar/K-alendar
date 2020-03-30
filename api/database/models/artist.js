@@ -45,21 +45,21 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     // Hooks
-    Artist.addHook(
-      "afterCreate",
-      "createArtistImages",
-      async (artist, options) => {
-        await models.ArtistImages.create({ artistId: artist.id });
-      }
-    );
+    // Artist.addHook(
+    //   "afterCreate",
+    //   "createArtistImages",
+    //   async (artist, options) => {
+    //     await models.ArtistImages.create({ artistId: artist.id });
+    //   }
+    // );
 
-    Artist.addHook(
-      "afterCreate",
-      "createSocialLinks",
-      async (artist, options) => {
-        await models.SocialLinks.create({ artistId: artist.id });
-      }
-    );
+    // Artist.addHook(
+    //   "afterCreate",
+    //   "createSocialLinks",
+    //   async (artist, options) => {
+    //     await models.SocialLinks.create({ artistId: artist.id });
+    //   }
+    // );
   };
   return Artist;
 };

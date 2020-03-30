@@ -12,13 +12,20 @@ const makeAssociation = (objectName, { as } = {}) => {
   return associationObj;
 };
 
+const writeAssociation = async (objectName, parent, values) => {
+  let adjustedObjectName =
+    objectName.charAt(0).toUpperCase() +
+    objectName
+      .split("")
+      .slice(1)
+      .join("");
+    console.log(parent, `create${adjustedObjectName}`)
+  return parent[`create${adjustedObjectName}`](values);
+};
+
 const associations = {
-  has: makeAssociation,
-  hasA: makeAssociation,
-  hasAn: makeAssociation,
-  belongsTo: makeAssociation,
-  belongsToA: makeAssociation,
-  belongsToAn: makeAssociation
+  makeAssociation: makeAssociation,
+  writeAssociation: writeAssociation,
 };
 
 module.exports = associations;

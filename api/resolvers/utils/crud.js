@@ -45,11 +45,19 @@ module.exports = {
 
   create: (
     Model,
-    { include = [], transformer = v => v, __forceSelectFields = [] } = {}
+    {
+      include = [],
+      transformer = v => v,
+      fromObject,
+      __forceSelectFields = []
+    } = {}
   ) => {
     return async (_, values) => {
       let model = await writeErrorHandler(
-        async () => await Model.create(transformer(values))
+        async () =>
+          await Model.create(
+            transformer(fromObject ? values[fromObject] : values)
+          )
       );
 
       return await findOne(
@@ -81,12 +89,20 @@ module.exports = {
 
   update: (
     Model,
-    { include = [], transformer = v => v, __forceSelectFields = [] } = {}
+    {
+      include = [],
+      transformer = v => v,
+      fromObject,
+      __forceSelectFields = []
+    } = {}
   ) => {
     return async (_, { id, ...values }) => {
       await writeErrorHandler(
         async () =>
-          await Model.update(transformer(values), { where: { id: id } })
+          await Model.update(
+            transformer(fromObject ? values[fromObject] : values),
+            { where: { id: id } }
+          )
       );
       return await findOne(Model, id, include, __forceSelectFields);
     };
