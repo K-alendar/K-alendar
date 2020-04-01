@@ -1,10 +1,14 @@
 const crud = require("./crud");
-const { makeAssociation, writeAssociation } = require("./associations");
+const {
+  createReadAssociation,
+  writeAssociation,
+  updateAssociation
+} = require("./associations");
 
 class Association {
   constructor(associationName, { as, autoCreate } = { autoCreate: false }) {
     this.associationName = associationName;
-    this.as = as;
+    this.as = as ? as : associationName;
     this.autoCreate = autoCreate;
   }
 }
@@ -51,9 +55,7 @@ class ResolverFactory {
 
       for (let association of this.rawAssociations) {
         if (association instanceof ChildAssociation && association.autoCreate) {
-          model[
-            association.as ? association.as : association.associationName
-          ] = await writeAssociation(
+          model[association.as] = await writeAssociation(
             association.associationName,
             model,
             values[association.associationName]
@@ -77,16 +79,19 @@ class ResolverFactory {
       })(_, values);
 
       for (let association of this.rawAssociations) {
-        if (association instanceof ChildAssociation && association.autoCreate) {
-          model[
-            association.as ? association.as : association.associationName
-          ] = await writeAssociation(
+        if (
+          association instanceof ChildAssociation &&
+          association.autoCreate &&
+          values[association.associationName]
+        ) {
+          let updatedAssociation = await updateAssociation(
             association.associationName,
             model,
             values[association.associationName]
-              ? values[association.associationName]
-              : {}
           );
+          if (updatedAssociation) {
+            model[association.as] = updatedAssociation;
+          }
         }
       }
 
@@ -117,7 +122,7 @@ class ResolverFactory {
       if (!val instanceof Association) {
         return acc;
       }
-      return { ...acc, ...makeAssociation(val.associationName, val.as) };
+      return { ...acc, ...createReadAssociation(val.associationName, val.as) };
     }, {});
   }
 }
