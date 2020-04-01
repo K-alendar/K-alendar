@@ -75,7 +75,12 @@ type Mutation {
     socialLinks: SocialLinksInput
     images: ArtistImagesInput
   ): Artist
-  updateArtist(id: ID!, artist: ArtistInput): Artist
+  updateArtist(
+    id: ID!
+    artist: ArtistInput
+    socialLinks: SocialLinksInput
+    images: ArtistImagesInput
+  ): Artist
   deleteArtist(id: ID!): Artist
 
   # ArtistImages
