@@ -4,6 +4,7 @@ const {
   writeAssociation,
   updateAssociation
 } = require("./associations");
+const defaults = require("../defaults.js");
 
 class Association {
   constructor(associationName, { as, autoCreate } = { autoCreate: false }) {
@@ -44,6 +45,21 @@ class ResolverFactory {
     this.rawAssociations = associations;
   }
 
+  loadValuesWithDefaults(values, associationName = undefined) {
+    let defaultsKey = associationName
+      ? `${this.Model.name}__${associationName}`
+      : this.Model.name;
+
+    let defaultValues = defaults[defaultsKey];
+
+    if (!values) {
+      return {};
+    } else if (!defaultValues) {
+      return values;
+    }
+    return Object.assign(defaultValues(values), values);
+  }
+
   create() {
     return async (_, values) => {
       let model = await crud.create(this.Model, {
@@ -51,16 +67,17 @@ class ResolverFactory {
         transformer: this.transformer,
         fromObject: this.fromObject,
         __forceSelectFields: this.__forceSelectFields
-      })(_, values);
+      })(_, this.loadValuesWithDefaults(values));
 
       for (let association of this.rawAssociations) {
         if (association instanceof ChildAssociation && association.autoCreate) {
           model[association.as] = await writeAssociation(
             association.associationName,
             model,
-            values[association.associationName]
-              ? values[association.associationName]
-              : {}
+            this.loadValuesWithDefaults(
+              values[association.associationName],
+              association.associationName
+            )
           );
         }
       }
