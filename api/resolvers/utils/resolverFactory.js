@@ -4,7 +4,7 @@ const {
   writeAssociation,
   updateAssociation
 } = require("./associations");
-const defaults = require("../defaults.js");
+const defaults = require("../_defaults.js");
 
 class Association {
   constructor(associationName, { as, autoCreate } = { autoCreate: false }) {

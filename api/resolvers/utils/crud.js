@@ -1,4 +1,4 @@
-const { RecordNotFoundError, writeErrorHandler } = require("../errors");
+const { RecordNotFoundError, writeErrorHandler } = require("../_errors");
 
 function checkIfFound(model, id, Model) {
   if (model === null) {
