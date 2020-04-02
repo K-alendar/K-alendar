@@ -5,7 +5,10 @@ const associations = [new ChildAssociation("artists")];
 
 const generator = new ResolverFactory(Company, {
   fromObject: "company",
-  associations: associations
+  associations: associations,
+  validations: {
+    name: { presence: { allowEmpty: false } }
+  }
 });
 
 module.exports = {

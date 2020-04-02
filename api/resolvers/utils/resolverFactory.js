@@ -1,3 +1,5 @@
+const validate = require("validate.js");
+
 const crud = require("./crud");
 const {
   createReadAssociation,
@@ -5,6 +7,7 @@ const {
   updateAssociation
 } = require("./associations");
 const defaults = require("../_defaults.js");
+const { ValidationError } = require("../_errors");
 
 class Association {
   constructor(associationName, { as, autoCreate } = { autoCreate: false }) {
@@ -30,11 +33,12 @@ class ResolverFactory {
   constructor(
     Model,
     {
+      fromObject,
       include = [],
       transformer = v => v,
-      fromObject,
-      __forceSelectFields = [],
-      associations = []
+      associations = [],
+      validations = {},
+      __forceSelectFields = []
     }
   ) {
     this.Model = Model;
@@ -43,6 +47,7 @@ class ResolverFactory {
     this.fromObject = fromObject;
     this.__forceSelectFields = __forceSelectFields;
     this.rawAssociations = associations;
+    this.validations = validations;
   }
 
   loadValuesWithDefaults(values, associationName = undefined) {
@@ -60,13 +65,24 @@ class ResolverFactory {
     return Object.assign(defaultValues(values), values);
   }
 
+  makeValidations() {
+    return values => {
+      let errors = validate(values, this.validations);
+      if (!errors) {
+        return;
+      }
+      throw new ValidationError(errors);
+    };
+  }
+
   create() {
     return async (_, values) => {
       let model = await crud.create(this.Model, {
         include: this.include,
         transformer: this.transformer,
         fromObject: this.fromObject,
-        __forceSelectFields: this.__forceSelectFields
+        __forceSelectFields: this.__forceSelectFields,
+        validate: this.makeValidations()
       })(_, this.loadValuesWithDefaults(values));
 
       for (let association of this.rawAssociations) {
@@ -92,7 +108,8 @@ class ResolverFactory {
         include: this.include,
         transformer: this.transformer,
         fromObject: this.fromObject,
-        __forceSelectFields: this.__forceSelectFields
+        __forceSelectFields: this.__forceSelectFields,
+        validate: this.makeValidations()
       })(_, values);
 
       for (let association of this.rawAssociations) {

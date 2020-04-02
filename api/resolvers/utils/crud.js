@@ -43,32 +43,6 @@ module.exports = {
     };
   },
 
-  create: (
-    Model,
-    {
-      include = [],
-      transformer = v => v,
-      fromObject,
-      __forceSelectFields = []
-    } = {}
-  ) => {
-    return async (_, values) => {
-      let model = await writeErrorHandler(
-        async () =>
-          await Model.create(
-            transformer(fromObject ? values[fromObject] : values)
-          )
-      );
-
-      return await findOne(
-        Model,
-        model.id,
-        include,
-        (fields = __forceSelectFields)
-      );
-    };
-  },
-
   all: (Model, { include = [], __forceSelectFields = [] } = {}) => {
     return async () => {
       let options = buildOptions(
@@ -79,11 +53,31 @@ module.exports = {
     };
   },
 
-  destroy: Model => {
-    return async (_, { id }) => {
-      let model = await Model.findByPk(id);
-      await model.destroy();
-      return model;
+  create: (
+    Model,
+    {
+      include = [],
+      transformer = v => v,
+      fromObject,
+      __forceSelectFields = [],
+      validate = () => {}
+    } = {}
+  ) => {
+    return async (_, values) => {
+      let model = await writeErrorHandler(async () => {
+        let transformedValues = transformer(
+          fromObject ? values[fromObject] : values
+        );
+        validate(transformedValues);
+        return await Model.create(transformedValues);
+      });
+
+      return await findOne(
+        Model,
+        model.id,
+        include,
+        (fields = __forceSelectFields)
+      );
     };
   },
 
@@ -93,18 +87,27 @@ module.exports = {
       include = [],
       transformer = v => v,
       fromObject,
-      __forceSelectFields = []
+      __forceSelectFields = [],
+      validate = () => {}
     } = {}
   ) => {
     return async (_, { id, ...values }) => {
-      await writeErrorHandler(
-        async () =>
-          await Model.update(
-            transformer(fromObject ? values[fromObject] : values),
-            { where: { id: id } }
-          )
-      );
+      await writeErrorHandler(async () => {
+        let transformedValues = transformer(
+          fromObject ? values[fromObject] : values
+        );
+        validate(transformedValues);
+        return await Model.update(transformedValues, { where: { id: id } });
+      });
       return await findOne(Model, id, include, __forceSelectFields);
+    };
+  },
+
+  destroy: Model => {
+    return async (_, { id }) => {
+      let model = await Model.findByPk(id);
+      await model.destroy();
+      return model;
     };
   }
 };
