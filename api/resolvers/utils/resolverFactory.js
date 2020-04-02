@@ -4,6 +4,7 @@ const {
   writeAssociation,
   updateAssociation
 } = require("./associations");
+const defaults = require("../defaults.json");
 
 class Association {
   constructor(associationName, { as, autoCreate } = { autoCreate: false }) {
@@ -44,6 +45,18 @@ class ResolverFactory {
     this.rawAssociations = associations;
   }
 
+  loadValuesWithDefaults(values, associationName = undefined) {
+    let defaultValues = associationName
+      ? defaults._associations[associationName]
+      : defaults[this.Model.constructor.name];
+    if (!values) {
+      return {};
+    } else if (!defaultValues) {
+      return values;
+    }
+    return Object.assign(defaultValues, values);
+  }
+
   create() {
     return async (_, values) => {
       let model = await crud.create(this.Model, {
@@ -51,16 +64,17 @@ class ResolverFactory {
         transformer: this.transformer,
         fromObject: this.fromObject,
         __forceSelectFields: this.__forceSelectFields
-      })(_, values);
+      })(_, this.loadValuesWithDefaults(values));
 
       for (let association of this.rawAssociations) {
         if (association instanceof ChildAssociation && association.autoCreate) {
           model[association.as] = await writeAssociation(
             association.associationName,
             model,
-            values[association.associationName]
-              ? values[association.associationName]
-              : {}
+            this.loadValuesWithDefaults(
+              values[association.associationName],
+              association.associationName
+            )
           );
         }
       }
@@ -87,7 +101,10 @@ class ResolverFactory {
           let updatedAssociation = await updateAssociation(
             association.associationName,
             model,
-            values[association.associationName]
+            this.loadValuesWithDefaults(
+              values[association.associationName],
+              association.associationName
+            )
           );
           if (updatedAssociation) {
             model[association.as] = updatedAssociation;
