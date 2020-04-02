@@ -10,22 +10,35 @@ const defaults = require("../_defaults.js");
 const { ValidationError } = require("../_errors");
 
 class Association {
-  constructor(associationName, { as, autoCreate } = { autoCreate: false }) {
+  constructor(
+    associationName,
+    factory,
+    { as, autoCreate } = { autoCreate: false }
+  ) {
     this.associationName = associationName;
     this.as = as ? as : associationName;
     this.autoCreate = autoCreate;
+    this.factory = factory;
   }
 }
 
 class ParentAssociation extends Association {
-  constructor(associationName, { as, autoCreate } = { autoCreate: false }) {
-    super(associationName, { as: as, autoCreate: autoCreate });
+  constructor(
+    associationName,
+    factory,
+    { as, autoCreate } = { autoCreate: false }
+  ) {
+    super(associationName, factory, { as: as, autoCreate: autoCreate });
   }
 }
 
 class ChildAssociation extends Association {
-  constructor(associationName, { as, autoCreate } = { autoCreate: false }) {
-    super(associationName, { as: as, autoCreate: autoCreate });
+  constructor(
+    associationName,
+    factory,
+    { as, autoCreate } = { autoCreate: false }
+  ) {
+    super(associationName, factory, { as: as, autoCreate: autoCreate });
   }
 }
 
@@ -75,21 +88,29 @@ class ResolverFactory {
     };
   }
 
-  create() {
+  create({ withParent, toChild } = {}) {
     return async (_, values) => {
       let model = await crud.create(this.Model, {
         include: this.include,
         transformer: this.transformer,
         fromObject: this.fromObject,
         __forceSelectFields: this.__forceSelectFields,
-        validate: this.makeValidations()
+        validate: this.makeValidations(),
+        withParent: withParent,
+        toChild: toChild
       })(_, this.loadValuesWithDefaults(values));
 
       for (let association of this.rawAssociations) {
-        if (association instanceof ChildAssociation && association.autoCreate) {
-          model[association.as] = await writeAssociation(
-            association.associationName,
-            model,
+        if (
+          association instanceof ChildAssociation &&
+          association.autoCreate &&
+          association.factory
+        ) {
+          model[association.as] = await association.factory.create({
+            withParent: model,
+            toChild: association.associationName
+          })(
+            _,
             this.loadValuesWithDefaults(
               values[association.associationName],
               association.associationName
@@ -102,27 +123,30 @@ class ResolverFactory {
     };
   }
 
-  update() {
+  update({ withParent, toChild } = {}) {
     return async (_, values) => {
       let model = await crud.update(this.Model, {
         include: this.include,
         transformer: this.transformer,
         fromObject: this.fromObject,
         __forceSelectFields: this.__forceSelectFields,
-        validate: this.makeValidations()
+        validate: this.makeValidations(),
+        withParent: withParent,
+        toChild: toChild
       })(_, values);
 
       for (let association of this.rawAssociations) {
         if (
           association instanceof ChildAssociation &&
           association.autoCreate &&
-          values[association.associationName]
+          values[association.associationName] &&
+          association.factory
         ) {
-          let updatedAssociation = await updateAssociation(
-            association.associationName,
-            model,
-            values[association.associationName]
-          );
+          let updatedAssociation = await association.factory.update({
+            withParent: model,
+            toChild: association.associationName
+          })(_, values[association.associationName]);
+
           if (updatedAssociation) {
             model[association.as] = updatedAssociation;
           }

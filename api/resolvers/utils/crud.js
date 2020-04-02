@@ -1,4 +1,5 @@
 const { RecordNotFoundError, writeErrorHandler } = require("../_errors");
+const { writeAssociation, updateAssociation } = require("./associations");
 
 function checkIfFound(model, id, Model) {
   if (model === null) {
@@ -56,9 +57,11 @@ module.exports = {
   create: (
     Model,
     {
+      fromObject,
+      withParent,
+      toChild,
       include = [],
       transformer = v => v,
-      fromObject,
       __forceSelectFields = [],
       validate = () => {}
     } = {}
@@ -66,40 +69,53 @@ module.exports = {
     return async (_, values) => {
       let model = await writeErrorHandler(async () => {
         let transformedValues = transformer(
-          fromObject ? values[fromObject] : values
+          fromObject && !withParent ? values[fromObject] : values
         );
         validate(transformedValues);
+        if (withParent && toChild) {
+          return await writeAssociation(toChild, withParent, transformedValues);
+        }
         return await Model.create(transformedValues);
       });
 
-      return await findOne(
-        Model,
-        model.id,
-        include,
-        (fields = __forceSelectFields)
-      );
+      return await findOne(Model, model.id, include, __forceSelectFields);
     };
   },
 
   update: (
     Model,
     {
+      fromObject,
+      withParent,
+      toChild,
       include = [],
       transformer = v => v,
-      fromObject,
       __forceSelectFields = [],
       validate = () => {}
     } = {}
   ) => {
     return async (_, { id, ...values }) => {
-      await writeErrorHandler(async () => {
+      let model = await writeErrorHandler(async () => {
         let transformedValues = transformer(
-          fromObject ? values[fromObject] : values
+          fromObject && !withParent ? values[fromObject] : values
         );
         validate(transformedValues);
+        if (withParent && toChild) {
+          return await updateAssociation(
+            toChild,
+            withParent,
+            transformedValues
+          );
+        }
         return await Model.update(transformedValues, { where: { id: id } });
       });
-      return await findOne(Model, id, include, __forceSelectFields);
+
+      return await findOne(
+        Model,
+        id ? id : model.id,
+        include,
+        __forceSelectFields
+      );
     };
   },
 
