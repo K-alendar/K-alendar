@@ -14,5 +14,9 @@ const associations = [
 module.exports = new ResolverFactory(GroupMember, {
   fromObject: "groupMember",
   associations: associations,
-  __forceSelectFields: groupMemberForceFields
+  __forceSelectFields: groupMemberForceFields,
+  validations: {
+    memberId: { isInteger: true, presence: { allowEmpty: false } },
+    groupID: { isInteger: true, presence: { allowEmpty: false } }
+  }
 });

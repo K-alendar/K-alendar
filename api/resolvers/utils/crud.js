@@ -78,6 +78,8 @@ module.exports = {
         return await Model.create(transformedValues);
       });
 
+      console.log(values)
+
       return await findOne(Model, model.id, include, __forceSelectFields);
     };
   },
