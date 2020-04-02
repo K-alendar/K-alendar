@@ -4,7 +4,7 @@ const {
   writeAssociation,
   updateAssociation
 } = require("./associations");
-const defaults = require("../defaults.json");
+const defaults = require("../defaults.js");
 
 class Association {
   constructor(associationName, { as, autoCreate } = { autoCreate: false }) {
@@ -46,15 +46,18 @@ class ResolverFactory {
   }
 
   loadValuesWithDefaults(values, associationName = undefined) {
-    let defaultValues = associationName
-      ? defaults._associations[associationName]
-      : defaults[this.Model.constructor.name];
+    let defaultsKey = associationName
+      ? `${this.Model.name}__${associationName}`
+      : this.Model.name;
+
+    let defaultValues = defaults[defaultsKey];
+
     if (!values) {
       return {};
     } else if (!defaultValues) {
       return values;
     }
-    return Object.assign(defaultValues, values);
+    return Object.assign(defaultValues(values), values);
   }
 
   create() {
@@ -101,10 +104,7 @@ class ResolverFactory {
           let updatedAssociation = await updateAssociation(
             association.associationName,
             model,
-            this.loadValuesWithDefaults(
-              values[association.associationName],
-              association.associationName
-            )
+            values[association.associationName]
           );
           if (updatedAssociation) {
             model[association.as] = updatedAssociation;
