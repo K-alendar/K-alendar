@@ -11,13 +11,13 @@ function generateFunctionName(verb, objectName) {
 const createReadAssociation = (objectName, { as } = {}) => {
   let associationObj = {};
   associationObj[as ? as : objectName] = async parent => {
-    return parent[generateFunctionName("get", objectName)]();
+    return await parent[generateFunctionName("get", objectName)]();
   };
   return associationObj;
 };
 
 const writeAssociation = async (objectName, parent, values) => {
-  return parent[generateFunctionName("create", objectName)](values);
+  return await parent[generateFunctionName("create", objectName)](values);
 };
 
 const updateAssociation = async (objectName, parent, values) => {

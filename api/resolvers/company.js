@@ -1,29 +1,18 @@
-const { Company } = require("../database/models");
-const { ResolverFactory, ChildAssociation } = require("./utils");
-
-const associations = [new ChildAssociation("artists")];
-
-const generator = new ResolverFactory(Company, {
-  fromObject: "company",
-  associations: associations,
-  validations: {
-    name: { presence: { allowEmpty: false } }
-  }
-});
+const { companyFactory } = require("./factories");
 
 module.exports = {
   types: {
-    Company: generator.associations()
+    Company: companyFactory.associations()
   },
 
   queries: {
-    companies: generator.all(),
-    company: generator.one()
+    companies: companyFactory.all(),
+    company: companyFactory.one()
   },
 
   mutations: {
-    createCompany: generator.create(),
-    updateCompany: generator.update(),
-    deleteCompany: generator.destroy()
+    createCompany: companyFactory.create(),
+    updateCompany: companyFactory.update(),
+    deleteCompany: companyFactory.destroy()
   }
 };

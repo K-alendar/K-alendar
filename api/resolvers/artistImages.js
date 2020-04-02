@@ -1,26 +1,18 @@
-const { ArtistImages } = require("../database/models");
-const { ResolverFactory, ParentAssociation } = require("./utils");
-
-const associations = [new ParentAssociation("artist")];
-
-const generator = new ResolverFactory(ArtistImages, {
-  associations: associations,
-  fromObject: "artistImages"
-});
+const { artistImagesFactory } = require("./factories");
 
 module.exports = {
   types: {
-    ArtistImages: generator.associations()
+    ArtistImages: artistImagesFactory.associations()
   },
 
   queries: {
-    artistImagesMultiple: generator.all(),
-    artistImages: generator.one()
+    artistImagesMultiple: artistImagesFactory.all(),
+    artistImages: artistImagesFactory.one()
   },
 
   mutations: {
-    createArtistImages: generator.create(),
-    updateArtistImages: generator.update(),
-    deleteArtistImages: generator.destroy()
+    createArtistImages: artistImagesFactory.create(),
+    updateArtistImages: artistImagesFactory.update(),
+    deleteArtistImages: artistImagesFactory.destroy()
   }
 };
