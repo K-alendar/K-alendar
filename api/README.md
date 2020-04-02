@@ -26,7 +26,7 @@ See the sequelize documentation for more help.
 
 ### Schema:
 
-Type definitions are found in `schema.graphql`, and the mutation and query definitions are found in `queries.graphql`
+Type definitions are found under `types/`, and the mutation and query definitions are found in `queries.graphql`
 
 ### Resolvers:
 
@@ -49,7 +49,7 @@ module.exports = {
 };
 ```
 
-Then in `index.js`, these are all combines into the same object:
+Then in `index.js`, these are all combined into the same object:
 
 ```js
 const ArtistResolvers = require("./artist");
