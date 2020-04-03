@@ -48,10 +48,6 @@ class ChildAssociation extends Association {
   }
 }
 
-function isObjectEmpty(obj) {
-  return Object.keys(obj).length === 0 && obj.constructor === Object;
-}
-
 class ResolverFactory {
   constructor(
     Model,
@@ -128,16 +124,6 @@ class ResolverFactory {
     }
 
     return errors;
-  }
-
-  makeValidations() {
-    return values => {
-      let errors = validate(values, this.validations);
-      if (!errors) {
-        return;
-      }
-      throw new ValidationError(errors);
-    };
   }
 
   create({ withParent, toChild } = {}) {
