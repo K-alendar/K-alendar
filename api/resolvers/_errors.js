@@ -51,17 +51,16 @@ async function writeErrorHandler(expression) {
     } else if (e instanceof ValidationError) {
       throw e
     }
-    // else {
-    //   throw new InternalServerError(
-    //     e.name ? e.name : "Unknown Error",
-    //     e.message ? e.message : ""
-    //   );
-    // }
   }
+}
+
+function handleError(e) {
+  throw e
 }
 
 module.exports = {
   RecordNotFoundError: RecordNotFoundError,
   ValidationError: ValidationError,
-  writeErrorHandler: writeErrorHandler
+  writeErrorHandler: writeErrorHandler,
+  handleError: handleError
 };
