@@ -28,12 +28,18 @@ module.exports = new ResolverFactory(Artist, {
   validations: {
     startDate: {
       presence: { allowEmpty: false, isString: true },
-      isDate: true
+      datetime: {
+        message: "must be of format `yyyy-MM-dd'T'HH:mm:ss.SSS'Z'`"
+      }
     },
-    endDate: { isDate: true },
-    description: { isString: true },
-    displayName: { presence: { allowEmpty: false }, isString: true },
-    secondarydisplayName: { presence: { allowEmpty: false }, isString: true },
-    isGroup: { isBoolean: true }
+    endDate: {
+      datetime: {
+        message: "must be of format `yyyy-MM-dd'T'HH:mm:ss.SSS'Z'`"
+      }
+    },
+    description: { type: "string" },
+    displayName: { presence: { allowEmpty: false }, type: "string" },
+    secondaryDisplayName: { presence: { allowEmpty: false }, type: "string" },
+    isGroup: { type: "boolean" }
   }
 });

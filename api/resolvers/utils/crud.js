@@ -71,14 +71,12 @@ module.exports = {
         let transformedValues = transformer(
           fromObject && !withParent ? values[fromObject] : values
         );
-        validate(transformedValues);
+        validate(transformedValues)
         if (withParent && toChild) {
           return await writeAssociation(toChild, withParent, transformedValues);
         }
         return await Model.create(transformedValues);
       });
-
-      console.log(values)
 
       return await findOne(Model, model.id, include, __forceSelectFields);
     };

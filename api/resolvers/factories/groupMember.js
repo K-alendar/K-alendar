@@ -16,7 +16,7 @@ module.exports = new ResolverFactory(GroupMember, {
   associations: associations,
   __forceSelectFields: groupMemberForceFields,
   validations: {
-    memberId: { isInteger: true, presence: { allowEmpty: false } },
-    groupID: { isInteger: true, presence: { allowEmpty: false } }
+    memberId: { type: "integer", presence: { allowEmpty: false } },
+    groupID: { type: "integer", presence: { allowEmpty: false } }
   }
 });
