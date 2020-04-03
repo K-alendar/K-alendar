@@ -62,8 +62,7 @@ module.exports = {
       toChild,
       include = [],
       transformer = v => v,
-      __forceSelectFields = [],
-      validate = () => {}
+      __forceSelectFields = []
     } = {}
   ) => {
     return async (_, values) => {
@@ -71,7 +70,6 @@ module.exports = {
         let transformedValues = transformer(
           fromObject && !withParent ? values[fromObject] : values
         );
-        validate(transformedValues);
         if (withParent && toChild) {
           return await writeAssociation(toChild, withParent, transformedValues);
         }
@@ -94,8 +92,7 @@ module.exports = {
       toChild,
       include = [],
       transformer = v => v,
-      __forceSelectFields = [],
-      validate = () => {}
+      __forceSelectFields = []
     } = {}
   ) => {
     return async (_, { id, ...values }) => {
@@ -103,7 +100,6 @@ module.exports = {
         let transformedValues = transformer(
           fromObject && !withParent ? values[fromObject] : values
         );
-        validate(transformedValues);
         if (withParent && toChild) {
           return await updateAssociation(
             toChild,
