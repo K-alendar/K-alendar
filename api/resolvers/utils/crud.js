@@ -71,14 +71,18 @@ module.exports = {
         let transformedValues = transformer(
           fromObject && !withParent ? values[fromObject] : values
         );
-        validate(transformedValues)
+        validate(transformedValues);
         if (withParent && toChild) {
           return await writeAssociation(toChild, withParent, transformedValues);
         }
         return await Model.create(transformedValues);
       });
 
-      return await findOne(Model, model.id, include, __forceSelectFields);
+      if (include.length > 0 || __forceSelectFields.length > 0) {
+        return await findOne(Model, model.id, include, __forceSelectFields);
+      }
+
+      return model;
     };
   },
 
@@ -107,15 +111,28 @@ module.exports = {
             transformedValues
           );
         }
-        return await Model.update(transformedValues, { where: { id: id } });
+        return await Model.update(transformedValues, {
+          where: { id: id },
+          returning: true
+        });
       });
 
-      return await findOne(
-        Model,
-        id ? id : model.id,
-        include,
-        __forceSelectFields
-      );
+      if (model instanceof Array) {
+        model = model[1][0];
+      }
+
+      if (
+        (include && include.length > 0) ||
+        (__forceSelectFields && __forceSelectFields.length > 0)
+      ) {
+        return await findOne(
+          Model,
+          id ? id : model.id,
+          include,
+          __forceSelectFields
+        );
+      }
+      return model;
     };
   },
 
