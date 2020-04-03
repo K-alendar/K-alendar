@@ -3,7 +3,11 @@ const moment = require("moment");
 
 validate.extend(validate.validators.datetime, {
   parse: (value, options) => {
-    return moment(value).utc()
+    let date = moment(value).utc()
+    if (date.isValid) {
+      return date
+    }
+    return value
   },
 
   format: (value, options) => {
