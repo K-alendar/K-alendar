@@ -5,5 +5,11 @@ const associations = [new ParentAssociation("artist")];
 
 module.exports = new ResolverFactory(ArtistImages, {
   associations: associations,
-  fromObject: "artistImages"
+  fromObject: "artistImages",
+  validations: {
+    icon: { url: true },
+    banner: { url: true },
+    cardTall: { url: true },
+    cardFlat: { url: true },
+  }
 });

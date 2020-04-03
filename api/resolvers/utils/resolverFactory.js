@@ -1,11 +1,19 @@
 const validate = require("validate.js");
+const moment = require("moment");
+
+validate.extend(validate.validators.datetime, {
+  parse: (value, options) => {
+    return moment(value).utc()
+  },
+
+  format: (value, options) => {
+    var format = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+    return moment.utc(value).format(format)
+  }
+});
 
 const crud = require("./crud");
-const {
-  createReadAssociation,
-  writeAssociation,
-  updateAssociation
-} = require("./associations");
+const { createReadAssociation } = require("./associations");
 const defaults = require("../_defaults.js");
 const { ValidationError } = require("../_errors");
 
@@ -78,7 +86,7 @@ class ResolverFactory {
     return Object.assign(defaultValues(values), values);
   }
 
-  makeValidations() {
+  runValidations(values) {
     return values => {
       let errors = validate(values, this.validations);
       if (!errors) {
@@ -95,7 +103,7 @@ class ResolverFactory {
         transformer: this.transformer,
         fromObject: this.fromObject,
         __forceSelectFields: this.__forceSelectFields,
-        validate: this.makeValidations(),
+        validate: this.runValidations(),
         withParent: withParent,
         toChild: toChild
       })(_, this.loadValuesWithDefaults(values));
@@ -130,7 +138,7 @@ class ResolverFactory {
         transformer: this.transformer,
         fromObject: this.fromObject,
         __forceSelectFields: this.__forceSelectFields,
-        validate: this.makeValidations(),
+        validate: this.runValidations,
         withParent: withParent,
         toChild: toChild
       })(_, values);

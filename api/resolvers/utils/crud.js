@@ -71,7 +71,7 @@ module.exports = {
         let transformedValues = transformer(
           fromObject && !withParent ? values[fromObject] : values
         );
-        validate(transformedValues);
+        validate(transformedValues)
         if (withParent && toChild) {
           return await writeAssociation(toChild, withParent, transformedValues);
         }

@@ -1,6 +1,6 @@
 const { Artist } = require("../../database/models");
-const socialLinksFactory = require("./socialLinks")
-const artistImagesFactory = require("./artistImages")
+const socialLinksFactory = require("./socialLinks");
+const artistImagesFactory = require("./artistImages");
 const {
   transformers,
   ResolverFactory,
@@ -24,5 +24,22 @@ const associations = [
 module.exports = new ResolverFactory(Artist, {
   transformer: artistTransformer,
   fromObject: "artist",
-  associations: associations
+  associations: associations,
+  validations: {
+    startDate: {
+      presence: { allowEmpty: false, isString: true },
+      datetime: {
+        message: "must be of format `yyyy-MM-dd'T'HH:mm:ss.SSS'Z'`"
+      }
+    },
+    endDate: {
+      datetime: {
+        message: "must be of format `yyyy-MM-dd'T'HH:mm:ss.SSS'Z'`"
+      }
+    },
+    description: { type: "string" },
+    displayName: { presence: { allowEmpty: false }, type: "string" },
+    secondaryDisplayName: { presence: { allowEmpty: false }, type: "string" },
+    isGroup: { type: "boolean" }
+  }
 });
