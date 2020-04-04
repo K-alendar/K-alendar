@@ -16,20 +16,20 @@ class RecordNotFoundError extends KalendarError {
   }
 }
 
-class ViolatesUniquenessError extends KalendarError {
-  constructor(message) {
-    super(message);
-    this.name = "ViolatesUniquenessError";
-    this.code = 422;
-  }
-}
-
 class ValidationError extends KalendarError {
   constructor(errors) {
     super(JSON.stringify(errors));
     this.name = "ValidationError";
     this.code = 422;
     this.errors = errors
+  }
+}
+
+class ViolatesUniquenessError extends ValidationError {
+  constructor(message) {
+    super(message);
+    this.name = "ViolatesUniquenessError";
+    this.code = 422;
   }
 }
 

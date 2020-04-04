@@ -1,28 +1,10 @@
-const faker = require("faker");
 const test = require("ava");
-
-const companyResolvers = require("../../resolvers/company");
 const errors = require("../../resolvers/_errors");
-
-function fakeCompany(overrides = {}) {
-  return {
-    company: Object.assign(
-      {
-        name: faker.company.companyName(),
-      },
-      overrides
-    ),
-  };
-}
-
-function createCompany(overrides = {}) {
-  return async () => {
-    await companyResolvers.mutations.createCompany(
-      null,
-      fakeCompany(overrides)
-    );
-  };
-}
+const {
+  fakeCompany,
+  createCompanyFunction,
+  companyResolvers,
+} = require("./_shared");
 
 test("with valid params succedes", async (t) => {
   let company = await companyResolvers.mutations.createCompany(
@@ -35,10 +17,23 @@ test("with valid params succedes", async (t) => {
 });
 
 test("with an invalid name fails", async (t) => {
-  t.plan(2);
-
-  const error = await t.throwsAsync(createCompany({ name: "" }), {
-    instanceOf: errors.ValidationError,
-  });
+  const error = await t.throwsAsync(
+    createCompanyFunction({ overrides: { name: "" } }),
+    {
+      instanceOf: errors.ValidationError,
+    }
+  );
   t.regex(error.message, /Name can't be blank/);
+});
+
+test("with non unique name fails", async (t) => {
+  await createCompanyFunction({ overrides: { name: "Testing Create Company" } })()
+
+  const error = await t.throwsAsync(
+    createCompanyFunction({ overrides: { name: "Testing Create Company" } }),
+    {
+      instanceOf: errors.ValidationError,
+    }
+  );
+  t.regex(error.message, /name must be unique/);
 });
