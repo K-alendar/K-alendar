@@ -3,6 +3,7 @@
   "dependencies": {
     "apollo-server": "^2.11.0",
     "dotenv": "^8.2.0",
+    "faker": "^4.1.0",
     "graphql": "^14.6.0",
     "graphql-import": "^1.0.0-beta.2",
     "moment": "^2.24.0",
@@ -16,6 +17,12 @@
     "ext": "js,json,graphql"
   },
   "scripts": {
-    "start": "nodemon"
+    "start": "nodemon",
+    "test": "cross-env NODE_ENV=test ava -v",
+    "pretest": "cross-env NODE_ENV=test yarn migrate:reset",
+    "migrate:reset": "sequelize db:migrate:undo:all && sequelize db:migrate"
+  },
+  "devDependencies": {
+    "ava": "^3.5.2"
   }
 }
