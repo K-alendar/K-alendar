@@ -2,7 +2,7 @@ const { RecordNotFoundError, writeErrorHandler } = require("../_errors");
 const { writeAssociation, updateAssociation } = require("./associations");
 
 function checkIfFound(model, id, Model) {
-  if (model === null) {
+  if (model === null || model === undefined) {
     throw new RecordNotFoundError(
       `A record wasn't found in '${Model.getTableName()}' table with the primary key '${id}'`
     );
@@ -117,6 +117,8 @@ module.exports = {
         model = model[1][0];
       }
 
+      checkIfFound(model, id, Model)
+
       if (
         (include && include.length > 0) ||
         (__forceSelectFields && __forceSelectFields.length > 0)
@@ -134,7 +136,7 @@ module.exports = {
 
   destroy: Model => {
     return async (_, { id }) => {
-      let model = await Model.findByPk(id);
+      let model = await findOne(Model, id)
       await model.destroy();
       return model;
     };

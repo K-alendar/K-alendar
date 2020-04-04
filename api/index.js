@@ -1,7 +1,6 @@
 const { ApolloServer } = require("apollo-server");
 const { importSchema } = require("graphql-import");
-const resolvers = require("./resolvers")
-
+const resolvers = require("./resolvers");
 
 async function start() {
   const typeDefs = await importSchema("gql/**/*.graphql");
@@ -16,4 +15,4 @@ async function start() {
   });
 }
 
-start()
+start();

@@ -101,11 +101,13 @@ class ResolverFactory {
   }
 
   validate(values, { from, action } = {}) {
+    let fetchedValues = values[from ? from : this.fromObject]
     let validations = this.validations;
 
     // Only the validate the values that are being updated
     if (action === "update") {
-      let valuesKeys = Object.keys(values)
+      let valuesKeys = Object.keys(fetchedValues)
+
       validations = Object.keys(this.validations).reduce((acc, key) => {
         if (valuesKeys.includes(key)) {
           acc[key] = this.validations[key]
@@ -115,7 +117,7 @@ class ResolverFactory {
     }
 
     let errors =
-      validate(values[from ? from : this.fromObject], validations) || {};
+      validate(fetchedValues, validations) || {};
 
     Object.assign(errors, this.runChildValidations(values));
 
