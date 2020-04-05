@@ -13,9 +13,9 @@ function fakeCompany({ overrides = {}, attributes } = {}) {
   if (!attributes) {
     return company;
   }
-  return Object.keys(company).reduce((acc, key) => {
+  return Object.keys(company.company).reduce((acc, key) => {
     if (attributes.includes(key)) {
-      acc[key] = company[key];
+      acc.company[key] = company.company[key];
     }
     return acc;
   }, {});

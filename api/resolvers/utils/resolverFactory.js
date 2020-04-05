@@ -7,7 +7,7 @@ const { ValidationError, handleError } = require("../_errors");
 
 validate.extend(validate.validators.datetime, {
   parse: (value, options) => {
-    let date = moment(value).utc();
+    let date = moment(new Date(value)).utc();
     if (date.isValid) {
       return date;
     }
@@ -87,7 +87,7 @@ class ResolverFactory {
   runChildValidations(values) {
     let errors = {};
     for (let association of this.rawAssociations) {
-      if (association.shouldCreate && values) {
+      if (association.shouldCreate && values[association.name]) {
         let associationErrors =
           association.factory.validate(values, { from: association.name }) ||
           {};
@@ -105,7 +105,7 @@ class ResolverFactory {
     let validations = this.validations;
 
     // Only the validate the values that are being updated
-    if (action === "update") {
+    if (action === "update" && fetchedValues) {
       let valuesKeys = Object.keys(fetchedValues)
 
       validations = Object.keys(this.validations).reduce((acc, key) => {

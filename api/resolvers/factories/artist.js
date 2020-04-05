@@ -5,7 +5,7 @@ const {
   transformers,
   ResolverFactory,
   ParentAssociation,
-  ChildAssociation
+  ChildAssociation,
 } = require("../utils");
 
 const artistTransformer = transformers.multi(
@@ -18,7 +18,7 @@ const associations = [
   new ChildAssociation("members"),
   new ChildAssociation("groups"),
   new ChildAssociation("socialLinks", socialLinksFactory, { autoCreate: true }),
-  new ChildAssociation("images", artistImagesFactory, { autoCreate: true })
+  new ChildAssociation("images", artistImagesFactory, { autoCreate: true }),
 ];
 
 module.exports = new ResolverFactory(Artist, {
@@ -28,18 +28,14 @@ module.exports = new ResolverFactory(Artist, {
   validations: {
     startDate: {
       presence: { allowEmpty: false, isString: true },
-      datetime: {
-        message: "must be of format `yyyy-MM-dd'T'HH:mm:ss.SSS'Z'`"
-      }
+      datetime: true,
     },
     endDate: {
-      datetime: {
-        message: "must be of format `yyyy-MM-dd'T'HH:mm:ss.SSS'Z'`"
-      }
+      datetime: true,
     },
     description: { type: "string" },
     displayName: { presence: { allowEmpty: false }, type: "string" },
     secondaryDisplayName: { presence: { allowEmpty: false }, type: "string" },
-    isGroup: { type: "boolean" }
-  }
+    isGroup: { type: "boolean" },
+  },
 });
