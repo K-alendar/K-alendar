@@ -7,10 +7,7 @@ const {
 } = require("./_shared");
 
 test("with valid params succedes", async (t) => {
-  let company = await companyResolvers.mutations.createCompany(
-    "",
-    fakeCompany()
-  );
+  let company = await createCompanyFunction()();
 
   t.truthy(company.id);
   t.truthy(company.name);
@@ -27,7 +24,9 @@ test("with an invalid name fails", async (t) => {
 });
 
 test("with non unique name fails", async (t) => {
-  await createCompanyFunction({ overrides: { name: "Testing Create Company" } })()
+  await createCompanyFunction({
+    overrides: { name: "Testing Create Company" },
+  })();
 
   const error = await t.throwsAsync(
     createCompanyFunction({ overrides: { name: "Testing Create Company" } }),

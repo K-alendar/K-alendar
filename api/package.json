@@ -18,11 +18,14 @@
   },
   "scripts": {
     "start": "nodemon",
-    "test": "cross-env NODE_ENV=test ava -v",
+    "test": "cross-env NODE_ENV=test ava",
     "pretest": "cross-env NODE_ENV=test yarn migrate:reset",
     "migrate:reset": "sequelize db:migrate:undo:all && sequelize db:migrate"
   },
   "devDependencies": {
     "ava": "^3.5.2"
+  },
+  "ava": {
+    "cache": false
   }
 }
