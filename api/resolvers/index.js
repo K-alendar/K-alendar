@@ -1,6 +1,6 @@
 const ArtistResolvers = require("./artist");
 const CompanyResolvers = require("./company");
-const GroupMemberResolvers = require("./groupMembers");
+const GroupMemberResolvers = require("./groupMember");
 const ArtistImagesResolvers = require("./artistImages");
 
 module.exports = {

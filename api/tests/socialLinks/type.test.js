@@ -15,5 +15,5 @@ test("of artist should return an artist", async (t) => {
 
   t.truthy(artist.id);
   t.truthy(artist.displayName);
-  t.true(artist.id === presistedArtist.id);
+  t.is(artist.id, presistedArtist.id);
 });

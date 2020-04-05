@@ -14,7 +14,7 @@ test("should return a record", async (t) => {
   )();
 
   t.truthy(artistImages.id);
-  t.true(artistImages.banner === persistedArtistImages.banner);
+  t.is(artistImages.banner, persistedArtistImages.banner);
 });
 
 test("with nonexistent record fails", async (t) => {

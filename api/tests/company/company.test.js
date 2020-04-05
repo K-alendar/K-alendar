@@ -12,7 +12,7 @@ test("should return a record", async (t) => {
   let company = await getOneCompanyFunction(persistedCompany.id)();
 
   t.truthy(company.id);
-  t.true(company.name === persistedCompany.name);
+  t.is(company.name, persistedCompany.name);
 });
 
 test("with nonexistent record fails", async (t) => {

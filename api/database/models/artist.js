@@ -19,14 +19,14 @@ module.exports = (sequelize, DataTypes) => {
       as: "socialLinks",
       foreignKey: "artistId",
       onDelete: "CASCADE",
-      hooks: true
+      hooks: true,
     });
 
     Artist.hasOne(models.ArtistImages, {
       as: "images",
       foreignKey: "artistId",
       onDelete: "CASCADE",
-      hooks: true
+      hooks: true,
     });
 
     Artist.belongsTo(models.Company, {
@@ -38,14 +38,14 @@ module.exports = (sequelize, DataTypes) => {
       through: models.GroupMember,
       as: "groups",
       foreignKey: "memberId",
-      otherKey: "id",
+      otherKey: "groupId",
     });
 
     Artist.belongsToMany(models.Artist, {
       through: models.GroupMember,
       as: "members",
       foreignKey: "groupId",
-      otherKey: "id",
+      otherKey: "memberId",
     });
   };
   return Artist;

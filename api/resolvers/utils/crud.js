@@ -24,12 +24,9 @@ function buildOptions(include = [], attributes = []) {
 }
 
 async function findOne(Model, id, include, __forceSelectFields = []) {
-  let options = buildOptions(
-    (include = include),
-    (attributes = __forceSelectFields)
-  );
+  let options = buildOptions(include, __forceSelectFields);
 
-  let model = await Model.findByPk(id, options);
+  let model = await Model.findOne({ where: { id: id }, ...options });
 
   checkIfFound(model, id, Model);
 
@@ -61,8 +58,8 @@ module.exports = {
       withParent,
       toChild,
       include = [],
-      transformer = v => v,
-      __forceSelectFields = []
+      transformer = (v) => v,
+      __forceSelectFields = [],
     } = {}
   ) => {
     return async (_, values) => {
@@ -91,8 +88,8 @@ module.exports = {
       withParent,
       toChild,
       include = [],
-      transformer = v => v,
-      __forceSelectFields = []
+      transformer = (v) => v,
+      __forceSelectFields = [],
     } = {}
   ) => {
     return async (_, { id, ...values }) => {
@@ -109,7 +106,7 @@ module.exports = {
         }
         return await Model.update(transformedValues, {
           where: { id: id },
-          returning: true
+          returning: true,
         });
       });
 
@@ -117,7 +114,7 @@ module.exports = {
         model = model[1][0];
       }
 
-      checkIfFound(model, id, Model)
+      checkIfFound(model, id, Model);
 
       if (
         (include && include.length > 0) ||
@@ -134,11 +131,11 @@ module.exports = {
     };
   },
 
-  destroy: Model => {
+  destroy: (Model) => {
     return async (_, { id }) => {
-      let model = await findOne(Model, id)
+      let model = await findOne(Model, id);
       await model.destroy();
       return model;
     };
-  }
+  },
 };
