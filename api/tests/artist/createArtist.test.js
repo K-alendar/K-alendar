@@ -160,3 +160,15 @@ test("with invalid socialLinks should fail validation", async (t) => {
   );
   t.regex(error.message, /Youtube is not a valid url/);
 });
+
+test("with multiple formats of date", async (t) => {
+  let artist = await createArtistFunction({ overrides: { startDate: 1534204800 } })();
+  
+  t.truthy(artist.startDate)
+  t.true(artist.startDate instanceof Date)
+
+  artist = await createArtistFunction({ overrides: { startDate: "2001-08-14" } })();
+  
+  t.truthy(artist.startDate)
+  t.true(artist.startDate instanceof Date)
+});

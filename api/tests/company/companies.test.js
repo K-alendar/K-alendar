@@ -5,11 +5,12 @@ const {
   companyResolvers,
 } = require("./_shared");
 
-test("should return a list record", async (t) => {
+test("should return a list of records", async (t) => {
   await createCompanyFunction()();
 
   let companies = await companyResolvers.queries.companies()
 
   t.true(companies.length > 0);
+  t.true(companies instanceof Array)
   t.truthy(companies[0].id)
 });
