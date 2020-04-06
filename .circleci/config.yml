@@ -23,10 +23,12 @@ jobs:
                 sudo service postgresql start
                 sudo su - postgres -c "psql -c \"CREATE ROLE kalendar WITH LOGIN CREATEDB ENCRYPTED PASSWORD '$DBPASSWORD';\""
                 sudo su - postgres -c "createdb kalendar_test"
-                sudo npm install -g sequelize sequelize-cli
-                sequelize db:migrate
+                cd api && npx sequelize db:migrate
             - run: cd api && npm test
 workflows:
   build-and-test:
     jobs:
       - build-and-test
+
+
+# sudo npm install -g sequelize sequelize-cli
