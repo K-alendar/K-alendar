@@ -3,6 +3,8 @@ orbs:
   node: circleci/node@1.1.6
 jobs:
   build-and-test:
+    environment:
+      TZ: America/Vancouver
     executor:
       name: node/default
     steps:
@@ -10,16 +12,12 @@ jobs:
       - node/with-cache:
           steps:
             - run: cd api && npm install
-            - run:
-                environment:
-                  TZ: America/Vancouver
-                command: |
-                  sudo ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-                  sudo apt-get update
-                  sudo apt-get -y install wget ca-certificates gnupg2 lsb-release
-                  wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-                  sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
-                  sudo apt-get -y install postgresql postgresql-contrib
+            - run: |                
+                sudo apt-get update
+                sudo apt-get -y install wget ca-certificates gnupg2 lsb-release
+                wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+                sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
+                sudo apt-get -y install postgresql postgresql-contrib
             - run: |
                 su - postgres
                 sudo service postgresql start
@@ -31,3 +29,5 @@ workflows:
   build-and-test:
     jobs:
       - build-and-test
+
+# sudo ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
