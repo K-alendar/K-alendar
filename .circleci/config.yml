@@ -14,15 +14,15 @@ jobs:
                 environment:
                   TZ: America/Vancouver
                 command: |
-                  ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-                  apt-get update
-                  apt-get -y install wget ca-certificates gnupg2 lsb-release
-                  wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
-                  sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
-                  apt-get -y install postgresql postgresql-contrib
+                  sudo ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+                  sudo apt-get update
+                  sudo apt-get -y install wget ca-certificates gnupg2 lsb-release
+                  wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+                  sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
+                  sudo apt-get -y install postgresql postgresql-contrib
             - run: |
                 su - postgres
-                service postgresql start
+                sudo service postgresql start
                 psql -c "CREATE ROLE kalendar WITH LOGIN CREATEDB ENCRYPTED PASSWORD '$DBPASSWORD';"
                 createdb kalendar_test
                 sequelize db:migrate
