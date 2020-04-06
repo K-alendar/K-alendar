@@ -21,8 +21,8 @@ jobs:
                 sudo apt-get -y install postgresql postgresql-contrib
             - run: |
                 sudo service postgresql start
-                echo service started!
                 sudo su - postgres
+                echo signed into postgres!
                 psql -c "CREATE ROLE kalendar WITH LOGIN CREATEDB ENCRYPTED PASSWORD '$DBPASSWORD';"
                 createdb kalendar_test
                 sequelize db:migrate
@@ -31,5 +31,3 @@ workflows:
   build-and-test:
     jobs:
       - build-and-test
-
-# sudo ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
