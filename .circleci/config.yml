@@ -12,7 +12,8 @@ jobs:
       - node/with-cache:
           steps:
             - run: cd api && npm install
-            - run: |                
+            - run: |
+                sudo ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && sudo echo $TZ > /etc/timezone                
                 sudo apt-get update
                 sudo apt-get -y install wget ca-certificates gnupg2 lsb-release
                 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
