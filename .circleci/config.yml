@@ -22,7 +22,7 @@ jobs:
             - run: |
                 sudo service postgresql start
                 sudo su - postgres -c "psql -c \"CREATE ROLE kalendar WITH LOGIN CREATEDB ENCRYPTED PASSWORD '$DBPASSWORD';\""
-                createdb kalendar_test
+                sudo su - postgres -c "createdb kalendar_test"
                 sequelize db:migrate
             - run: cd api && npm test
 workflows:
