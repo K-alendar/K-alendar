@@ -12,7 +12,7 @@ test("should return a record", async (t) => {
   let socialLinks = await getOneSocialLinksFunction(persistedSocialLinks.id)();
 
   t.truthy(socialLinks.id);
-  t.true(socialLinks.twitter === persistedSocialLinks.twitter);
+  t.is(socialLinks.twitter, persistedSocialLinks.twitter);
 });
 
 test("with nonexistent record fails", async (t) => {
