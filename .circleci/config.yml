@@ -10,10 +10,10 @@ jobs:
       - node/with-cache:
           steps:
             - run: cd api && npm install
-            - run: 
-              environment:
-                TZ: America/Vancouver
-              command:  |
+            - run:
+                environment:
+                  TZ: America/Vancouver
+                command: |
                   ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
                   apt-get update
                   apt-get -y install wget ca-certificates gnupg2 lsb-release
