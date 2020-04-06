@@ -21,9 +21,7 @@ jobs:
                 sudo apt-get -y install postgresql postgresql-contrib
             - run: |
                 sudo service postgresql start
-                sudo su - postgres
-                echo signed into postgres!
-                psql -c "CREATE ROLE kalendar WITH LOGIN CREATEDB ENCRYPTED PASSWORD '$DBPASSWORD';"
+                sudo su - postgres -C "psql -c \"CREATE ROLE kalendar WITH LOGIN CREATEDB ENCRYPTED PASSWORD '$DBPASSWORD';\""
                 createdb kalendar_test
                 sequelize db:migrate
             - run: cd api && npm test
