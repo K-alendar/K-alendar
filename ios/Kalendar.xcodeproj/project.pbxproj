@@ -30,7 +30,9 @@
 		C541BF7B242827C100C2D3A5 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = C541BF7A242827C100C2D3A5 /* API.swift */; };
 		C545FE4D241D6B3A00356EB3 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C545FE4C241D6B3A00356EB3 /* extensions.swift */; };
 		C545FE50241D6EEC00356EB3 /* sampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C545FE4F241D6EEC00356EB3 /* sampleData.swift */; };
-		C56856AC24273F8F00129C18 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56856AB24273F8F00129C18 /* RegisterViewController.swift */; };
+		C54DCFC2243C228500A92BC2 /* CompanyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54DCFC1243C228500A92BC2 /* CompanyController.swift */; };
+		C54DCFC5243C271100A92BC2 /* CompanyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54DCFC4243C271100A92BC2 /* CompanyList.swift */; };
+		C54DCFC7243C278800A92BC2 /* CompanyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54DCFC6243C278800A92BC2 /* CompanyRow.swift */; };
 		C57D69D02429E8E1003BBCA1 /* KingfisherSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = C57D69CF2429E8E1003BBCA1 /* KingfisherSwiftUI */; };
 		C57D69D22429E8E1003BBCA1 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C57D69D12429E8E1003BBCA1 /* Kingfisher */; };
 		C5BD08D5241ED73B0035D8FF /* ArtistCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BD08D4241ED73B0035D8FF /* ArtistCard.swift */; };
@@ -89,7 +91,9 @@
 		C541BF7A242827C100C2D3A5 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		C545FE4C241D6B3A00356EB3 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		C545FE4F241D6EEC00356EB3 /* sampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sampleData.swift; sourceTree = "<group>"; };
-		C56856AB24273F8F00129C18 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		C54DCFC1243C228500A92BC2 /* CompanyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyController.swift; sourceTree = "<group>"; };
+		C54DCFC4243C271100A92BC2 /* CompanyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CompanyList.swift; path = Kalendar/GraphQL/Company/CompanyList.swift; sourceTree = SOURCE_ROOT; };
+		C54DCFC6243C278800A92BC2 /* CompanyRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CompanyRow.swift; path = Kalendar/GraphQL/Company/CompanyRow.swift; sourceTree = SOURCE_ROOT; };
 		C5BD08D4241ED73B0035D8FF /* ArtistCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ArtistCard.swift; path = /Users/johnivison/personal/Kalendar/ios/Kalendar/Artist/ArtistCard.swift; sourceTree = "<absolute>"; };
 		C5C38E512425FD3C00DBB3BF /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		C5E71D81241D8144002C221A /* Release.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Release.swift; sourceTree = "<group>"; };
@@ -168,6 +172,7 @@
 		C52EC02E2417359F00908012 /* Kalendar */ = {
 			isa = PBXGroup;
 			children = (
+				C54DCFBF243C221400A92BC2 /* Company */,
 				C541BF7A242827C100C2D3A5 /* API.swift */,
 				C5C38E502425FCAD00DBB3BF /* GraphQL */,
 				C5E71D83241D836F002C221A /* Release */,
@@ -252,13 +257,31 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		C54DCFBF243C221400A92BC2 /* Company */ = {
+			isa = PBXGroup;
+			children = (
+				C54DCFC4243C271100A92BC2 /* CompanyList.swift */,
+				C54DCFC6243C278800A92BC2 /* CompanyRow.swift */,
+			);
+			name = Company;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		C54DCFC0243C222000A92BC2 /* Company */ = {
+			isa = PBXGroup;
+			children = (
+				C54DCFC1243C228500A92BC2 /* CompanyController.swift */,
+			);
+			path = Company;
+			sourceTree = "<group>";
+		};
 		C5C38E502425FCAD00DBB3BF /* GraphQL */ = {
 			isa = PBXGroup;
 			children = (
+				C54DCFC0243C222000A92BC2 /* Company */,
 				C5010478242B295900164195 /* Utils.swift */,
 				C541BF7724280BC200C2D3A5 /* Artist */,
 				C53E532424270E1500B6954E /* RegisterViewController.graphql */,
-				C56856AB24273F8F00129C18 /* RegisterViewController.swift */,
 			);
 			path = GraphQL;
 			sourceTree = "<group>";
@@ -485,14 +508,16 @@
 				C5E71D85241D83F7002C221A /* ReleaseCard.swift in Sources */,
 				C541BF7924280BD100C2D3A5 /* ArtistController.swift in Sources */,
 				C53DA8D62419FE7C0089CE2B /* Company.swift in Sources */,
-				C56856AC24273F8F00129C18 /* RegisterViewController.swift in Sources */,
 				C53DA8DA2419FF000089CE2B /* ArtistImages.swift in Sources */,
 				C5409FEF241CC1EC007BE636 /* SocialLinksDisplay.swift in Sources */,
 				C545FE50241D6EEC00356EB3 /* sampleData.swift in Sources */,
 				C5010479242B295900164195 /* Utils.swift in Sources */,
 				C5BD08D5241ED73B0035D8FF /* ArtistCard.swift in Sources */,
+				C54DCFC5243C271100A92BC2 /* CompanyList.swift in Sources */,
 				C52EC0342417359F00908012 /* ContentView.swift in Sources */,
+				C54DCFC7243C278800A92BC2 /* CompanyRow.swift in Sources */,
 				C53DA8E1241A027A0089CE2B /* ArtistDetails.swift in Sources */,
+				C54DCFC2243C228500A92BC2 /* CompanyController.swift in Sources */,
 				C545FE4D241D6B3A00356EB3 /* extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
