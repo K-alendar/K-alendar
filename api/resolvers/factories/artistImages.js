@@ -7,9 +7,9 @@ module.exports = new ResolverFactory(ArtistImages, {
   associations: associations,
   fromObject: "artistImages",
   validations: {
-    icon: { url: true },
-    banner: { url: true },
-    cardTall: { url: true },
-    cardFlat: { url: true },
-  }
+    icon: { url: true, length: { maximum: 255 } },
+    banner: { url: true, length: { maximum: 255 } },
+    cardTall: { url: true, length: { maximum: 255 } },
+    cardFlat: { url: true, length: { maximum: 255 } },
+  },
 });

@@ -1,4 +1,5 @@
 const test = require("ava");
+const faker = require("faker");
 const errors = require("../../resolvers/_errors");
 const {
   fakeArtist,
@@ -69,6 +70,16 @@ test("with an invalid displayName fails", async (t) => {
     }
   );
   t.regex(error.message, /Display name must be of type string/);
+
+  error = await t.throwsAsync(
+    createArtistFunction({
+      overrides: { displayName: faker.random.alphaNumeric(256) },
+    }),
+    {
+      instanceOf: errors.ValidationError,
+    }
+  );
+  t.regex(error.message, /Display name is too long/);
 });
 
 test("with an invalid secondaryDisplayName fails", async (t) => {
@@ -87,6 +98,16 @@ test("with an invalid secondaryDisplayName fails", async (t) => {
     }
   );
   t.regex(error.message, /Secondary display name must be of type string/);
+
+  error = await t.throwsAsync(
+    createArtistFunction({
+      overrides: { secondaryDisplayName: faker.random.alphaNumeric(256) },
+    }),
+    {
+      instanceOf: errors.ValidationError,
+    }
+  );
+  t.regex(error.message, /Secondary display name is too long/);
 });
 
 test("with an invalid isGroup fails", async (t) => {
@@ -162,13 +183,17 @@ test("with invalid socialLinks should fail validation", async (t) => {
 });
 
 test("with multiple formats of date", async (t) => {
-  let artist = await createArtistFunction({ overrides: { startDate: 1534204800 } })();
-  
-  t.truthy(artist.startDate)
-  t.true(artist.startDate instanceof Date)
+  let artist = await createArtistFunction({
+    overrides: { startDate: 1534204800 },
+  })();
 
-  artist = await createArtistFunction({ overrides: { startDate: "2001-08-14" } })();
-  
-  t.truthy(artist.startDate)
-  t.true(artist.startDate instanceof Date)
+  t.truthy(artist.startDate);
+  t.true(artist.startDate instanceof Date);
+
+  artist = await createArtistFunction({
+    overrides: { startDate: "2001-08-14" },
+  })();
+
+  t.truthy(artist.startDate);
+  t.true(artist.startDate instanceof Date);
 });
