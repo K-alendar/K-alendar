@@ -4,11 +4,17 @@ const { ResolverFactory, ChildAssociation } = require("../utils");
 // Something in the self-referencial many to many relationship breaks select queries
 // and doesn't return the primary key
 // this can be fixed by explicitly asking for it, hence the override
-const groupMemberForceFields = ["id", "groupId", "memberId", "createdAt", "updatedAt"];
+const groupMemberForceFields = [
+  "id",
+  "groupId",
+  "memberId",
+  "createdAt",
+  "updatedAt",
+];
 
 const associations = [
   new ChildAssociation("member"),
-  new ChildAssociation("group")
+  new ChildAssociation("group"),
 ];
 
 module.exports = new ResolverFactory(GroupMember, {
@@ -17,6 +23,6 @@ module.exports = new ResolverFactory(GroupMember, {
   __forceSelectFields: groupMemberForceFields,
   validations: {
     memberId: { presence: { allowEmpty: false } },
-    groupId: { presence: { allowEmpty: false } }
-  }
+    groupId: { presence: { allowEmpty: false } },
+  },
 });

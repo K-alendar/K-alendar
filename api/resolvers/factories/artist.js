@@ -34,8 +34,16 @@ module.exports = new ResolverFactory(Artist, {
       datetime: true,
     },
     description: { type: "string" },
-    displayName: { presence: { allowEmpty: false }, type: "string" },
-    secondaryDisplayName: { presence: { allowEmpty: false }, type: "string" },
+    displayName: {
+      presence: { allowEmpty: false },
+      type: "string",
+      length: { maximum: 255 },
+    },
+    secondaryDisplayName: {
+      presence: { allowEmpty: false },
+      type: "string",
+      length: { maximum: 255 },
+    },
     isGroup: { type: "boolean" },
   },
 });

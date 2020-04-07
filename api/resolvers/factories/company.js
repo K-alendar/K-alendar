@@ -7,6 +7,6 @@ module.exports = new ResolverFactory(Company, {
   fromObject: "company",
   associations: associations,
   validations: {
-    name: { presence: { allowEmpty: false } }
-  }
+    name: { presence: { allowEmpty: false }, length: { maximum: 255 } },
+  },
 });
