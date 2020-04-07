@@ -23,34 +23,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
         // Create the SwiftUI view that provides the window contents.
-        let sampleData = SampleData()
+        let contentView = ContentView()
         
-        ArtistController.fetchArtistDetails(id: 2) { [self] (result) in
-            switch(result) {
-            case .success(let artist):
-                let contentView = ContentView(artist: artist, yearDateFormatter: sampleData.yearDateFormatter)
-                
 
-                // Use a UIHostingController as window root view controller.
-                if let windowScene = scene as? UIWindowScene {
-                    let window = UIWindow(windowScene: windowScene)
-                    window.rootViewController = UIHostingController(rootView: contentView)
-                    self.window = window
-                    window.makeKeyAndVisible()
-                }
-            case .failure(_):
-                let contentView = ContentView(artist: sampleData.displayGroup, yearDateFormatter: sampleData.yearDateFormatter)
-                
-
-                // Use a UIHostingController as window root view controller.
-                if let windowScene = scene as? UIWindowScene {
-                    let window = UIWindow(windowScene: windowScene)
-                    window.rootViewController = UIHostingController(rootView: contentView)
-                    self.window = window
-                    window.makeKeyAndVisible()
-                }
-            }
+        // Use a UIHostingController as window root view controller.
+        if let windowScene = scene as? UIWindowScene {
+            let window = UIWindow(windowScene: windowScene)
+            window.rootViewController = UIHostingController(rootView: contentView)
+            self.window = window
+            window.makeKeyAndVisible()
         }
+        
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

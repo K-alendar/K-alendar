@@ -75,7 +75,22 @@
           {
             "name": "company",
             "description": null,
-            "args": [],
+            "args": [
+              {
+                "name": "id",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
             "type": {
               "kind": "OBJECT",
               "name": "Company",
@@ -103,7 +118,22 @@
           {
             "name": "groupMember",
             "description": null,
-            "args": [],
+            "args": [
+              {
+                "name": "id",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
             "type": {
               "kind": "OBJECT",
               "name": "GroupMember",
@@ -131,7 +161,22 @@
           {
             "name": "artistImages",
             "description": null,
-            "args": [],
+            "args": [
+              {
+                "name": "id",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
             "type": {
               "kind": "OBJECT",
               "name": "ArtistImages",
@@ -577,6 +622,18 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "artist",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Artist",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -793,7 +850,7 @@
             "deprecationReason": null
           },
           {
-            "name": "member_id",
+            "name": "memberId",
             "description": null,
             "args": [],
             "type": {
@@ -809,7 +866,7 @@
             "deprecationReason": null
           },
           {
-            "name": "group_id",
+            "name": "groupId",
             "description": null,
             "args": [],
             "type": {
@@ -872,16 +929,12 @@
             "description": null,
             "args": [
               {
-                "name": "name",
+                "name": "company",
                 "description": null,
                 "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
+                  "kind": "INPUT_OBJECT",
+                  "name": "CompanyInput",
+                  "ofType": null
                 },
                 "defaultValue": null
               }
@@ -940,11 +993,11 @@
                 "defaultValue": null
               },
               {
-                "name": "name",
+                "name": "company",
                 "description": null,
                 "type": {
-                  "kind": "SCALAR",
-                  "name": "String",
+                  "kind": "INPUT_OBJECT",
+                  "name": "CompanyInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -963,298 +1016,31 @@
             "description": null,
             "args": [
               {
-                "name": "startDate",
+                "name": "artist",
                 "description": null,
                 "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "Date",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "endDate",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Date",
+                  "kind": "INPUT_OBJECT",
+                  "name": "ArtistInput",
                   "ofType": null
                 },
                 "defaultValue": null
               },
               {
-                "name": "company_id",
+                "name": "socialLinks",
                 "description": null,
                 "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "socialLinks_id",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "description",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "displayName",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "secondaryDisplayName",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "isGroup",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "Boolean",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "memberCount",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              }
-            ],
-            "type": {
-              "kind": "OBJECT",
-              "name": "Artist",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "createArtistWithImages",
-            "description": null,
-            "args": [
-              {
-                "name": "startDate",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "Date",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "endDate",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Date",
+                  "kind": "INPUT_OBJECT",
+                  "name": "SocialLinksInput",
                   "ofType": null
                 },
                 "defaultValue": null
               },
               {
-                "name": "company_id",
+                "name": "images",
                 "description": null,
                 "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "socialLinks_id",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "description",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "displayName",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "secondaryDisplayName",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "isGroup",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "Boolean",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "memberCount",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "icon",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Image",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "banner",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Image",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "cardTall",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Image",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "cardFlat",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Image",
+                  "kind": "INPUT_OBJECT",
+                  "name": "ArtistImagesInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -1287,91 +1073,31 @@
                 "defaultValue": null
               },
               {
-                "name": "startDate",
+                "name": "artist",
                 "description": null,
                 "type": {
-                  "kind": "SCALAR",
-                  "name": "Date",
+                  "kind": "INPUT_OBJECT",
+                  "name": "ArtistInput",
                   "ofType": null
                 },
                 "defaultValue": null
               },
               {
-                "name": "endDate",
+                "name": "socialLinks",
                 "description": null,
                 "type": {
-                  "kind": "SCALAR",
-                  "name": "Date",
+                  "kind": "INPUT_OBJECT",
+                  "name": "SocialLinksInput",
                   "ofType": null
                 },
                 "defaultValue": null
               },
               {
-                "name": "company_id",
+                "name": "images",
                 "description": null,
                 "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "socialLinks_id",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "description",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "displayName",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "secondaryDisplayName",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "isGroup",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "memberCount",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
+                  "kind": "INPUT_OBJECT",
+                  "name": "ArtistImagesInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -1417,41 +1143,11 @@
             "description": null,
             "args": [
               {
-                "name": "icon",
+                "name": "artistImages",
                 "description": null,
                 "type": {
-                  "kind": "SCALAR",
-                  "name": "Image",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "banner",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Image",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "cardTall",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Image",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "cardFlat",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Image",
+                  "kind": "INPUT_OBJECT",
+                  "name": "ArtistImagesInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -1484,41 +1180,11 @@
                 "defaultValue": null
               },
               {
-                "name": "icon",
+                "name": "artistImages",
                 "description": null,
                 "type": {
-                  "kind": "SCALAR",
-                  "name": "Image",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "banner",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Image",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "cardTall",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Image",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "cardFlat",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Image",
+                  "kind": "INPUT_OBJECT",
+                  "name": "ArtistImagesInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -1564,30 +1230,12 @@
             "description": null,
             "args": [
               {
-                "name": "member_id",
+                "name": "groupMember",
                 "description": null,
                 "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "ID",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "group_id",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "ID",
-                    "ofType": null
-                  }
+                  "kind": "INPUT_OBJECT",
+                  "name": "GroupMemberInput",
+                  "ofType": null
                 },
                 "defaultValue": null
               }
@@ -1619,21 +1267,11 @@
                 "defaultValue": null
               },
               {
-                "name": "member_id",
+                "name": "groupMember",
                 "description": null,
                 "type": {
-                  "kind": "SCALAR",
-                  "name": "ID",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "group_id",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "ID",
+                  "kind": "INPUT_OBJECT",
+                  "name": "GroupMemberInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -1681,11 +1319,256 @@
         "possibleTypes": null
       },
       {
+        "kind": "INPUT_OBJECT",
+        "name": "CompanyInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "ArtistInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "startDate",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Date",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "endDate",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Date",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "companyId",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "socialLinksId",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "description",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "displayName",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "secondaryDisplayName",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "isGroup",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "memberCount",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "SCALAR",
         "name": "Int",
         "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
         "fields": null,
         "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "SocialLinksInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "twitter",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "youtube",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "spotify",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "ArtistImagesInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "icon",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Image",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "banner",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Image",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "cardTall",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Image",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "cardFlat",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Image",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "GroupMemberInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "memberId",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "groupId",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
         "interfaces": null,
         "enumValues": null,
         "possibleTypes": null

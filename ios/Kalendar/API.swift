@@ -4,108 +4,6 @@
 import Apollo
 import Foundation
 
-public final class CreateCompanyMutation: GraphQLMutation {
-  /// The raw GraphQL definition of this operation.
-  public let operationDefinition: String =
-    """
-    mutation CreateCompany($name: String!) {
-      createCompany(name: $name) {
-        __typename
-        id
-        name
-      }
-    }
-    """
-
-  public let operationName: String = "CreateCompany"
-
-  public let operationIdentifier: String? = "e36d7a93f0292b1752e8c7458eb76f84ec1dd87560bc65176a40f0696d8b8202"
-
-  public var name: String
-
-  public init(name: String) {
-    self.name = name
-  }
-
-  public var variables: GraphQLMap? {
-    return ["name": name]
-  }
-
-  public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Mutation"]
-
-    public static let selections: [GraphQLSelection] = [
-      GraphQLField("createCompany", arguments: ["name": GraphQLVariable("name")], type: .object(CreateCompany.selections)),
-    ]
-
-    public private(set) var resultMap: ResultMap
-
-    public init(unsafeResultMap: ResultMap) {
-      self.resultMap = unsafeResultMap
-    }
-
-    public init(createCompany: CreateCompany? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Mutation", "createCompany": createCompany.flatMap { (value: CreateCompany) -> ResultMap in value.resultMap }])
-    }
-
-    public var createCompany: CreateCompany? {
-      get {
-        return (resultMap["createCompany"] as? ResultMap).flatMap { CreateCompany(unsafeResultMap: $0) }
-      }
-      set {
-        resultMap.updateValue(newValue?.resultMap, forKey: "createCompany")
-      }
-    }
-
-    public struct CreateCompany: GraphQLSelectionSet {
-      public static let possibleTypes: [String] = ["Company"]
-
-      public static let selections: [GraphQLSelection] = [
-        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
-        GraphQLField("name", type: .nonNull(.scalar(String.self))),
-      ]
-
-      public private(set) var resultMap: ResultMap
-
-      public init(unsafeResultMap: ResultMap) {
-        self.resultMap = unsafeResultMap
-      }
-
-      public init(id: GraphQLID, name: String) {
-        self.init(unsafeResultMap: ["__typename": "Company", "id": id, "name": name])
-      }
-
-      public var __typename: String {
-        get {
-          return resultMap["__typename"]! as! String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "__typename")
-        }
-      }
-
-      public var id: GraphQLID {
-        get {
-          return resultMap["id"]! as! GraphQLID
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "id")
-        }
-      }
-
-      public var name: String {
-        get {
-          return resultMap["name"]! as! String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "name")
-        }
-      }
-    }
-  }
-}
-
 public final class ArtistDetailsQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
@@ -698,6 +596,101 @@ public final class ArtistDetailsQuery: GraphQLQuery {
               resultMap.updateValue(newValue, forKey: "icon")
             }
           }
+        }
+      }
+    }
+  }
+}
+
+public final class CompanyListQuery: GraphQLQuery {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    query CompanyList {
+      companies {
+        __typename
+        id
+        name
+      }
+    }
+    """
+
+  public let operationName: String = "CompanyList"
+
+  public let operationIdentifier: String? = "78c65663e205f2dc80f9db82a7110d6681dd8f46297f1e67296c1d36d6970068"
+
+  public init() {
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Query"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("companies", type: .list(.object(Company.selections))),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(companies: [Company?]? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Query", "companies": companies.flatMap { (value: [Company?]) -> [ResultMap?] in value.map { (value: Company?) -> ResultMap? in value.flatMap { (value: Company) -> ResultMap in value.resultMap } } }])
+    }
+
+    public var companies: [Company?]? {
+      get {
+        return (resultMap["companies"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [Company?] in value.map { (value: ResultMap?) -> Company? in value.flatMap { (value: ResultMap) -> Company in Company(unsafeResultMap: value) } } }
+      }
+      set {
+        resultMap.updateValue(newValue.flatMap { (value: [Company?]) -> [ResultMap?] in value.map { (value: Company?) -> ResultMap? in value.flatMap { (value: Company) -> ResultMap in value.resultMap } } }, forKey: "companies")
+      }
+    }
+
+    public struct Company: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["Company"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+        GraphQLField("name", type: .nonNull(.scalar(String.self))),
+      ]
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(id: GraphQLID, name: String) {
+        self.init(unsafeResultMap: ["__typename": "Company", "id": id, "name": name])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var id: GraphQLID {
+        get {
+          return resultMap["id"]! as! GraphQLID
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "id")
+        }
+      }
+
+      public var name: String {
+        get {
+          return resultMap["name"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "name")
         }
       }
     }
