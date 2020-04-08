@@ -6,5 +6,9 @@
   "78c65663e205f2dc80f9db82a7110d6681dd8f46297f1e67296c1d36d6970068": {
     "name": "CompanyList",
     "source": "query CompanyList {\n  companies {\n    __typename\n    id\n    name\n  }\n}"
+  },
+  "f0e6da67dae28a46419f9b2022c35ab7b8b05194988e58f5d281594912955c63": {
+    "name": "CompanyDetails",
+    "source": "query CompanyDetails($id: ID!) {\n  company(id: $id) {\n    __typename\n    id\n    name\n    artists {\n      __typename\n      id\n      displayName\n      secondaryDisplayName\n      isGroup\n      images {\n        __typename\n        cardFlat\n      }\n    }\n  }\n}"
   }
 }

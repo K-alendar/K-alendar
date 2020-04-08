@@ -37,8 +37,10 @@
 		C57D69D22429E8E1003BBCA1 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C57D69D12429E8E1003BBCA1 /* Kingfisher */; };
 		C5BD08D5241ED73B0035D8FF /* ArtistCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BD08D4241ED73B0035D8FF /* ArtistCard.swift */; };
 		C5C38E522425FD3C00DBB3BF /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = C5C38E512425FD3C00DBB3BF /* Podfile */; };
+		C5CDE1F2243D5C7000014DEF /* CompanyDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CDE1F1243D5C7000014DEF /* CompanyDetails.swift */; };
 		C5E71D82241D8144002C221A /* Release.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E71D81241D8144002C221A /* Release.swift */; };
 		C5E71D85241D83F7002C221A /* ReleaseCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E71D84241D83F7002C221A /* ReleaseCard.swift */; };
+		C5EED793243D71AE00925F6F /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EED792243D71AE00925F6F /* Errors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,8 +98,10 @@
 		C54DCFC6243C278800A92BC2 /* CompanyRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CompanyRow.swift; path = Kalendar/GraphQL/Company/CompanyRow.swift; sourceTree = SOURCE_ROOT; };
 		C5BD08D4241ED73B0035D8FF /* ArtistCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ArtistCard.swift; path = /Users/johnivison/personal/Kalendar/ios/Kalendar/Artist/ArtistCard.swift; sourceTree = "<absolute>"; };
 		C5C38E512425FD3C00DBB3BF /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		C5CDE1F1243D5C7000014DEF /* CompanyDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CompanyDetails.swift; path = Kalendar/GraphQL/Company/CompanyDetails.swift; sourceTree = SOURCE_ROOT; };
 		C5E71D81241D8144002C221A /* Release.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Release.swift; sourceTree = "<group>"; };
 		C5E71D84241D83F7002C221A /* ReleaseCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseCard.swift; sourceTree = "<group>"; };
+		C5EED792243D71AE00925F6F /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,12 +176,12 @@
 		C52EC02E2417359F00908012 /* Kalendar */ = {
 			isa = PBXGroup;
 			children = (
+				C53DA8DD241A01E40089CE2B /* Artist */,
 				C54DCFBF243C221400A92BC2 /* Company */,
 				C541BF7A242827C100C2D3A5 /* API.swift */,
 				C5C38E502425FCAD00DBB3BF /* GraphQL */,
 				C5E71D83241D836F002C221A /* Release */,
 				C545FE4E241D6EDE00356EB3 /* Data */,
-				C53DA8DD241A01E40089CE2B /* Artist */,
 				C53DA8D12419F9550089CE2B /* Models */,
 				C52EC02F2417359F00908012 /* AppDelegate.swift */,
 				C52EC0312417359F00908012 /* SceneDelegate.swift */,
@@ -187,6 +191,7 @@
 				C52EC03D241735A500908012 /* Info.plist */,
 				C52EC037241735A500908012 /* Preview Content */,
 				C545FE4C241D6B3A00356EB3 /* extensions.swift */,
+				C5EED792243D71AE00925F6F /* Errors.swift */,
 			);
 			path = Kalendar;
 			sourceTree = "<group>";
@@ -262,23 +267,16 @@
 			children = (
 				C54DCFC4243C271100A92BC2 /* CompanyList.swift */,
 				C54DCFC6243C278800A92BC2 /* CompanyRow.swift */,
+				C5CDE1F1243D5C7000014DEF /* CompanyDetails.swift */,
 			);
 			name = Company;
 			path = "New Group";
 			sourceTree = "<group>";
 		};
-		C54DCFC0243C222000A92BC2 /* Company */ = {
-			isa = PBXGroup;
-			children = (
-				C54DCFC1243C228500A92BC2 /* CompanyController.swift */,
-			);
-			path = Company;
-			sourceTree = "<group>";
-		};
 		C5C38E502425FCAD00DBB3BF /* GraphQL */ = {
 			isa = PBXGroup;
 			children = (
-				C54DCFC0243C222000A92BC2 /* Company */,
+				C54DCFC1243C228500A92BC2 /* CompanyController.swift */,
 				C5010478242B295900164195 /* Utils.swift */,
 				C541BF7724280BC200C2D3A5 /* Artist */,
 				C53E532424270E1500B6954E /* RegisterViewController.graphql */,
@@ -497,9 +495,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5CDE1F2243D5C7000014DEF /* CompanyDetails.swift in Sources */,
 				C53DA8D82419FEBB0089CE2B /* SocialLinks.swift in Sources */,
 				C541BF7B242827C100C2D3A5 /* API.swift in Sources */,
 				C5E71D82241D8144002C221A /* Release.swift in Sources */,
+				C5EED793243D71AE00925F6F /* Errors.swift in Sources */,
 				C52EC0302417359F00908012 /* AppDelegate.swift in Sources */,
 				C52EC0322417359F00908012 /* SceneDelegate.swift in Sources */,
 				C53DA8DF241A01FB0089CE2B /* Soloist.swift in Sources */,

@@ -10,32 +10,53 @@ import SwiftUI
 
 struct CompanyList: View {
     @State private var companies = [CompanyListQuery.Data.Company]()
+    @State private var isLoading = true
     @State private var canReload = true
-    
+
+    @State private var error: Error?
+    @State private var showError = false
     var body: some View {
         VStack {
-            Button("Reload") {
-                if self.canReload {
-                    self.loadData()
+            NavigationView {
+                VStack {
+                    if self.showError {
+                        Text(error?.localizedDescription ?? "Unknown Error")
+                    }
+                    
+                    if self.isLoading {
+                        Text("Loading..")
+                    }
+                    Button("Reload") {
+                        if self.canReload {
+                            self.loadData()
+                        }
+                    }.disabled(!self.canReload)
+                    
+                    List(companies, id: \.id) { company in
+                        NavigationLink(destination: CompanyDetails(id: company.id)) {
+                            CompanyRow(company: company)
+                        }
+                    }
                 }
-            }.disabled(!self.canReload)
-            List(companies, id: \.id) { company in
-                CompanyRow(company: company)
-            }.onAppear(perform: loadData)
-        }
+                .navigationBarTitle("Companies")
+            }
+        }.onAppear(perform: loadData)
     }
     
     func loadData() {
         self.canReload = false
+        self.isLoading = true
         self.companies = []
         CompanyController.fetchCompanyList { (result) in
+            self.isLoading = false
             switch result {
             case .success(let companies):
                 DispatchQueue.main.async {
                     self.companies = companies as! [CompanyListQuery.Data.Company]
                 }
-            case .failure(_):
-                fatalError("Something went wrong...")
+            case .failure(let error):
+                self.error = error
+                self.showError = true
             }
             self.canReload = true
         }

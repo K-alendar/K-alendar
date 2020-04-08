@@ -1,10 +1,10 @@
 const defaults = {
   ArtistImages(values) {
     return {
-      icon: "https://imgur.com/iv0EMG3",
-      banner: "https://imgur.com/43musa7",
-      cardTall: "https://imgur.com/9eEYAcO",
-      cardFlat: "https://imgur.com/BjYHkMi"
+      icon: "https://i.imgur.com/iv0EMG3",
+      banner: "https://i.imgur.com/43musa7",
+      cardTall: "https://i.imgur.com/9eEYAcO",
+      cardFlat: "https://i.imgur.com/BjYHkMi"
     };
   }
 };

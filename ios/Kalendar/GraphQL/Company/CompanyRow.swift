@@ -12,7 +12,7 @@ struct CompanyRow: View {
     var company: CompanyListQuery.Data.Company
     
     var body: some View {
-        HStack {
+        HStack {    
             Text(company.name)
             Spacer()
         }

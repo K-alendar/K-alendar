@@ -51,3 +51,19 @@ query CompanyList {
         name
     }
 }
+
+query CompanyDetails($id: ID!) {
+    company(id: $id) {
+        id
+        name
+        artists {
+            id
+            displayName
+            secondaryDisplayName
+            isGroup
+            images {
+                cardFlat
+            }
+        }
+    }
+}
