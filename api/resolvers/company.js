@@ -2,7 +2,7 @@ const { companyFactory } = require("./factories");
 
 module.exports = {
   types: {
-    Company: companyFactory.associations()
+    Company: companyFactory.subresolvers()
   },
 
   queries: {

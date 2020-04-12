@@ -17,10 +17,27 @@ const associations = [
   new ChildAssociation("group"),
 ];
 
+const computedProperties = {
+  isActive: async (groupMember) => {
+    let group = groupMember.getGroup();
+
+    if (!group) {
+      return false;
+    }
+
+    if (!group.endDate) {
+      return true
+    }
+
+    return group.endDate > Date.now()
+  },
+};
+
 module.exports = new ResolverFactory(GroupMember, {
   fromObject: "groupMember",
   associations: associations,
   __forceSelectFields: groupMemberForceFields,
+  computedProperties: computedProperties,
   validations: {
     memberId: { presence: { allowEmpty: false } },
     groupId: { presence: { allowEmpty: false } },

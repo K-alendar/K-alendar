@@ -2,7 +2,7 @@ const { socialLinksFactory } = require("./factories");
 
 module.exports = {
   types: {
-    SocialLinks: socialLinksFactory.associations()
+    SocialLinks: socialLinksFactory.subresolvers()
   },
 
   queries: {

@@ -2,7 +2,7 @@ const { groupMemberFactory } = require("./factories");
 
 module.exports = {
   types: {
-    GroupMember: groupMemberFactory.associations(),
+    GroupMember: groupMemberFactory.subresolvers(),
   },
 
   queries: {
