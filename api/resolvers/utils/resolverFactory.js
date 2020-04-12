@@ -57,6 +57,7 @@ class ResolverFactory {
       transformer = v => v,
       associations = [],
       validations = {},
+      computedProperties = {},
       __forceSelectFields = []
     }
   ) {
@@ -67,6 +68,7 @@ class ResolverFactory {
     this.__forceSelectFields = __forceSelectFields;
     this.rawAssociations = associations;
     this.validations = validations;
+    this.computedProperties = computedProperties
   }
 
   loadValuesWithDefaults(values, associationName = undefined) {
@@ -223,6 +225,13 @@ class ResolverFactory {
       }
       return { ...acc, ...createReadAssociation(val.name, val.as) };
     }, {});
+  }
+
+  subresolvers() {
+    return {
+      ...this.associations(),
+      ...this.computedProperties
+    }
   }
 }
 

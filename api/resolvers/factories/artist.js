@@ -1,4 +1,4 @@
-const { Artist } = require("../../database/models");
+const { Artist, GroupMember } = require("../../database/models");
 const socialLinksFactory = require("./socialLinks");
 const artistImagesFactory = require("./artistImages");
 const {
@@ -21,10 +21,25 @@ const associations = [
   new ChildAssociation("images", artistImagesFactory, { autoCreate: true }),
 ];
 
+const computedProperties = {
+  memberCount: async (artist) => {
+    return GroupMember.count({
+      where: { groupId: artist.id }
+    })
+  },
+
+  groupCount: async (artist) => {
+    return GroupMember.count({
+      where: { memberId: artist.id }
+    })
+  }
+}
+
 module.exports = new ResolverFactory(Artist, {
   transformer: artistTransformer,
   fromObject: "artist",
   associations: associations,
+  computedProperties: computedProperties,
   validations: {
     startDate: {
       presence: { allowEmpty: false, isString: true },

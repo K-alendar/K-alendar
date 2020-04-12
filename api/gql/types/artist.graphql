@@ -13,6 +13,10 @@ type Artist {
 
   groups: [Artist]
   members: [Artist]
+
+  # Computed properties
+  memberCount: Int!
+  groupCount: Int!
 }
 
 type SocialLinks {
@@ -39,4 +43,7 @@ type GroupMember {
   groupId: ID!
   member: Artist!
   group: Artist!
+
+  # Computed properties
+  isActive: Boolean!
 }

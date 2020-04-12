@@ -2,7 +2,7 @@ const { artistImagesFactory } = require("./factories");
 
 module.exports = {
   types: {
-    ArtistImages: artistImagesFactory.associations()
+    ArtistImages: artistImagesFactory.subresolvers()
   },
 
   queries: {
