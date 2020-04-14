@@ -1,8 +1,15 @@
+# Type definitions
 type Company {
   id: ID!
   name: String!
+
   artists: [Artist]
 
   # Computed property
   artistCount: Int
+}
+
+# Inputs
+input CompanyInput {
+  name: String
 }

@@ -1,0 +1,169 @@
+#! THIS FILE IS TEMPORARY DUE TO A BUG WITH graphql-import
+#! https://github.com/ardatan/graphql-import/issues/565
+
+scalar Image
+scalar Date
+
+
+# Type definitions
+type Artist {
+  id: ID!
+  startDate: Date!
+  endDate: Date
+  socialLinks: SocialLinks
+  images: ArtistImages
+  description: String!
+  displayName: String!
+  secondaryDisplayName: String!
+  isGroup: Boolean!
+
+  groups: [Artist]
+  members: [Artist]
+  releases: [Release]!
+  company: Company!
+
+  # Computed properties
+  memberCount: Int!
+  groupCount: Int!
+}
+
+type SocialLinks {
+  id: ID!
+  twitter: String
+  youtube: String
+  spotify: String
+}
+
+type ArtistImages {
+  id: ID!
+  icon: Image
+  banner: Image
+  cardTall: Image
+  cardFlat: Image
+  artist: Artist
+}
+
+type GroupMember {
+  id: ID!
+  memberId: ID!
+  groupId: ID!
+  member: Artist!
+  group: Artist!
+
+  # Computed properties
+  isActive: Boolean!
+}
+
+# Inputs
+input ArtistInput {
+  startDate: Date
+  endDate: Date
+  companyId: Int
+  socialLinksId: Int
+  description: String
+  displayName: String
+  secondaryDisplayName: String
+  isGroup: Boolean
+  memberCount: Int
+}
+
+input ArtistImagesInput {
+  icon: Image
+  banner: Image
+  cardTall: Image
+  cardFlat: Image
+}
+
+input GroupMemberInput {
+  memberId: ID
+  groupId: ID
+}
+
+input SocialLinksInput {
+  twitter: String
+  youtube: String
+  spotify: String
+}
+
+# Type definitions
+type Company {
+  id: ID!
+  name: String!
+
+  artists: [Artist]
+
+  # Computed property
+  artistCount: Int
+}
+
+# Inputs
+input CompanyInput {
+  name: String
+}
+
+type Query {
+  artists: [Artist]
+  artist(id: ID!): Artist
+
+  groupMembers: [GroupMember]
+  groupMember(id: ID!): GroupMember
+
+  artistImagesMultiple: [ArtistImages]
+  artistImages(id: ID!): ArtistImages
+
+  companies: [Company]
+  company(id: ID!): Company
+}
+
+type Mutation {
+  createArtist(
+    artist: ArtistInput
+    socialLinks: SocialLinksInput
+    images: ArtistImagesInput
+  ): Artist
+  updateArtist(
+    id: ID!
+    artist: ArtistInput
+    socialLinks: SocialLinksInput
+    images: ArtistImagesInput
+  ): Artist
+  deleteArtist(id: ID!): Artist
+
+  createCompany(company: CompanyInput): Company
+  deleteCompany(id: ID!): Company
+  updateCompany(id: ID!, company: CompanyInput): Company
+
+  createArtistImages(artistImages: ArtistImagesInput): ArtistImages
+  updateArtistImages(id: ID!, artistImages: ArtistImagesInput): ArtistImages
+  deleteArtistImages(id: ID!): ArtistImages
+
+  addMemberToGroup(groupMember: GroupMemberInput): GroupMember
+  updateMemberInGroup(id: ID!, groupMember: GroupMemberInput): GroupMember
+  removeMemberFromGroup(id: ID!): GroupMember
+}
+
+# Type definitions
+enum ReleaseStatus {
+  Delayed
+  Canceled
+  Postponed
+  Normal
+  Released
+}
+
+enum ReleaseType {
+  Comeback
+  Repackage
+  Single
+  Debut
+}
+
+type Release {
+  title: String!
+  subtitle: String
+  date: Date
+  status: ReleaseStatus
+  type: ReleaseType
+  
+  artist: Artist!
+}

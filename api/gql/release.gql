@@ -1,3 +1,4 @@
+# Type definitions
 enum ReleaseStatus {
   Delayed
   Canceled
@@ -14,10 +15,11 @@ enum ReleaseType {
 }
 
 type Release {
-  artist: Artist!
   title: String!
   subtitle: String
   date: Date
   status: ReleaseStatus
   type: ReleaseType
+  
+  artist: Artist!
 }

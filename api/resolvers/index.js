@@ -13,13 +13,13 @@ module.exports = {
     ...ArtistResolvers.queries,
     ...CompanyResolvers.queries,
     ...GroupMemberResolvers.queries,
-    ...ArtistImagesResolvers.queries
+    ...ArtistImagesResolvers.queries,
   },
 
   Mutation: {
     ...ArtistResolvers.mutations,
     ...CompanyResolvers.mutations,
     ...GroupMemberResolvers.mutations,
-    ...ArtistImagesResolvers.mutations
-  }
+    ...ArtistImagesResolvers.mutations,
+  },
 };

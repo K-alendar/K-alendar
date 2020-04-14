@@ -1,18 +1,19 @@
+# Type definitions
 type Artist {
   id: ID!
   startDate: Date!
   endDate: Date
-  company: Company!
   socialLinks: SocialLinks
   images: ArtistImages
   description: String!
-  releases: [Release]!
   displayName: String!
   secondaryDisplayName: String!
   isGroup: Boolean!
 
   groups: [Artist]
   members: [Artist]
+  releases: [Release]!
+  company: Company!
 
   # Computed properties
   memberCount: Int!
@@ -25,8 +26,6 @@ type SocialLinks {
   youtube: String
   spotify: String
 }
-
-scalar Image
 
 type ArtistImages {
   id: ID!
@@ -46,4 +45,35 @@ type GroupMember {
 
   # Computed properties
   isActive: Boolean!
+}
+
+# Inputs
+input ArtistInput {
+  startDate: Date
+  endDate: Date
+  companyId: Int
+  socialLinksId: Int
+  description: String
+  displayName: String
+  secondaryDisplayName: String
+  isGroup: Boolean
+  memberCount: Int
+}
+
+input ArtistImagesInput {
+  icon: Image
+  banner: Image
+  cardTall: Image
+  cardFlat: Image
+}
+
+input GroupMemberInput {
+  memberId: ID
+  groupId: ID
+}
+
+input SocialLinksInput {
+  twitter: String
+  youtube: String
+  spotify: String
 }

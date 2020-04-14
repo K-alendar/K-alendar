@@ -1,0 +1,40 @@
+type Query {
+  artists: [Artist]
+  artist(id: ID!): Artist
+
+  groupMembers: [GroupMember]
+  groupMember(id: ID!): GroupMember
+
+  artistImagesMultiple: [ArtistImages]
+  artistImages(id: ID!): ArtistImages
+
+  companies: [Company]
+  company(id: ID!): Company
+}
+
+type Mutation {
+  createArtist(
+    artist: ArtistInput
+    socialLinks: SocialLinksInput
+    images: ArtistImagesInput
+  ): Artist
+  updateArtist(
+    id: ID!
+    artist: ArtistInput
+    socialLinks: SocialLinksInput
+    images: ArtistImagesInput
+  ): Artist
+  deleteArtist(id: ID!): Artist
+
+  createCompany(company: CompanyInput): Company
+  deleteCompany(id: ID!): Company
+  updateCompany(id: ID!, company: CompanyInput): Company
+
+  createArtistImages(artistImages: ArtistImagesInput): ArtistImages
+  updateArtistImages(id: ID!, artistImages: ArtistImagesInput): ArtistImages
+  deleteArtistImages(id: ID!): ArtistImages
+
+  addMemberToGroup(groupMember: GroupMemberInput): GroupMember
+  updateMemberInGroup(id: ID!, groupMember: GroupMemberInput): GroupMember
+  removeMemberFromGroup(id: ID!): GroupMember
+}
