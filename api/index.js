@@ -3,7 +3,7 @@ const { importSchema } = require("graphql-import");
 const resolvers = require("./resolvers");
 
 async function start() {
-  const typeDefs = await importSchema("gql/**/*.graphql");
+  const typeDefs = await importSchema("base.gql");
 
   // The ApolloServer constructor requires two parameters: your schema
   // definition and your set of resolvers.
